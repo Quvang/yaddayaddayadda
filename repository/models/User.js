@@ -17,23 +17,23 @@ const UserSchema = new mongoose.Schema({
     },
     firstName: {
         type: String,
-        required: true 
+        required: true,
     },
     lastName: {
         type: String,
-        required: true 
+        required: true,
     },
     avatar: {
         type: String,
-        default: images/avatar.png
+        default: null,
     },
     isApproved: {
         type: Boolean,
-        default: false
+        default: false,
     },
     theme: {
         type: Boolean,
-        default: false
+        default: false,
     },
     following: [],
     created: {
