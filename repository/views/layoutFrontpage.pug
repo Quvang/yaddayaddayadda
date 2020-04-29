@@ -1,0 +1,35 @@
+doctype
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="icon", type="image/svg+xml", href="/favicon.svg")
+    link(rel='stylesheet', href='/stylesheets/styleFrontpage.css')
+    script(type="module", src='/javascripts/nquery.js')
+  body
+    header
+      nav
+        ul
+          li
+            a(style="float:left" href="/") Home
+          li
+            a(style="float:left" href="/about") About
+          if user
+            li
+              a(style="float:left" href="/dashboard") Insiders
+            li
+              a(style="float:left" href="/test") Test
+            li
+              a(style="float:right" href="/users/logout") Logout
+          if !user
+            li
+              a(style="float:right" href="/users/register") Register
+            li
+              a(style="float:right" href="/users/login") Login
+    main
+      block content
+    //- footer
+    //-     div(id="cpy")
+    //-     div
+    //-       a(href="#") twitter
