@@ -14,13 +14,9 @@ block content
     form(id='myformr' action='/users/register' method='post')
         table
             tr
-                td Name:
+                td Username:
                 td
-                    input(type='name' name='name' placeholder='firstname' required)
-            tr
-                td Email:
-                td
-                    input(type='email' name='email' placeholder='n@mm.tld' required)
+                    input(type='username' name='username' placeholder='username' required)
             tr
                 td Password:
                 td
@@ -30,8 +26,45 @@ block content
                 td
                     input(type='password' name='password2' placeholder='repeat password' required)
             tr
+                td Email:
+                td
+                    input(type='email' name='email' placeholder='mail@gmail.com' required)
+            tr
+                td Firstname:
+                td
+                    input(type='firstName' name='firstName' placeholder='firstName' required)
+            tr
+                td Lastname:
+                td
+                    input(type='lastName' name='lastName' placeholder='lastName' required)
+            tr
+                td Avatar:
+                td
+                    input(type='file' name='avatar' placeholder='avatar' required)
+            //- tr
+            //-     td Theme:
+            //-     td
+            //-         select(name='theme' required)
+            //-             option(value="Light") Light
+            //-             option(value="Dark") Dark
+            tr
                 td
                 td
-                    input(type='submit' value='Go')
+                    img(src="../images/avatar.png", alt="placeholder" width="150" height="150")
+                    | 
+                    br
+                    |image dimension 150x150px
+                    
+                    
+            tr
+                td
+                td
+                    |
+                    br
+            tr
+                
+                td
+                td
+                    input(type='submit' value='Create User')
     p Have an account?&nbsp;
         a(href='/users/login') Login
