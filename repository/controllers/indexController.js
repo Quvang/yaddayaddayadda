@@ -1,7 +1,7 @@
 exports.frontpage = function (req, res) {
     res.render('index', {
-        title: 'Mads Møller',
-        subtitle: 'Assignment Security 2.0 - 2.1',
+        title: 'Gruppe 2',
+        subtitle: 'Yadda Yadda Yadda',
     });
 };
 
