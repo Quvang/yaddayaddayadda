@@ -5,15 +5,51 @@ const mongoose = require('mongoose');
 const User = require('../models/User');
 const saltRounds = 10;
 
+//Fileupload (avatar)
+const multer = require('multer');
+//Fileupload management (location filename filetype)
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, __dirname + '/../public/images/avatar/');
+    },
+    filename: (req, file, cb) => {
+        const ext = file.mimetype.split('/')[1];
+        cb(null, `user-${req.body.username}-${Date.now()}.${ext}`);
+    },
+});
+
+//validation of file is an image
+const multerFilter = (req, file, cb) => {
+    let errors = [];
+
+    if (file.mimetype.startsWith('image')) {
+        cb(null, true);
+    } else {
+        cb(new Error('MAKE ERROR CODE - Not an Image! Please upload imagefiles only', 400), false);
+    }
+};
+
+const upload = multer({
+    storage: multerStorage,
+    fileFilter: multerFilter,
+});
+
+//middleware
+exports.uploadAvatar = upload.single('avatar');
+
 exports.register = function (req, res) {
     res.render('register', {
         title: 'Create a User',
         subtitle: 'Yadda Yadda Yadda',
+        avatar: req.body.avatar,
     });
 };
 
 exports.postRegister = function (req, res) {
-    const { username, password, password2, email, firstName, lastName, avatar } = req.body;
+    const avatar = req.file.filename;
+    const { username, password, password2, email, firstName, lastName } = req.body;
+
+    console.log(avatar);
     let errors = [];
 
     if (!username || !password || !password2 || !email || !firstName || !lastName) {
@@ -37,6 +73,7 @@ exports.postRegister = function (req, res) {
             email,
             firstName,
             lastName,
+            avatar,
         });
     } else if (errors.length > 0) {
         User.findOne({ email: email }).then(function (user) {
@@ -50,6 +87,7 @@ exports.postRegister = function (req, res) {
                     email,
                     firstName,
                     lastName,
+                    avatar,
                 });
             } else {
                 const newUser = new User({
@@ -86,6 +124,7 @@ exports.postRegister = function (req, res) {
                     email,
                     firstName,
                     lastName,
+                    avatar,
                 });
             } else {
                 const newUser = new User({

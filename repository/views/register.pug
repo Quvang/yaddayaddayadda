@@ -11,7 +11,7 @@ block content
         div(role='alert' id='a3') #{error_msg}
     if error != ''
         div(role='alert' id='a4') #{error}
-    form(id='myformr' action='/users/register' method='post')
+    form(id='myformr' action='/users/register' method='post' enctype='multipart/form-data')
         table
             tr
                 td Username:
@@ -50,10 +50,10 @@ block content
             tr
                 td
                 td
-                    img(src="../images/avatar.png", alt="placeholder" width="150" height="150")
+                    img(id="avatarPreview")
                     | 
                     br
-                    |image dimension 150x150px
+                    //- |Max image dimension 150x150px
                     
                     
             tr
@@ -66,5 +66,20 @@ block content
                 td
                 td
                     input(type='submit' value='Create User')
+
+    //- form(id='myformr' action='/users/register' method='post' enctype="multipart/form-data")
+    //-     table
+    //-         tr
+    //-             td Avatar:
+    //-             td
+    //-                 input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
+    //-         tr
+                
+    //-             td
+    //-             td
+    //-                 input(type='submit' value='Create User')
+
     p Have an account?&nbsp;
         a(href='/users/login') Login
+
+    script(src='/javascripts/avatar.js')
