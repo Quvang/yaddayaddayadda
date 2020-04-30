@@ -13,10 +13,10 @@ exports.register = function (req, res) {
 };
 
 exports.postRegister = function (req, res) {
-    const { name, email, password, password2 } = req.body;
+    const { username, password, password2, email, firstName, lastName, avatar } = req.body;
     let errors = [];
 
-    if (!name || !email || !password || !password2) {
+    if (!username || !password || !password2 || !email || !firstName || !lastName) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
@@ -24,17 +24,19 @@ exports.postRegister = function (req, res) {
         errors.push({ msg: 'Passwords do not match' });
     }
 
-    if (password.length < 12) {
+    if (password.length < 4) {
         errors.push({ msg: 'Password must be at least 12 characters' });
     }
 
     if (errors.length > 0) {
         res.render('register', {
             errors,
-            name,
-            email,
+            username,
             password,
             password2,
+            email,
+            firstName,
+            lastName,
         });
     } else {
         User.findOne({ email: email }).then(function (user) {
@@ -42,16 +44,21 @@ exports.postRegister = function (req, res) {
                 errors.push({ msg: 'Email already exists' });
                 res.render('register', {
                     errors,
-                    name,
-                    email,
+                    username,
                     password,
                     password2,
+                    email,
+                    firstName,
+                    lastName,
                 });
             } else {
                 const newUser = new User({
-                    name,
-                    email,
+                    username,
                     password,
+                    email,
+                    firstName,
+                    lastName,
+                    avatar,
                 });
 
                 bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
