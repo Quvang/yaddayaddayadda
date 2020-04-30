@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css=family=OPen+Sans:300,400,600,700,800&display=swap');
-
+@import url('https://fonts.googleapis.com/css=family=Montserrat:300,400,600,700,800&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +19,10 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 30px;
     text-decoration: none;
+    font-family: Montserrat;
+    text-transform: uppercase;
 }
 
 li a:hover {

@@ -72,8 +72,8 @@ exports.postRegister = function (req, res) {
 
 exports.login = function (req, res) {
     res.render('login', {
-        title: 'Demoing PassportJS',
-        subtitle: 'Inspired by Traversy',
+        title: 'Login',
+        subtitle: 'Login Subtitle',
     });
 };
 
