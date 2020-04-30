@@ -49,7 +49,7 @@ exports.postRegister = function (req, res) {
     const avatar = req.file.filename;
     const { username, password, password2, email, firstName, lastName } = req.body;
 
-    console.log(avatar);
+    console.log('\n' + '>>> Avatar filename set to: ' + avatar + ' <<<' + '\n');
     let errors = [];
 
     if (!username || !password || !password2 || !email || !firstName || !lastName) {
