@@ -46,7 +46,13 @@ exports.register = function (req, res) {
 };
 
 exports.postRegister = function (req, res) {
-    const avatar = req.file.filename;
+    var avatar = null;
+    if (req.file === undefined) {
+        avatar = null;
+    } else {
+        avatar = req.file.filename;
+    }
+
     const { username, password, password2, email, firstName, lastName } = req.body;
 
     console.log('\n' + '>>> Avatar filename set to: ' + avatar + ' <<<' + '\n');
@@ -73,7 +79,7 @@ exports.postRegister = function (req, res) {
             email,
             firstName,
             lastName,
-            avatar,
+            // avatar,
         });
     } else if (errors.length > 0) {
         User.findOne({ email: email }).then(function (user) {
