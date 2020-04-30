@@ -25,7 +25,7 @@ exports.postRegister = function (req, res) {
     }
 
     if (password.length < 4) {
-        errors.push({ msg: 'Password must be at least 12 characters' });
+        errors.push({ msg: 'Password must be at least  characters' });
     }
 
     if (errors.length > 0) {
@@ -38,10 +38,46 @@ exports.postRegister = function (req, res) {
             firstName,
             lastName,
         });
-    } else {
+    } else if (errors.length > 0) {
         User.findOne({ email: email }).then(function (user) {
             if (user) {
                 errors.push({ msg: 'Email already exists' });
+                res.render('register', {
+                    errors,
+                    username,
+                    password,
+                    password2,
+                    email,
+                    firstName,
+                    lastName,
+                });
+            } else {
+                const newUser = new User({
+                    username,
+                    password,
+                    email,
+                    firstName,
+                    lastName,
+                    avatar,
+                });
+
+                bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
+                    if (err) throw err;
+                    newUser.password = hash;
+                    newUser
+                        .save()
+                        .then((user) => {
+                            req.flash('success_msg', 'You are now registered and can log in');
+                            res.redirect('/users/login');
+                        })
+                        .catch((err) => console.log(err));
+                });
+            }
+        });
+    } else {
+        User.findOne({ username: username }).then(function (user) {
+            if (user) {
+                errors.push({ msg: 'Username already exists' });
                 res.render('register', {
                     errors,
                     username,
