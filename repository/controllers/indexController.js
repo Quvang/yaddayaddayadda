@@ -7,7 +7,7 @@ exports.frontpage = function (req, res) {
 
 exports.dashboard = function (req, res) {
     res.render('dashboard', {
-        title: "You're logged in as " + req.user.name,
+        title: "You're logged in as " + req.user.username,
         subtitle: 'Welcome to your dashboard',
         user: req.user,
     });
