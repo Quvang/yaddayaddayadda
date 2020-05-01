@@ -51,6 +51,7 @@ exports.postRegister = function (req, res) {
         avatar = null;
     } else {
         avatar = req.file.filename;
+        console.log('reg.file' + req.file);
     }
 
     const { username, password, password2, email, firstName, lastName } = req.body;

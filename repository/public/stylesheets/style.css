@@ -13,6 +13,8 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #030613;
+    border-bottom: solid 1px;
+    border-bottom-color: #fff;
 }
 
 li a {
