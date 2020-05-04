@@ -14,7 +14,7 @@ exports.dashboard = function (req, res) {
 };
 
 exports.test = function (req, res) {
-    res.render('test', {
+    res.render('profile', {
         title: 'Test',
         subtitle: 'Test Subtitle',
         user: req.user,

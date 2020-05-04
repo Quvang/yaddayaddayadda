@@ -1,10 +1,18 @@
-@import url('https://fonts.googleapis.com/css=family=OPen+Sans:300,400,600,700,800&display=swap');
-@import url('https://fonts.googleapis.com/css=family=Montserrat:300,400,600,700,800&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
     font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    background: #030613;
+    min-height: 100vh;
+}
+
+main {
+    margin: 50px;
 }
 
 ul {
@@ -18,25 +26,47 @@ ul {
 }
 
 li a {
+    font-family: Montserrat;
+    font-weight: 300;
     display: block;
     color: white;
     text-align: center;
     padding: 14px 30px;
     text-decoration: none;
-    font-family: Montserrat;
     text-transform: uppercase;
 }
 
 li a:hover {
     background-color: #ff006a;
+    transition-duration: 0.5s;
 }
 
-body {
+h2 {
+    font-size: 20px;
+    font-weight: bold;
     color: #fff;
-    background: #030613;
-    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+form {
+    padding-bottom: 20px;
+}
+
+.link {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.3;
 }
 
 #a1 {
     color: red;
 }
+
+#copyright {
+    text-align: center;
+    border-top: 1px solid #fff;
+    opacity: 0.3;
+    padding: 20px;
+}   
+
+

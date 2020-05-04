@@ -68,7 +68,7 @@ exports.postRegister = function (req, res) {
     }
 
     if (password.length < 4) {
-        errors.push({ msg: 'Password must be at least  characters' });
+        errors.push({ msg: 'Password must be at least 4 characters' });
     }
 
     if (errors.length > 0) {
@@ -112,7 +112,7 @@ exports.postRegister = function (req, res) {
                     newUser
                         .save()
                         .then((user) => {
-                            req.flash('success_msg', 'You are now registered and can log in');
+                            req.flash('success_msg', 'Confirmation Email sent');
                             res.redirect('/users/login');
                         })
                         .catch((err) => console.log(err));
@@ -149,7 +149,7 @@ exports.postRegister = function (req, res) {
                     newUser
                         .save()
                         .then((user) => {
-                            req.flash('success_msg', 'You are now registered and can log in');
+                            req.flash('success_msg', 'Confirmation Email sent');
                             res.redirect('/users/login');
                         })
                         .catch((err) => console.log(err));

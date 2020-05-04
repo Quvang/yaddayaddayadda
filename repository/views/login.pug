@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Login
+    h2 Login
     if errors != undefined && errors.length != 0
         each error in errors
             div(role='alert' id='a1') #{error.msg}
@@ -16,14 +16,14 @@ block content
             tr
                 td Email:
                 td
-                    input(type='text' name='email' required)
+                    input(type='text' name='email' placeholder='mail@gmail.com' required)
             tr
                 td Password:
                 td
-                    input(type='password' name='password' required)
+                    input(type='password' name='password' placeholder='password' required)
             tr
                 td
                 td
                     input(type='submit' value='Go')
     p No account?&nbsp;
-        a(href='/users/register') Register
+        a.link(href='/users/register') Register here

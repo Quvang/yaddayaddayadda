@@ -15,6 +15,10 @@ module.exports = function (passport) {
                     return done(null, false, { message: 'That email is not registered' });
                 }
 
+                //if (!user.isConfirmed) {
+                //    return done(null, false, { message: 'Please confirm your Email to login' });
+                //}
+
                 // Match password
                 bcrypt.compare(password, user.password, function (err, isMatch) {
                     if (err) throw err;

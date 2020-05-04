@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1 Register
+    h2 Register
     if errors != undefined && errors.length != 0
         each error in errors
             div(role='alert' id='a1') #{error.msg}
@@ -80,6 +80,6 @@ block content
     //-                 input(type='submit' value='Create User')
 
     p Have an account?&nbsp;
-        a(href='/users/login') Login
+        a.link(href='/users/login') Login here
 
     script(src='/javascripts/avatar.js')

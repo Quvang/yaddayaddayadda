@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: String,
     },
-    isApproved: {
+    isConfirmed: {
         type: Boolean,
         default: false,
     },
