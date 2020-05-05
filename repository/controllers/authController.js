@@ -20,12 +20,11 @@ const multerStorage = multer.diskStorage({
 
 //validation of file is an image
 const multerFilter = (req, file, cb) => {
-    let errors = [];
-
     if (file.mimetype.startsWith('image')) {
         cb(null, true);
     } else {
-        cb(new Error('MAKE ERROR CODE - Not an Image! Please upload imagefiles only', 400), false);
+        // cb(new Error('MAKE ERROR CODE - Not an Image! Please upload imagefiles only', 400), false);
+        cb(null, false);
     }
 };
 
@@ -46,14 +45,6 @@ exports.register = function (req, res) {
 };
 
 exports.postRegister = function (req, res) {
-    var avatar = null;
-    if (req.file === undefined) {
-        avatar = null;
-    } else {
-        avatar = req.file.filename;
-        console.log('reg.file' + req.file);
-    }
-
     const { username, password, password2, email, firstName, lastName } = req.body;
 
     console.log('\n' + '>>> Avatar filename set to: ' + avatar + ' <<<' + '\n');
@@ -69,6 +60,15 @@ exports.postRegister = function (req, res) {
 
     if (password.length < 4) {
         errors.push({ msg: 'Password must be at least 4 characters' });
+    }
+
+    var avatar = null;
+    if (req.file === undefined) {
+        avatar = null;
+        errors.push({ msg: 'Not an Imagefile! Please upload imagefiles only' });
+    } else {
+        avatar = req.file.filename;
+        console.log('reg.file' + req.file);
     }
 
     if (errors.length > 0) {
