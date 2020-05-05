@@ -1,85 +1,75 @@
 extends layout
 
 block content
-    h2 Register
-    if errors != undefined && errors.length != 0
-        each error in errors
-            div(role='alert' id='a1') #{error.msg}
-    if success_msg != ''
-        div(role='alert' id='a2') #{success_msg}
-    if error_msg != ''
-        div(role='alert' id='a3') #{error_msg}
-    if error != ''
-        div(role='alert' id='a4') #{error}
-    form(id='myformr' action='/users/register' method='post' enctype='multipart/form-data')
-        table
-            tr
-                td Username:
-                td
-                    input(type='text' name='username' placeholder='username' required)
-            tr
-                td Password:
-                td
-                    input(type='password' name='password' placeholder='password' required)
-            tr
-                td Repeat Password:
-                td
-                    input(type='password' name='password2' placeholder='repeat password' required)
-            tr
-                td Email:
-                td
-                    input(type='email' name='email' placeholder='mail@gmail.com' required)
-            tr
-                td Firstname:
-                td
-                    input(type='text' name='firstName' placeholder='firstName' required)
-            tr
-                td Lastname:
-                td
-                    input(type='text' name='lastName' placeholder='lastName' required)
-            tr
-                td Avatar:
-                td
-                    input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
-            //- tr
-            //-     td Theme:
-            //-     td
-            //-         select(name='theme' required)
-            //-             option(value="Light") Light
-            //-             option(value="Dark") Dark
-            tr
-                td
-                td
-                    img(id="avatarPreview" src="../images/avatar.png" width="120px" height="120px")
-                    | 
-                    br
-                    //- |Max image dimension 150x150px
-                    
-                    
-            tr
-                td
-                td
-                    |
-                    br
-            tr
-                
-                td
-                td
-                    input(type='submit' value='Create User')
+    div.errors
+        if errors != undefined && errors.length != 0
+            each error in errors
+                div(role='alert' id='a1') #{error.msg}
+        if success_msg != ''
+            div(role='alert' id='a2') #{success_msg}
+        if error_msg != ''
+            div(role='alert' id='a3') #{error_msg}
+        if error != ''
+            div(role='alert' id='a4') #{error}
+    div.wrapper
+        h2 Register
+        form(id='myformr' action='/users/register' method='post' enctype='multipart/form-data')
+            
+                tr
+                    td Username:
+                        input(type='text' name='username' placeholder='username' required)
+                tr
+                    td Password:
+                        input(type='password' name='password' placeholder='password' required)
+                tr
+                    td Repeat Password:
+                        input(type='password' name='password2' placeholder='repeat password' required)
+                tr
+                    td Email:
+                        input(type='email' name='email' placeholder='mail@gmail.com' required)
+                tr
+                    td Firstname:
+                        input(type='text' name='firstName' placeholder='firstName' required)
+                tr
+                    td Lastname:
+                        input(type='text' name='lastName' placeholder='lastName' required)
+                tr
+                    td Avatar:
+                tr
+                    td  
+                        | 
+                        br
+                        br
+                        img(id="avatarPreview" src="../images/avatar.png" width="120px" height="120px")
+                        | 
+                        br
+                        input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
+                //- tr
+                //-     td Theme:
+                //-     td
+                //-         select(name='theme' required)
+                //-             option(value="Light") Light
+                //-             option(value="Dark") Dark
+                tr
+                    td
+                        | 
+                        br
+                        br
+                        input(type='submit' value='Create User')
 
-    //- form(id='myformr' action='/users/register' method='post' enctype="multipart/form-data")
-    //-     table
-    //-         tr
-    //-             td Avatar:
-    //-             td
-    //-                 input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
-    //-         tr
-                
-    //-             td
-    //-             td
-    //-                 input(type='submit' value='Create User')
+        //- form(id='myformr' action='/users/register' method='post' enctype="multipart/form-data")
+        //-     table
+        //-         tr
+        //-             td Avatar:
+        //-             td
+        //-                 input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
+        //-         tr
+                    
+        //-             td
+        //-             td
+        //-                 input(type='submit' value='Create User')
 
-    p Have an account?&nbsp;
-        a.link(href='/users/login') Login here
+        p.bot Have an account?&nbsp;
+            a.link(href='/users/login') Login here
 
     script(src='/javascripts/avatar.js')

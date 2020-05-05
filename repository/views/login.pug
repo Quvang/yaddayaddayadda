@@ -1,29 +1,30 @@
 extends layout
 
 block content
-    h2 Login
-    if errors != undefined && errors.length != 0
-        each error in errors
-            div(role='alert' id='a1') #{error.msg}
-    if success_msg != ''
-        div(role='alert' id='a2') #{success_msg}
-    if error_msg != ''
-        div(role='alert' id='a3') #{error_msg}
-    if error != ''
-        div(role='alert' id='a4') #{error}
-    form(id='myforml' action='/users/login' method='post')
-        table
-            tr
-                td Email:
-                td
-                    input(type='email' name='email' placeholder='mail@gmail.com' required)
-            tr
-                td Password:
-                td
-                    input(type='password' name='password' placeholder='password' required)
-            tr
-                td
-                td
-                    input(type='submit' value='Go')
-    p No account?&nbsp;
-        a.link(href='/users/register') Register here
+    div.errors
+        if errors != undefined && errors.length != 0
+            each error in errors
+                div(role='alert' id='a1') #{error.msg}
+        if success_msg != ''
+            div(role='alert' id='a2') #{success_msg}
+        if error_msg != ''
+            div(role='alert' id='a3') #{error_msg}
+        if error != ''
+            div(role='alert' id='a4') #{error}
+    div.wrapper
+        h2 Login
+        form(id='myforml' action='/users/login' method='post')
+                tr
+                    td Email:
+                    td
+                        input(type='email' name='email' placeholder='mail@gmail.com' required)
+                tr
+                    td Password:
+                    td
+                        input(type='password' name='password' placeholder='password' required)
+                tr
+                    td
+                    td
+                        input(type='submit' value='Login')
+        p.bot No account?&nbsp;
+            a.link(href='/users/register') Register here

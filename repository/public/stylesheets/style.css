@@ -59,7 +59,69 @@ form {
 }
 
 #a1 {
-    color: red;
+    color: #ff006a;
+}
+
+.errors div {
+    background-color: #232530;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: hidden;  
+}
+
+.wrapper {
+    background-color: #232530;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px 50px 20px 50px;
+}
+
+.profilewrapper {
+    background-color: #232530;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 50px 20px 50px;
+}
+
+input[type=text], input[type=email], input[type=password], select{
+    width: 100%;
+    color: #fff;
+    background-color: #353744;
+    opacity: 0.6;
+    padding: 18px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+  }
+  input[type=text], input[type=email], input[type=password] {
+      margin-bottom: 20px;
+  }
+  ::placeholder {
+      color: #fff;
+      opacity: 0.2;
+      font-size: 14px;
+  }
+  input[type=submit] {
+    width: 100%;
+    font-size: 20px;
+    background-color: #ff006a;
+    opacity: 0.5;
+    color: white;
+    padding: 15px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+  } 
+  input[type=submit]:hover {
+    background-color: #ff006a;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.bot {
+    text-align: center;
 }
 
 #copyright {
