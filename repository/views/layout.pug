@@ -13,8 +13,6 @@ html
     header
       nav
         ul
-          li
-            a(style="float:left" href="/") Home
           if user
             li
               a(style="float:left" href="/dashboard") Dashboard
@@ -23,6 +21,8 @@ html
             li
               a(style="float:right" href="/users/logout") Logout
           if !user
+            li
+              a(style="float:left" href="/") Home
             li
               a(style="float:right" href="/users/register") Register
             li
