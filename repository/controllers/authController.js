@@ -54,12 +54,24 @@ exports.postRegister = function (req, res) {
         errors.push({ msg: 'Please enter all fields' });
     }
 
+    if (username.length < 3) {
+        errors.push({ msg: 'Username must be at least 3 characters' });
+    }
+
     if (password != password2) {
         errors.push({ msg: 'Passwords do not match' });
     }
 
     if (password.length < 4) {
         errors.push({ msg: 'Password must be at least 4 characters' });
+    }
+
+    if (firstName.length < 2) {
+        errors.push({ msg: 'Firstname must be at least 2 characters' });
+    }
+
+    if (lastName.length < 2) {
+        errors.push({ msg: 'Lastname must be at least 2 characters' });
     }
 
     var avatar = null;
@@ -82,7 +94,7 @@ exports.postRegister = function (req, res) {
             lastName,
             // avatar,
         });
-    } else if (errors.length > 0) {
+    } else if (errors.length > 0) { //if email already exists
         User.findOne({ email: email }).then(function (user) {
             if (user) {
                 errors.push({ msg: 'Email already exists' });
@@ -119,7 +131,7 @@ exports.postRegister = function (req, res) {
                 });
             }
         });
-    } else {
+    } else { //if username already exists
         User.findOne({ username: username }).then(function (user) {
             if (user) {
                 errors.push({ msg: 'Username already exists' });
