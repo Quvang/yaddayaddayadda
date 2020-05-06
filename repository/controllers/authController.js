@@ -77,7 +77,7 @@ exports.postRegister = function (req, res) {
     var avatar = null;
     if (req.file === undefined) {
         avatar = null;
-        errors.push({ msg: 'Not an Imagefile! Please upload imagefiles only' });
+        // errors.push({ msg: 'Not an Imagefile! Please upload imagefiles only' });
     } else {
         avatar = req.file.filename;
         console.log('reg.file' + req.file);
@@ -94,7 +94,8 @@ exports.postRegister = function (req, res) {
             lastName,
             // avatar,
         });
-    } else if (errors.length > 0) { //if email already exists
+    } else if (errors.length > 0) {
+        //if email already exists
         User.findOne({ email: email }).then(function (user) {
             if (user) {
                 errors.push({ msg: 'Email already exists' });
@@ -131,7 +132,8 @@ exports.postRegister = function (req, res) {
                 });
             }
         });
-    } else { //if username already exists
+    } else {
+        //if username already exists
         User.findOne({ username: username }).then(function (user) {
             if (user) {
                 errors.push({ msg: 'Username already exists' });
