@@ -46,7 +46,20 @@ h2 {
     font-weight: 300;
     font-size: 20px;
     color: #fff;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+#username {
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 form {
@@ -60,6 +73,9 @@ form {
 }
 
 #a1 {
+    color: #ff006a;
+}
+#a4 {
     color: #ff006a;
 }
 
@@ -80,6 +96,13 @@ form {
 }
 
 .profilewrapper {
+    background-color: #232530;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 50px 20px 50px;
+}
+
+.dashwrapper {
     background-color: #232530;
     width: 50%;
     margin: 0 auto;
@@ -159,12 +182,16 @@ input[type=text], input[type=email], input[type=password], textarea, select{
         height: 110px;
         width: 80%;
     }
-    .yaddafile {
-        margin: 8px 0;
-    }
     .row {
         display: flex;
         justify-content: space-between;
+    }
+    #posts {
+        margin: 0 auto;
+        padding: 18px 20px;
+        background-color: #353744;
+        opacity: 0.6;
+        margin-bottom: 20px;
     }
 
 .file-upload > input {

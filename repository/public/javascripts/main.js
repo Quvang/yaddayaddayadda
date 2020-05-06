@@ -6,7 +6,7 @@ import { Ajax } from "./modules/Ajax.js";
 var maxchar = 167;
 var i = document.getElementById("yaddatxtarea");
 var c = document.getElementById("count");
-c.innerHTML = maxchar + 'characters left';
+c.innerHTML = maxchar;
     
 i.addEventListener("keydown",count);
 
