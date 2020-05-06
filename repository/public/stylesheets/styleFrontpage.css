@@ -11,6 +11,10 @@ body {
   min-height: 100vh;
 }
 
+main {
+  margin: 50px;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -74,6 +78,24 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 1em;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.3;
+}
+
+#a1 {
+  color: #ff006a;
+}
+#a4 {
+  color: #ff006a;
 }
 
 /*#clock h2 {
@@ -164,11 +186,27 @@ body {
   -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
 }
 
+.errors div {
+  background-color: #232530;
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: hidden;  
+}
+
 /*Hele boksen det er i*/
 #wrapper {
-  padding: 70px 150px 0px 150px;
+  padding: 20px 50px 20px 50px;
   display: flex;
   width: 100%;
+}
+
+.wrapper {
+  background-color: #232530;
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px 50px 20px 50px;
 }
 
 /*ventre div i boksen*/
@@ -208,44 +246,42 @@ body {
 /*style af formen*/
 #myforml {
   display: inline-block;
-  margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
 }
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
+input[type=text], input[type=email], input[type=password], textarea, select{
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
   color: #fff;
-  background-color: #030613;
-  padding: 10px 10px;
-  margin: 5px 10px;
+  background-color: #353744;
+  opacity: 0.6;
+  padding: 18px 20px;
+  margin: 8px 0;
+  display: inline-block;
   border: none;
-  width: 300px;
 }
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  margin-bottom: 20px;
-  border-style: solid;
-  border-color: white;
+input[type=text], input[type=email], input[type=password] {
+    margin-bottom: 20px;
 }
 ::placeholder {
-  color: #fff;
-  font-size: 12px;
+    color: #fff;
+    opacity: 0.3;
+    font-size: 14px;
 }
-input[type="submit"] {
-  width: 300px;
-  font-size: 25px;
+input[type=submit] {
+  width: 100%;
+  font-size: 20px;
   background-color: #ff006a;
+  opacity: 0.5;
   color: white;
   padding: 15px 20px;
+  margin: 8px 0;
   border: none;
-  margin: 5px 10px;
-}
-input[type="submit"]:hover {
-  background-color: #bd0451;
+  cursor: pointer;
+} 
+input[type=submit]:hover {
+  background-color: #ff006a;
   opacity: 1;
   transition: 0.5s;
 }
@@ -261,12 +297,22 @@ input[type="submit"]:hover {
 h2 {
   font-family: Montserrat;
   font-weight: 300;
-
   color: white;
   text-align: center;
-  padding: 14px 30px;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 hr {
   border: 2px solid white;
 }
+
+.bot {
+  text-align: center;
+}
+
+#copyright {
+  text-align: center;
+  border-top: 1px solid #fff;
+  opacity: 0.3;
+  padding: 20px;
+}   

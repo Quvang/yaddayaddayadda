@@ -11,29 +11,32 @@ html
   body
     header
       nav
+        h1 Logo Here
         ul
           if user
             li
-              a(style="float:left" href="/dashboard") Dashboard
+              a(href="/dashboard") Dashboard
             li
-              a(style="float:left" href="/profile") profile
+              a(href="/profile") profile
             li
-              a(style="float:left" href="/messages") Messages
+              a(href="/messages") Messages
             li
-              a(style="float:left" href="/tags") #tags
+              a(href="/tags") #tags
             li
-              a(style="float:right" href="/users/logout") Logout
+              a(href="/users/logout") Logout
           if !user
             li
-              a(style="float:left" href="/") Home
+              a(href="/") Home
             li
-              a(style="float:right" href="/users/register") Register
+              a(href="/users/register") Register
             li
-              a(style="float:right" href="/users/login") Login
+              a(href="/users/login") Login
+          footer
+            div#copyright
+              | &#169; 2020 | Gruppe 2
+              p YaddaYaddaYadda
     main
       block content
-    footer
-        div#copyright
-          | &#169; 2020 | Gruppe 2
+
 
           

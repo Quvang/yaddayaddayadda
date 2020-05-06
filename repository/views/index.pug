@@ -28,7 +28,6 @@ block content
                         if error != ''
                             div(role='alert' id='a4') #{error}
                         form(id='myforml' action='/users/login' method='post')
-                            table
                                 tr
                                     td Email:
                                     td
@@ -41,7 +40,7 @@ block content
                                     td
                                     td
                                         input(type='submit' value='Go')
-                        p No account?&nbsp;
+                        p.bot No account?&nbsp;
                             a.link(href='/users/register') Register here
     script(src='/javascripts/clock.js')
 

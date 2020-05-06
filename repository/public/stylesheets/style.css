@@ -12,7 +12,21 @@ body {
 }
 
 main {
-    margin: 50px;
+    margin-top: 50px;
+}
+
+nav {
+    position: fixed;
+    left: 0; 
+    top: 0;
+    z-index: 10;
+    width: 20%;
+    height: 100%;
+    padding: 20px;
+    background-color: #030613;
+    border-right: solid 1px;
+    border-right-color: #fff;
+    overflow: hidden;
 }
 
 ul {
@@ -20,9 +34,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #030613;
-    border-bottom: solid 1px;
-    border-bottom-color: #fff;
 }
 
 li a {
@@ -38,6 +49,16 @@ li a {
 li a:hover {
     background-color: #ff006a;
     transition-duration: 0.5s;
+}
+
+h1 {
+    font-family: Montserrat;
+    font-weight: 300;
+    display: block;
+    color: white;
+    padding: 14px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -212,10 +233,10 @@ input[type=text], input[type=email], input[type=password], textarea, select{
 }
 
 #copyright {
-    text-align: center;
+    font-size: 14px;
     border-top: 1px solid #fff;
     opacity: 0.3;
-    padding: 20px;
-}   
+    padding: 14px 30px;
 
-
+    margin-top: 20px;
+}
