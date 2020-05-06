@@ -1,25 +1,40 @@
 extends layout
 
 block content
-    div.profilewrapper 
-        h2 Logo here
-        h2 Dashboard   
-        p Welcome to your Dashboard #{user.username}
-            
+    div.profilewrapper
+        h2 #{user.username}
+        form(id="makeyadda" action='/users/post' method='post')
+                img(id="useravatar" src="../images/avatar.png" width="100px" height="100px")
+                textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind #{user.username}?" rows="3" class="form-control" maxlength="167")
+                input(type="text" id="tags" name="tags" placeholder="Enter #tags here")
+                p#count
+
+                    | 
+                    br
+                    br
+                    div.row
+                        div.file-upload
+                            label(for="file-input")
+                                img(id="file-upload-icon")
+                            input(id="file-input" type='file' name='image' placeholder='Upload image' accept="image/*")
+                        input(id="postYadda" type='submit' value='Yadda')
+
+    | 
+    br
+    div.profilewrapper
+
+        | 
+        br   
         div#searchBar
-            input(type='text' name='search' placeholder='Search on Ydda...')
+            input(type='text' name='search' placeholder='Search for #tags...')        
+        h2 Timeline
 
-            
-            div#navigationDash
-                div
-                    a(href="#") Make a Yadda
-                    a(href="/dashboard") Home
-                    a(href="#") Tags
-                    a(href="#") Messages
-                    a(href="#") Profile
-                    a(href="#") Logout
+            | 
+            br 
+            div.timeline
+                div.yaddaPost
 
-            div#timeLine
-                div#yaddaPosts
 
-            div#topTrendsOrTags
+
+    div.Tags
+    script(type="module" src='/javascripts/main.js')

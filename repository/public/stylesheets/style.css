@@ -1,4 +1,4 @@
-* {
+*, *:before, *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -42,8 +42,9 @@ li a:hover {
 }
 
 h2 {
+    font-family: Montserrat;
+    font-weight: 300;
     font-size: 20px;
-    font-weight: bold;
     color: #fff;
     padding-bottom: 20px;
 }
@@ -85,8 +86,16 @@ form {
     padding: 20px 50px 20px 50px;
 }
 
-input[type=text], input[type=email], input[type=password], select{
+.timeline {
+    background-color: #232530;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 50px 20px 50px;
+}
+
+input[type=text], input[type=email], input[type=password], textarea, select{
     width: 100%;
+    font-family: 'Open Sans', sans-serif;
     color: #fff;
     background-color: #353744;
     opacity: 0.6;
@@ -100,7 +109,7 @@ input[type=text], input[type=email], input[type=password], select{
   }
   ::placeholder {
       color: #fff;
-      opacity: 0.2;
+      opacity: 0.3;
       font-size: 14px;
   }
   input[type=submit] {
@@ -119,6 +128,58 @@ input[type=text], input[type=email], input[type=password], select{
     opacity: 1;
     transition: 0.5s;
 }
+
+#postYadda {
+    width: 40%;
+    font-size: 20px;
+    background-color: #ff006a;
+    opacity: 0.5;
+    color: #ffffff;
+    padding: 15px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+  } 
+  #postYadda:hover {
+    background-color: #ff006a;
+    opacity: 1;
+    transition: 0.5s;
+    }
+    #useravatar {
+        float: left;
+        margin: 8px 0;
+    }
+    #count {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #fff; 
+    }
+    #yaddatxtarea {
+        float: right;
+        height: 110px;
+        width: 80%;
+    }
+    .yaddafile {
+        margin: 8px 0;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+.file-upload > input {
+    display: none;
+}
+    .file-upload img {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        font-size: 20px;
+        opacity: 0.5;
+        color: #ffffff;
+        margin: 8px 0;
+        
+    }
 
 .bot {
     text-align: center;
