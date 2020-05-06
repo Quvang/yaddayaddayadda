@@ -1,30 +1,25 @@
 extends layout
 
 block content
-    div(id="dashHead")
-	    div(class="logo") Logo here
+    div.profilewrapper 
+        h2 Logo here
+        h2 Dashboard   
+        p Welcome to your Dashboard #{user.username}
+            
+        div#searchBar
+            input(type='text' name='search' placeholder='Search on Ydda...')
 
-	    div
-		    h1 Ydda
-        
-	    div(id="searchBar")
-		    input(type='text' name='search' placeholder='Search on Ydda...')
+            
+            div#navigationDash
+                div
+                    a(href="#") Make a Yadda
+                    a(href="/dashboard") Home
+                    a(href="#") Tags
+                    a(href="#") Messages
+                    a(href="#") Profile
+                    a(href="#") Logout
 
-    h2 Dashboard   
-    p Welcome to your Dashboard #{user.username}
-    div(class="dashboardwrapper")
-        
-        div(id="navigationDash")
-            div
-                a(href="#") Make a Yadda
-                a(href="/dashboard") Home
-                a(href="#") Tags
-                a(href="#") Messages
-                a(href="#") Profile
-                a(href="#") Logout
+            div#timeLine
+                div#yaddaPosts
 
-        div(id="timeline")
-            div(id="yddaPosts")
-
-
-        div(id="topTrendsOrTags")
+            div#topTrendsOrTags
