@@ -7,7 +7,10 @@ const YaddaSchema = new mongoose.Schema({
         unique: true,
     },
     avatar: {
-        
+
+    },
+    image: {
+
     },
     text: {
         type: String,
