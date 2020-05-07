@@ -129,6 +129,24 @@ form {
     padding: 20px 50px 20px 50px;
 }
 
+.errorwrapper {
+    width: 50%;
+    margin-left: 20%;
+    padding: 20px 50px 20px 50px;
+    }
+    pre {
+        margin-right: 20px;
+    }
+    .notfound {
+        font-family: Montserrat;
+        font-weight: 300;
+        color: #fff;
+        padding: 0!important;
+        text-decoration: none;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+}
+
 .timeline {
     background-color: #232530;
     width: 50%;
