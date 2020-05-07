@@ -29,16 +29,16 @@ exports.retrieve = async function(url, dbn, obj, query, sort) {
 }
 
 //Upsert
-exports.upsert = async function(url, dbn, obj, query, chk) {
+exports.upsert = async function(url, dbn, obj, query) {
     const constr = `mongodb://${url}:27017/${dbn}`;
     await mongoose.connect(constr, conparam);
     const db = mongoose.connection;
     let stuff = null;
-    let newquery = query.toObject();            
-    delete newquery._id;                        
+    let newquery = query.toObject();
+    delete newquery._id;
     try {
-      stuff = await obj.updateOne(chk, newquery, {       
-      upsert: true                                        
+      stuff = await obj.updateOne(newquery {       
+      upsert: true
       });
     } catch(err) {
         console.log(error);

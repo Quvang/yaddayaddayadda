@@ -13,8 +13,8 @@ block content
             div(role='alert' id='a4') #{error}
     div.wrapper
         h2 Register
-        form(id='myformr' action='/users/register' method='post' enctype='multipart/form-data')
-            
+        form(id='myformr' action='/users/register' method='POST' enctype='multipart/form-data')
+
                 tr
                     td Username:
                         input(type='text' name='username' placeholder='username' required)
@@ -36,12 +36,12 @@ block content
                 tr
                     td Avatar:
                 tr
-                    td  
-                        | 
+                    td
+                        |
                         br
                         br
                         img(id="avatarPreview" src="../images/avatar.png" width="120px" height="120px")
-                        | 
+                        |
                         br
                         input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
                 //- tr
@@ -52,7 +52,7 @@ block content
                 //-             option(value="Dark") Dark
                 tr
                     td
-                        | 
+                        |
                         br
                         br
                         input(type='submit' value='Create User')
@@ -64,13 +64,13 @@ block content
         //-             td
         //-                 input(type='file' id="avatar" name='avatar' placeholder='avatar' accept="image/*")
         //-         tr
-                    
+
         //-             td
         //-             td
         //-                 input(type='submit' value='Create User')
 
         p.bot Have an account?&nbsp;
             a.link(href='/users/login') Login here
-    
+
 
     script(src='/javascripts/avatar.js')

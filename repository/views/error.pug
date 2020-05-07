@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  div.errorwrapper
-    h1.notfound= message
-    h2= error.status
-    pre #{error.stack}
+  h1= message
+  h2= error.status
+  pre #{error.stack}

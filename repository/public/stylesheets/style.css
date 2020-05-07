@@ -12,7 +12,7 @@ body {
 }
 
 main {
-    margin: 50px;
+    margin-top: 50px;
 }
 
 nav {
@@ -127,24 +127,6 @@ form {
     width: 50%;
     margin: 0 auto;
     padding: 20px 50px 20px 50px;
-}
-
-.errorwrapper {
-    width: 50%;
-    margin-left: 20%;
-    padding: 20px 50px 20px 50px;
-    }
-    pre {
-        margin-right: 20px;
-    }
-    .notfound {
-        font-family: Montserrat;
-        font-weight: 300;
-        color: #fff;
-        padding: 0!important;
-        text-decoration: none;
-        text-transform: uppercase;
-        margin-bottom: 20px;
 }
 
 .timeline {
