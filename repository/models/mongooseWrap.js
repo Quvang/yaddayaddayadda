@@ -37,7 +37,7 @@ exports.upsert = async function(url, dbn, obj, query) {
     let newquery = query.toObject();
     delete newquery._id;
     try {
-      stuff = await obj.updateOne(newquery {       
+      stuff = await obj.updateOne(newquery, {       
       upsert: true
       });
     } catch(err) {
