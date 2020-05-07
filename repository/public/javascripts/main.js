@@ -8,7 +8,7 @@ var i = document.getElementById("yaddatxtarea");
 var c = document.getElementById("count");
 c.innerHTML = "Remaining characters: " + maxchar;
     
-i.addEventListener("keydown",count);
+i.addEventListener("keyup",count);
 
 function count(e){
     var len =  i.value.length;
