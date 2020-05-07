@@ -46,8 +46,6 @@ exports.register = function (req, res) {
 
 exports.postRegister = function (req, res) {
     const { username, password, password2, email, firstName, lastName } = req.body;
-
-    console.log('\n' + '>>> Avatar filename set to: ' + avatar + ' <<<' + '\n');
     let errors = [];
 
     if (!username || !password || !password2 || !email || !firstName || !lastName) {
@@ -80,8 +78,8 @@ exports.postRegister = function (req, res) {
         // errors.push({ msg: 'Not an Imagefile! Please upload imagefiles only' });
     } else {
         avatar = req.file.filename;
-        console.log('reg.file' + req.file);
     }
+    console.log('\n' + '>>> Avatar filename set to: ' + avatar + ' <<<' + '\n');
 
     if (errors.length > 0) {
         res.render('register', {
