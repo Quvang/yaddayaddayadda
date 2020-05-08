@@ -3,13 +3,13 @@ extends layout
 block content
     div.dashwrapper
         h2#username #{user.username}
-        img(id="useravatar" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+        img(id="useravatar" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="120px" height="120px")
         form(id="makeyadda" action='/users/post' method='POST' enctype='multipart/form-data')
                 input(type="hidden" value=user.username name="username")
                 input(type="hidden" value=user.avatar name="avatar")
                 textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
                 input(type="text" id="tags" name="tags" placeholder="Enter #tags here")
-                p#count
+                p#charcount
                     |
                     br
                     br
@@ -31,8 +31,4 @@ block content
         div#posts
             p Posts show here
 
-
-
-
     div.Tags
-    script(type="module" src='/javascripts/main.js')

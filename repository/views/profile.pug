@@ -2,12 +2,43 @@ extends layout
 
 block content
     div.profilewrapper
-        h2 Profile
-        
-        p Profile header here
+        img(id="useravatar" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
+
+        div.profileheader
+            div.profile_top
+                h2#username #{user.username}
+                    div.followuser
+                        input(id="followbtn" type="button" value="Follow")
+                    div.editprofile
+                        input(id="editbtn" type="button" value="Edit profile")   
+
+                div.profile_mid
+                    ul.follow
+                        li#yaddacount 0
+                        p#count Yaddas |
+                        li#Followers 0
+                        p#count Followers |
+                        li#Following 
+                        p#count Following
+                
+                div.profile_bot
+                    h3#firstname_lastname #{user.firstName} #{user.lastName}
+                    div.userbio
+                        p#bio Short User bio here? #{user.bio} 
+
+    div.theme
+        div.profilewrapper
+            h2#theme Dark Theme     
+            p.sliderplaceholder Slider here   
+
     | 
     br
-    div.profilewrapper        
-        p Profile stuff here
+    div.profilewrapper 
+        |
+        br       
+        div#posts
+            p User posts show here
+    
+
         
     
