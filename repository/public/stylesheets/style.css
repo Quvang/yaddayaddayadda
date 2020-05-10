@@ -120,21 +120,18 @@ form {
     margin: 0 auto;
     padding: 20px 50px 20px 50px;
 }
-
 .profilewrapper {
     background-color: #232530;
     width: 50%;
     margin: 0 auto;
     padding: 20px 50px 20px 50px;
 }
-
 .dashwrapper {
     background-color: #232530;
     width: 50%;
     margin: 0 auto;
     padding: 20px 50px 20px 50px;
 }
-
 .errorwrapper {
     width: 50%;
     margin-left: 20%;
@@ -199,17 +196,18 @@ input[type=text], input[type=email], input[type=password], textarea, select{
 .profileheader {
     display: flex;
     margin: 8px 0;
+    padding-bottom: 50px;
 }
     .profileheader #username { 
-        float: right;  
+        float: left;  
         display: flex; 
     }
-    .followuser, .editprofile {
+    .followuser {
         float: left; 
         margin-left: 10px; 
         margin-bottom: 5px;
     }
-    #followbtn, #editbtn {
+    #followbtn {
         font-size: 14px;
         background-color: #ff006a;
         opacity: 0.5;
@@ -218,7 +216,7 @@ input[type=text], input[type=email], input[type=password], textarea, select{
         border: none;
         cursor: pointer;
     }
-        #followbtn:hover, #editbtn:hover {
+        #followbtn:hover {
             background-color: #ff006a;
             opacity: 1;
             transition: 0.5s;
@@ -226,8 +224,7 @@ input[type=text], input[type=email], input[type=password], textarea, select{
 
     .profile_top {
         margin-left: 20px;
-        padding: 20px;
-        float:right;
+        float: right;
     }
     .profile_mid {
         margin-bottom: 5px;
@@ -258,10 +255,10 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     .sliderplaceholder {
         float: right;
     }
-#theme {
-    float: left;
-    margin-bottom: 0;
-    font-size: 20px;
+    #theme {
+        float: left;
+        margin-bottom: 0;
+        font-size: 20px;
 }
 
 #postYadda {
@@ -284,6 +281,43 @@ input[type=text], input[type=email], input[type=password], textarea, select{
         float: left;
         margin: 8px 0;
     }
+    #useravatar-profile {
+        float: left;
+        width: 50%;
+        height: auto;
+    }
+        .container {
+            position: relative;
+            cursor: pointer;
+            /*float: left;*/
+            width: 50%;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 50%;
+            opacity: 0;
+        }
+        .container:hover .overlay {
+            opacity: 1;
+        }
+        .text {
+            color: #fff;
+            font-size: 14px;
+            position: absolute;
+            padding: 5px;
+            background-color: #ff006a;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);   
+            text-align: center;
+        }
     #charcount {
         font-size: 14px;
         margin-bottom: 5px;

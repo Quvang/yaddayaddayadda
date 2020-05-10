@@ -18,15 +18,3 @@ function count(e){
 };
 
 i.addEventListener("keyup", count);
-
-
-function getFollowing() {
-   var following = user.following;
-   $("following").innerHTML = following.length;
-}
-
-function showstarter() {
-   getFollowing();
-}
-
-window.addEventListener('load', showstarter); // kick off JS
