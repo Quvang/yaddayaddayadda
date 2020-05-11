@@ -55,17 +55,20 @@ h1 {
     font-family: Montserrat;
     font-weight: 300;
     display: block;
-    color: white;
+    color: #232530;
     padding: 14px 30px;
     text-decoration: none;
     text-transform: uppercase;
 }
+.logo h1 {
+    color: #232530;
+    padding: 14px 30px;
+    }
 h2 {
     font-family: Montserrat;
     font-weight: 300;
     font-size: 20px;
     color: #fff;
-    margin-bottom: 20px;
 }
 h3   {
     font-family: 'Open Sans', sans-serif;
@@ -180,7 +183,7 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     width: 100%;
     font-size: 20px;
     background-color: #ff006a;
-    opacity: 0.5;
+    opacity: 0.6;
     color: white;
     padding: 15px 20px;
     margin: 8px 0;
@@ -193,10 +196,62 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     transition: 0.5s;
 }
 
+.search-container { 
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+  .search-container input[type=text] {
+    width: 90%;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    background-color: #353744;
+    opacity: 0.6;
+    padding: 18px 20px;
+    margin: 0;
+    border: none;
+  }
+  .search-container form {
+    padding-bottom: 0!important;
+  }
+  .search-container button {
+    float: right;
+    width: 10%;
+    padding: 19px 20px;
+    background: #ff006a;
+    color: #ffffff;
+    opacity: 0.6;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  .search-container button:hover {
+    background: #ff006a;
+    opacity: 1;
+    transition: 0.5s;
+}
+  
+@media screen and (max-width: 1200px) {
+    .search-container {
+      float: none;
+    }
+    .search-container input[type=text], .search-container button {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+    .search-container button {
+        text-align: center;
+    }
+} 
+
 .profileheader {
     display: flex;
     margin: 8px 0;
-    padding-bottom: 50px;
 }
     .profileheader #username { 
         float: left;  
@@ -210,9 +265,9 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     #followbtn {
         font-size: 14px;
         background-color: #ff006a;
-        opacity: 0.5;
+        opacity: 0.6;
         color: #ffffff;
-        padding: 5px 5px;
+        padding: 5px;
         border: none;
         cursor: pointer;
     }
@@ -225,6 +280,7 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     .profile_top {
         margin-left: 20px;
         float: right;
+        margin-bottom: 40px;
     }
     .profile_mid {
         margin-bottom: 5px;
@@ -239,33 +295,62 @@ input[type=text], input[type=email], input[type=password], textarea, select{
         float: left;
         padding: 5px 5px 5px 0px;
         font-size: 14px;
-        opacity: 0.5;
+        opacity: 0.6;
     }
-    #bio {
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 300;
-        font-size: 14px;
+    .edit-avatar {
+        margin-top: 30px;
+    }
+    .edit-avatar form {
+        padding-bottom: 0px!important;
+    }
+    ::-webkit-file-upload-button {
+        background-color: #353744;
+        opacity: 0.6;
         color: #fff;
-}
+        padding: 8px;
+        border: none;
+        cursor: pointer;
+    }
+    .edit-avatar input[type=submit] {
+        font-size: 14px;
+        width: 100px;
+        background-color: #ff006a;
+        opacity: 0.6;
+        color: #ffffff;
+        padding: 8px;
+        border: none;
+        cursor: pointer;
+    }
+    .edit-avatar input[type=submit]:hover {
+        font-size: 14px;
+        width: 100px;
+        background-color: #ff006a;
+        opacity: 1;
+        color: #ffffff;
+        padding: 8px;
+        border: none;
+        cursor: pointer;
+    }
+
 .theme .profilewrapper {
     display: flex;
     justify-content: space-between;
-    opacity: 0.7;
+    opacity: 0.6;
 }
     .sliderplaceholder {
         float: right;
     }
     #theme {
         float: left;
-        margin-bottom: 0;
+        margin-top: 5px;
         font-size: 20px;
 }
 
 #postYadda {
-    width: 40%;
+    width: 30%;
     font-size: 20px;
     background-color: #ff006a;
-    opacity: 0.5;
+    opacity: 0.6;
     color: #ffffff;
     padding: 15px 20px;
     margin: 8px 0;
@@ -286,38 +371,11 @@ input[type=text], input[type=email], input[type=password], textarea, select{
         width: 50%;
         height: auto;
     }
-        .container {
+        .avatar-container {
             position: relative;
-            cursor: pointer;
             /*float: left;*/
             width: 50%;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            width: 50%;
-            opacity: 0;
-        }
-        .container:hover .overlay {
-            opacity: 1;
-        }
-        .text {
-            color: #fff;
-            font-size: 14px;
-            position: absolute;
-            padding: 5px;
-            background-color: #ff006a;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);   
-            text-align: center;
-        }
+    }
     #charcount {
         font-size: 14px;
         margin-bottom: 5px;
@@ -326,13 +384,13 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     #yaddatxtarea {
         float: right;
         height: 120px;
-        width: 80%;
+        width: 100%;
     }
     .row {
         display: flex;
         justify-content: space-between;
     }
-    #posts {
+    .post-container {
         margin: 0 auto;
         padding: 18px 20px;
         background-color: #353744;
@@ -343,16 +401,17 @@ input[type=text], input[type=email], input[type=password], textarea, select{
 .file-upload > input {
     display: none;
 }
-    .file-upload img {
-        width: 50px;
-        height: 50px;
+    .file-upload-icon {
         cursor: pointer;
-        font-size: 20px;
-        opacity: 0.5;
-        color: #ffffff;
-        margin: 8px 0;
-        
+        color: #353744;
+        margin: 8px 0;   
     }
+    .file-upload-icon:hover {
+        cursor: pointer;
+        color: #fff;
+        opacity: 0.3;
+        transition: 0.5s;
+}
 
 .bot {
     text-align: center;
@@ -363,16 +422,5 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     border-top: 1px solid #fff;
     opacity: 0.3;
     padding: 14px 30px;
-
     margin-top: 20px;
 }
-
-@media screen and (max-width: 1300px) {
-    #useravatar {
-      width: 20%;
-      height: 20%; 
-    }
-    #yaddatxtarea {
-        width: 80%;
-      }
-  }

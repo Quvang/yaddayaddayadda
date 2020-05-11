@@ -2,10 +2,8 @@ extends layout
 
 block content
     div.profilewrapper
-        div.container
-            img(id="useravatar-profile" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
-            div.overlay
-                div.text Edit Avatar
+        div.avatar-container
+            img(id="useravatar-profile" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'")
 
         div.profileheader
             div.profile_top
@@ -25,20 +23,39 @@ block content
                 
                 div.profile_bot
                     h3#firstname_lastname #{user.firstName} #{user.lastName}
-                    div.userbio
-                        p#bio Short User bio here? #{user.bio} 
+        | 
+        br
+        div.edit-avatar
+            form(action='/editAvatar' method='post' enctype="multipart/form-data")
+                input(id="file-upload" type="file" name="avatar" accept="image/*")
+                | 
+                br
+                input(id="save-avatar" type='submit' value='Save Avatar')
+
 
     div.theme
         div.profilewrapper
-            h2#theme Dark Theme     
-            p.sliderplaceholder Slider here   
+            h2#theme Dark Theme
+            div.sliderplaceholder
+                label.switch
+                    input#checkbox(type="checkbox")
+                    div.slider.round
 
+    |
+    br
+    div.profilewrapper
+        div.search-container 
+            form(action='/find' method='post')
+                input(type='text' name='search' placeholder='Search for #tags or Users...')
+                button(id="search" type='submit' value='Search')
+                    i(class="fas fa-search")
+                
     | 
     br
     div.profilewrapper 
         |
         br       
-        div#posts
+        div.post-container
             p User posts show here
     
 

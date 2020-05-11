@@ -7,24 +7,32 @@ exports.frontpage = function (req, res) {
 
 exports.dashboard = function (req, res) {
     res.render('dashboard', {
-        title: "You're logged in as " + req.user.username,
+        title: "Dashboard",
         subtitle: 'Welcome to your dashboard',
         user: req.user,
     });
 };
 
-exports.test = function (req, res) {
+exports.profile = function (req, res) {
     res.render('profile', {
-        title: 'Test',
-        subtitle: 'Test Subtitle',
+        title: 'Profile',
+        subtitle: 'Welcome to your profile',
         user: req.user,
     });
 };
 
-exports.about = function (req, res) {
-    res.render('about', {
-        title: 'About',
-        subtitle: 'About Subtitle',
+exports.messages = function (req, res) {
+    res.render('messages', {
+        title: 'Messages',
+        subtitle: 'Messages',
+        user: req.user,
+    });
+};
+
+exports.explore = function (req, res) {
+    res.render('explore', {
+        title: 'Explore',
+        subtitle: 'Explore',
         user: req.user,
     });
 };

@@ -8,7 +8,10 @@ html
     link(href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet")
     link(rel="icon", type="image/svg+xml", href="/favicon.svg")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/slidetheme.css')
+    script(src='https://kit.fontawesome.com/a99e7cd5cc.js')
     script(type="module" src='/javascripts/main.js')
+    
   
   body
     header
@@ -20,10 +23,10 @@ html
               a(href="/dashboard") Dashboard
             li
               a(href="/profile") profile
-            li
+            li  
               a(href="/messages") Messages
             li
-              a(href="/tags") #tags
+              a(href="/explore") Explore
             li
               a(href="/users/logout") Logout
           if !user

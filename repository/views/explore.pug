@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div.dashwrapper
+        h2 Explore YaddaYaddaYadda
+        div.search-container 
+            form(action='/find' method='post')
+                input(type='text' name='search' placeholder='Search for #tags or Users...')
+                button(id="search" type='submit' value='Search')
+                    i(class="fas fa-search")
+    |
+    br
+    div.dashwrapper
+        |
+        br 
+        div.post-container
+            p Results show here
+            

@@ -2,7 +2,7 @@
 
 import { $ } from "./modules/nQuery.js";
 import { Ajax } from "./modules/Ajax.js";
-
+   
 var maxchar = 167;
 var i = document.getElementById("yaddatxtarea");
 var c = document.getElementById("charcount");

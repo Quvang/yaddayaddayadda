@@ -3,7 +3,6 @@ extends layout
 block content
     div.dashwrapper
         h2#username #{user.username}
-        img(id="useravatar" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="120px" height="120px")
         form(id="makeyadda" action='/users/post' method='POST' enctype='multipart/form-data')
                 input(type="hidden" value=user.username name="username")
                 input(type="hidden" value=user.avatar name="avatar")
@@ -16,19 +15,23 @@ block content
                     div.row
                         div.file-upload
                             label(for="file-input")
-                                img(id="file-upload-icon")
+                                div.file-upload-icon
+                                    i(class="fas fa-image fa-3x")
                             input(id="file-input" type='file' name='image' placeholder='Upload image' accept="image/*")
                         input(id="postYadda" type='submit' value='Yadda')
 
     |
     br
     div.dashwrapper
-
+        div.search-container 
+            form(action='/find' method='post')
+                input(type='text' name='search' placeholder='Search for #tags or Users...')
+                button(id="search" type='submit' value='Search')
+                    i(class="fas fa-search")
+    | 
+    br
+    div.dashwrapper 
         |
-        br
-        div#searchbar
-            input(type='text' name='search' placeholder='Search for #tags...')
-        div#posts
-            p Posts show here
-
-    div.Tags
+        br 
+        div.post-container
+            p yaddas show here 

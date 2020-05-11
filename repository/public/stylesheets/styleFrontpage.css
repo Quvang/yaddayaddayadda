@@ -269,6 +269,14 @@ input[type=text], input[type=email], input[type=password] {
     opacity: 0.3;
     font-size: 14px;
 }
+::-webkit-file-upload-button {
+  background-color: #353744;
+  opacity: 0.6;
+  color: #fff;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
 input[type=submit] {
   width: 100%;
   font-size: 20px;
