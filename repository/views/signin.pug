@@ -1,0 +1,54 @@
+extends layoutFrontpage
+
+block content
+    //- div.errors
+    //-     if errors != undefined && errors.length != 0
+    //-         each error in errors
+    //-             div(role='alert' id='a1') #{error.msg}
+    //-     if success_msg != ''
+    //-         div(role='alert' id='a2') #{success_msg}
+    //-     if error_msg != ''
+    //-         div(role='alert' id='a3') #{error_msg}
+    //-     if error != ''
+    //-         div(role='alert' id='a4') #{error}
+    
+    div.wrapper
+        h2 #{title}
+        form(id='formS' action='/signin' method='post')
+                tr
+                    td Email:
+                    td
+                        input(id='email' type='email' name='email' placeholder='mail@gmail.com' required)
+                tr
+                    td Password:
+                    td
+                        input(id='password' type='password' name='password' placeholder='password' required)
+                tr
+                    td
+                    td
+                        input(id='submit' type='submit' value='Login')
+        p.bot No account?&nbsp;
+            a.link(href='/signUp') Register here
+    | 
+    br
+    br
+    br
+    br
+    br
+
+    script(src='/javascripts/signIn.js')
+
+    //- main.main
+    //-     .login-form
+    //-         h2.heading-secondary.ma-bt-lg Log into your account
+    //-         form.form.form--login
+    //-             .form__group
+    //-             label.form__label(for='email') Email address
+    //-             input#email.form__input(type='email', placeholder='you@example.com', required)
+    //-         .form__group.ma-bt-md
+    //-             label.form__label(for='password') Password
+    //-             input#password.form__input(type='password', placeholder='••••', required, minlength='4')
+    //-         .form__group
+    //-             button.btn.btn--green Login
+
+    //- script(src='/javascripts/signIn.js')

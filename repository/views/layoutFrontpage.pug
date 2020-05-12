@@ -9,9 +9,7 @@ html
     link(rel="icon", type="image/svg+xml", href="/favicon.svg")
     link(rel='stylesheet', href='/stylesheets/styleFrontpage.css')
     link(rel='stylesheet', href='/stylesheets/slidetheme.css')
-    script(type="module" src='/javascripts/clock.js')
     script(src='/javascripts/darkTheme.js')
-  body
     header
       nav
         ul
@@ -29,6 +27,8 @@ html
               a(style="float:right" href="/users/register") Register
             li
               a(style="float:right" href="/users/login") Login
+            li
+              a(style="float:right" href="/signIn") Sign In
             li
               div(id="clock" style="float:right")
                 div(id="time")
@@ -52,6 +52,10 @@ html
                         span AM 
     main
       block content
+      
     footer
       div#copyright
         | &#169; 2020 | Gruppe 2
+
+    script(src='/javascripts/clock.js')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js")
