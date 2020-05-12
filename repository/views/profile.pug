@@ -2,36 +2,21 @@ extends layout
 
 block content
     div.profilewrapper
-        div.avatar-container
-            img(id="useravatar-profile" src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'")
-
-        div.profileheader
-            div.profile_top
-                h2#username #{user.username}
-                    if !user
-                        div.followuser
-                            input(id="followbtn" type="button" value="Follow")
-                    
-                div.profile_mid
-                    ul.follow
-                        li#yaddacount 0
-                        p#count Yaddas |
-                        li#Followers 0
-                        p#count Followers |
-                        li#Following #{user.following.length}
-                        p#count Following
+        div.container
+            div.profile-image
+                img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
+            div.profile
+                div.profile-user-head
+                    h2.profile-user-name #{user.username}
+                    button.btn.profile-edit-btn Edit Profile
+                div.profile-stats
+                    ul
+                        li #[span.profile-stat-count 0] posts | 
+                        li #[span.profile-stat-count 0] followers |
+                        li #[span.profile-stat-count 0] following
+                div.profile-bio
+                    p #[span #{user.firstName} #{user.lastName}]
                 
-                div.profile_bot
-                    h3#firstname_lastname #{user.firstName} #{user.lastName}
-        | 
-        br
-        div.edit-avatar
-            form(action='/editAvatar' method='post' enctype="multipart/form-data")
-                input(id="file-upload" type="file" name="avatar" accept="image/*")
-                | 
-                br
-                input(id="save-avatar" type='submit' value='Save Avatar')
-
 
     div.theme
         div.profilewrapper

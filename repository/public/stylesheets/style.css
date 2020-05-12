@@ -249,88 +249,103 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     }
 } 
 
-.profileheader {
-    display: flex;
-    margin: 8px 0;
-}
-    .profileheader #username { 
-        float: left;  
-        display: flex; 
-    }
-    .followuser {
-        float: left; 
-        margin-left: 10px; 
-        margin-bottom: 5px;
-    }
-    #followbtn {
-        font-size: 14px;
-        background-color: #ff006a;
-        opacity: 0.6;
-        color: #ffffff;
-        padding: 5px;
-        border: none;
-        cursor: pointer;
-    }
-        #followbtn:hover {
-            background-color: #ff006a;
-            opacity: 1;
-            transition: 0.5s;
-        }
+/* Profile Section */
 
-    .profile_top {
-        margin-left: 20px;
-        float: right;
-        margin-bottom: 40px;
-    }
-    .profile_mid {
-        margin-bottom: 5px;
-    }
-    .profile_bot {
-        margin-bottom: 5px;
-    }
-    .follow {
-        display:inline-block;
-    }
-    .follow li, #count {
-        float: left;
-        padding: 5px 5px 5px 0px;
-        font-size: 14px;
-        opacity: 0.6;
-    }
-    .edit-avatar {
-        margin-top: 10px;
-    }
-    .edit-avatar form {
-        padding-bottom: 0px!important;
-    }
-    ::-webkit-file-upload-button {
-        background-color: #353744;
-        opacity: 0.6;
-        color: #fff;
-        padding: 8px;
-        border: none;
-        cursor: pointer;
-    }
-    .edit-avatar input[type=submit] {
-        font-size: 14px;
-        width: 100px;
-        background-color: #ff006a;
-        opacity: 0.6;
-        color: #ffffff;
-        padding: 8px;
-        border: none;
-        cursor: pointer;
-    }
-    .edit-avatar input[type=submit]:hover {
-        font-size: 14px;
-        width: 100px;
-        background-color: #ff006a;
-        opacity: 1;
-        color: #ffffff;
-        padding: 8px;
-        border: none;
-        cursor: pointer;
-    }
+.container {
+    max-width: 93.5rem;
+    display: flex;
+}
+img {
+    display: block;
+}
+.profile {
+    margin: 8px 0;
+    float: right;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.profile-image {
+    float: left;
+}
+.profile-image img {
+    border-radius: 50%;
+}
+.profile-user-head {
+    margin-bottom: 10px;
+}
+.profile-user-name {
+    float: left;  
+    display: flex;
+    font-size: 25px;
+    color: #fff;
+    margin-left: 20px;
+}
+.btn {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 0;
+    cursor: pointer;
+}
+.profile-edit-btn {
+    font-size: 18px;
+    line-height: 1.5;
+    border: 1px solid #fff;
+    padding: 0 1rem;
+    margin-left: 10px;
+}
+.profile-stats {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+.profile-stats li {
+    float: left;
+    padding: 5px 5px 5px 0px;
+    font-size: 18px;
+    opacity: 0.6;
+}
+.profile-bio {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.edit-avatar {
+    margin-top: 10px;
+}
+.edit-avatar form {
+    padding-bottom: 0px!important;
+}
+::-webkit-file-upload-button {
+    background-color: #353744;
+    opacity: 0.6;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+.edit-avatar input[type=submit] {
+    font-size: 14px;
+    width: 100px;
+    background-color: #ff006a;
+    opacity: 0.6;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+.edit-avatar input[type=submit]:hover {
+    font-size: 14px;
+    width: 100px;
+    background-color: #ff006a;
+    opacity: 1;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
 
 .theme .profilewrapper {
     display: flex;
