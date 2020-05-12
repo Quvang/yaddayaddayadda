@@ -29,7 +29,7 @@ exports.postYadda = async function(req) {
         tags: req.body.tags,
     });
     try {
-        let cs = await mon.save();
+        let cs = await yadda.save();
         return;
     } catch (e) {
         console.log(e);
