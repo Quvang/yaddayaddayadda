@@ -7,6 +7,7 @@ block content
                 input(type="hidden" value=user.username name="username")
                 textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
                 input(type="text" id="tags" name="tags" placeholder="Enter #tags here")
+                p#charcount
                 input(id="postYadda" type='submit' value='Yadda')
 
     |

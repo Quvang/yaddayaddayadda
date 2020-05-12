@@ -298,7 +298,7 @@ input[type=text], input[type=email], input[type=password], textarea, select{
         opacity: 0.6;
     }
     .edit-avatar {
-        margin-top: 30px;
+        margin-top: 10px;
     }
     .edit-avatar form {
         padding-bottom: 0px!important;
@@ -368,13 +368,8 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     }
     #useravatar-profile {
         float: left;
-        width: 50%;
+        width: 150px;
         height: auto;
-    }
-        .avatar-container {
-            position: relative;
-            /*float: left;*/
-            width: 50%;
     }
     #charcount {
         font-size: 14px;
