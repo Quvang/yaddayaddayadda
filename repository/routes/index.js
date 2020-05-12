@@ -11,7 +11,7 @@ router.get('/profile', ensureAuthenticated, idx.profile);
 router.get('/messages', ensureAuthenticated, idx.messages);
 router.get('/explore', ensureAuthenticated, idx.explore);
 
-router.post('/users/post', function(req, res, next) {
+router.post('/dashboard/post', function(req, res, next) {
   ydc.postYadda(req);
   res.redirect('/dashboard');
 });

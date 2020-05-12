@@ -4,26 +4,33 @@ const YaddaSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
     },
-    avatar: {
 
-    },
     image: {
-
+        type: String,
+        default: null,
     },
+
     text: {
         type: String,
-        required: true
+        required: true,
     },
-    tags: [],
+
+    tags: {
+        type: [String],
+        default: null,
+    },
+
     reply: {
         type: String,
+        default: null,
     },
+
     created: {
         type: Date,
         default: Date.now,
     },
+
 });
 
 const Yadda = mongoose.model('Yadda', YaddaSchema, 'yadda');

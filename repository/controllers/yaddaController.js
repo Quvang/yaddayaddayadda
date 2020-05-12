@@ -25,14 +25,11 @@ exports.postYadda = async function(req) {
     let yadda = new Yadda({
         // create obejct in db-format
         username: req.body.username,
-        avatar: req.body.avatar,
         text: req.body.text,
         tags: req.body.tags,
-        image: req.body.image,
-        created: req.body.created
     });
     try {
-        let cs = await mon.upsert('localhost', 'yyy', Yadda, yadda);
+        let cs = await mon.save();
         return;
     } catch (e) {
         console.log(e);

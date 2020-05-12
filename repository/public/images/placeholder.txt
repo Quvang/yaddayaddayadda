@@ -1,0 +1,1 @@
+purpose of this file is for the avatar folder to be uploaded to github as the folder is required of uploading avatars
