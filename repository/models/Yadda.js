@@ -30,7 +30,6 @@ const YaddaSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-
 });
 
 const Yadda = mongoose.model('Yadda', YaddaSchema, 'yadda');
