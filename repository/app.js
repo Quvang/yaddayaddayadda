@@ -24,17 +24,17 @@ require('./config/passport')(passport);
 // DB Config and server connect
 const db = require('./config/keys').mongoURI;
 mongoose
-    .connect('mongodb://localhost/yyy', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-    })
-    .then(function () {
-        console.log('mongoose connection open');
-    })
-    .catch(function (err) {
-        console.error(err);
-    });
+  .connect('mongodb://localhost/yyy', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(function () {
+    console.log('mongoose connection open');
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
 
 const app = express();
 app.locals.pretty = app.get('env') === 'development'; // pretty print html
@@ -51,14 +51,14 @@ app.use(helmet());
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
-    app.use(logger('dev'));
+  app.use(logger('dev'));
 }
 
 // limits the amount of request a user can do in 1 hour from the same IP - Prevens DDOS attacks and Bruteforce attemps
 const limiter = rateLimit({
-    max: 1000,
-    windowMs: 60 * 60 * 1000,
-    message: 'Too many requests from this IP, please try again in an hour!',
+  max: 1000,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!',
 });
 app.use('/users', limiter); // set the limiter to specified route(s)
 
@@ -75,9 +75,9 @@ app.use(xss());
 
 // Prevent parameter pollution
 app.use(
-    hpp({
-        // whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price'],
-    })
+  hpp({
+    // whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price'],
+  })
 );
 
 // Serving static files
@@ -85,10 +85,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Test middleware
 app.use((req, res, next) => {
-    req.requestTime = new Date().toISOString();
-    // console.log(req.headers);
-    // console.log(req.cookies);
-    next();
+  req.requestTime = new Date().toISOString();
+  // console.log(req.headers);
+  // console.log(req.cookies);
+  next();
 });
 
 // Express body parser
@@ -96,12 +96,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Express session
 app.use(
-    require('express-session')({
-        // passport initialize
-        secret: 'ioeruir!rznbzvmn8768576hdsw&%', // do the keyboard cat
-        resave: true, // to create entropy
-        saveUninitialized: false,
-    })
+  require('express-session')({
+    // passport initialize
+    secret: 'ioeruir!rznbzvmn8768576hdsw&%', // do the keyboard cat
+    resave: true, // to create entropy
+    saveUninitialized: false,
+  })
 );
 
 // Passport middleware
@@ -113,20 +113,20 @@ app.use(flash());
 
 // Global variables
 app.use(function (req, res, next) {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    next();
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
 });
 
 // Routes
 app.use('/', require('./routes/index.js'));
-app.use('/', require('./routes/viewRoutes.js'));
+app.use('/alt', require('./routes/alt.js'));
 app.use('/users', require('./routes/users.js'));
 
 // Error log in postman
 app.all('*', (req, res, next) => {
-    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 // global error handler
