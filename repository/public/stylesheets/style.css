@@ -84,6 +84,7 @@ h3   {
     font-size: 20px;
     color: #fff;
     margin-bottom: 5px;
+    font-size: 20px;
 }
 
 p {
@@ -117,6 +118,8 @@ form {
     display: hidden;  
 }
 
+/* wrappers */
+
 .wrapper {
     background-color: #232530;
     width: 40%;
@@ -127,7 +130,7 @@ form {
     background-color: #232530;
     width: 50%;
     margin: 0 auto;
-    padding: 20px 50px 20px 50px;
+    padding: 20px 50px 20px 50px;  
 }
 .dashwrapper {
     background-color: #232530;
@@ -153,12 +156,7 @@ form {
         margin-bottom: 20px;
 }
 
-.timeline {
-    background-color: #232530;
-    width: 50%;
-    margin: 0 auto;
-    padding: 20px 50px 20px 50px;
-}
+/* input Section */
 
 input[type=text], input[type=email], input[type=password], textarea, select{
     width: 100%;
@@ -195,6 +193,8 @@ input[type=text], input[type=email], input[type=password], textarea, select{
     opacity: 1;
     transition: 0.5s;
 }
+
+/* search Section */
 
 .search-container { 
     padding-top: 20px;
@@ -254,6 +254,7 @@ input[type=text], input[type=email], input[type=password], textarea, select{
 .container {
     max-width: 93.5rem;
     display: flex;
+    margin: 0 auto;
 }
 img {
     display: block;
@@ -361,6 +362,8 @@ img {
         font-size: 20px;
 }
 
+/* yadda Section */
+
 #postYadda {
     width: 30%;
     font-size: 20px;
@@ -376,15 +379,6 @@ img {
     background-color: #ff006a;
     opacity: 1;
     transition: 0.5s;
-    }
-    #useravatar {
-        float: left;
-        margin: 8px 0;
-    }
-    #useravatar-profile {
-        float: left;
-        width: 150px;
-        height: auto;
     }
     #charcount {
         font-size: 14px;
@@ -404,7 +398,6 @@ img {
         margin: 0 auto;
         padding: 18px 20px;
         background-color: #353744;
-        opacity: 0.6;
         margin-bottom: 20px;
     }
 
@@ -421,6 +414,63 @@ img {
         color: #fff;
         opacity: 0.3;
         transition: 0.5s;
+}
+
+/* user/follow Section */
+
+.user-profile {
+    margin: 8px 0;
+    float: right;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.btn.follow-btn {
+        font-size: 20px;
+        line-height: 1.5;
+        padding: 0 1rem;
+        display: inline-block;
+        border: none;
+        color: #fff;
+        padding: 0;
+        cursor: pointer;
+}
+
+.user-container {
+    margin: 0 auto;
+    padding: 18px 20px;
+    background-color: #353744;
+    margin-bottom: 20px;
+}
+
+.user-head {
+    margin-bottom: 10px;
+}
+.user-name a {
+    float: left;  
+    display: flex;
+    font-size: 25px;
+    color: #fff;
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.user-bio {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: 18px;
+    opacity: 0.6;
+
+}
+
+.follow {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.follow form {
+    padding-bottom: 0px!important;
 }
 
 .bot {

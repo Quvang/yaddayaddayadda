@@ -4,15 +4,26 @@ block content
     div.dashwrapper
         h2 Explore YaddaYaddaYadda
         div.search-container 
-            form(action='/find' method='post')
-                input(type='text' name='search' placeholder='Search for #tags or Users...')
-                button(id="search" type='submit' value='Search')
-                    i(class="fas fa-search")
+            form(action='/getAllUsers' method='post')
+                input(type='text' name='tag' placeholder='Search for #tags or Users...')
+                button(id="search" type='submit' value='tags')
+                        i(class="fas fa-search")
+    
     |
     br
     div.dashwrapper
         |
-        br 
-        div.post-container
-            p Results show here
-            
+        br
+        div.user-container
+            div.container
+                div.profile-image
+                    img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
+                div.user-profile
+                    div.user-head
+                        h2.user-name 
+                            a(href="/profile") #{user.username}
+                    div.user-bio
+                        p #[span #{user.firstName} #{user.lastName}]
+                    div.follow
+                        form(action='/follow' method='post')
+                            input.btn.follow-btn(type='submit' value='follow')

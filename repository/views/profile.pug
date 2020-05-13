@@ -30,9 +30,9 @@ block content
     br
     div.profilewrapper
         div.search-container 
-            form(action='/find' method='post')
-                input(type='text' name='search' placeholder='Search for #tags or Users...')
-                button(id="search" type='submit' value='Search')
+            form(action='/findTags' method='post')
+                input(type='text' name='tag' placeholder='Search for #tags or Users...')
+                button(id="search" type='submit' value='search')
                     i(class="fas fa-search")
                 
     | 

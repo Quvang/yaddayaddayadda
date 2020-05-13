@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const idx = require('../controllers/indexController');
 const ydc = require('../controllers/yaddaController');
+const userController = require ('../controllers/userController')
 
 router.get('/', forwardAuthenticated, idx.frontpage);
 
