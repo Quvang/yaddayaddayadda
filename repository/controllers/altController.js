@@ -4,7 +4,7 @@
 
 exports.getLoginForm = (req, res) => {
   res.status(200).render('signIn', {
-    title: '🆔 | Register',
+    title: '🆔 | Sign in',
   });
 };
 
