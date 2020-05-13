@@ -5,20 +5,20 @@ const { forwardAuthenticated } = require('../config/auth');
 const { check, validationResult } = require('express-validator');
 
 // NEW REGISTER / LOGIN
-const authController = require('../controllers/authController2.js');
+const authController = require('./../controllers/alt/authController2');
 const userController = require('../controllers/userController.js');
 
 router.get('/register', forwardAuthenticated, auth.register);
 router.post(
-    '/register',
-    [
-        check('username').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters'),
-        check('firstName').trim().isLength({ min: 2 }).withMessage('Firstname must be at least 2 characters'),
-        check('lastName').trim().isLength({ min: 2 }).withMessage('Lastname must be at least 2 characters'),
-        check('email').trim().isEmail().normalizeEmail().withMessage('Email is not valid'),
-    ],
-    auth.uploadAvatar,
-    auth.postRegister
+  '/register',
+  [
+    check('username').trim().isLength({ min: 3 }).withMessage('Username must be at least 3 characters'),
+    check('firstName').trim().isLength({ min: 2 }).withMessage('Firstname must be at least 2 characters'),
+    check('lastName').trim().isLength({ min: 2 }).withMessage('Lastname must be at least 2 characters'),
+    check('email').trim().isEmail().normalizeEmail().withMessage('Email is not valid'),
+  ],
+  auth.uploadAvatar,
+  auth.postRegister
 );
 
 router.get('/login', forwardAuthenticated, auth.login);
@@ -44,9 +44,9 @@ router.delete('/deleteMe', authController.protect, userController.deleteMe);
 
 // Admin Routes
 router
-    .route('/:id')
-    .get(userController.getUser)
-    .patch(userController.updateUser)
-    .delete(authController.protect, authController.restrictTo('admin', 'moderator'), userController.deleteUser);
+  .route('/:id')
+  .get(userController.getUser)
+  .patch(userController.updateUser)
+  .delete(authController.protect, authController.restrictTo('admin', 'moderator'), userController.deleteUser);
 
 module.exports = router;

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const viewController = require('../controllers/altController.js');
-const authController = require('../controllers/authController2.js');
+const altController = require('../controllers/alt/altController.js');
+const userController = require('../controllers/userController.js');
+const authController = require('../controllers/alt/authController2.js');
 
 // router.use(authController.isLoggedIn);
-router.get('/', viewController.default, authController.isLoggedIn);
-router.get('/signin', viewController.getLoginForm);
+router.get('/', altController.default, authController.isLoggedIn);
+router.get('/signin', altController.getLoginForm);
 // router.get('/signin', authController.isLoggedIn, viewController.getLoginForm);
 
 /* REFERENCE
