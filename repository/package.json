@@ -25,6 +25,7 @@
     "formidable": "^1.2.2",
     "helmet": "^3.22.0",
     "hpp": "^0.2.3",
+    "html-to-text": "^5.1.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",

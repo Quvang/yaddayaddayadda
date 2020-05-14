@@ -29,9 +29,9 @@ module.exports = router;
 // SORT THESE ACCORDINGLY AT SOME POINT
 // NEW REGISTER / LOGIN
 
-/*
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
+/*
 
 // Test Routes
 // Guesst Routes
