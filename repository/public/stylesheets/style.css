@@ -188,7 +188,6 @@ input[type=text], input[type=email], input[type=password], textarea, select{
   input[type=submit] {
     width: 100%;
     font-size: 20px;
-    background-color: #ff006a;
     opacity: 0.6;
     color: white;
     padding: 15px 20px;
@@ -447,22 +446,69 @@ img {
     }
 
     .post-text {
-        font-size: 18px;
+        height: 100px;
         padding: 5px 10px 0px 10px;
+    }
+    .post-text p {
+        font-size: 18px;
+    }
 
+    .post-tags {
+        float: left;
     }
     .post-tags a {
         font-size: 14px;
         color: #ffffff;
         opacity: 0.6;
-        display: inline;
-        padding: 5px 10px 0px 10px;
+        text-decoration: none;
     }
     .post-tags a:hover {
-        font-size: 14px;
-        color: #ffffff;
         opacity: 1;
+    }
+
+    .post-bottom {  
         padding: 5px 10px 0px 10px;
+        right: 0;       
+        display: flex;
+        float: right;
+    }
+
+    .post-comment, .show-comments, .post-delete {
+        padding-left: 10px;
+        float: left;
+    }
+
+    .post-comment p, .show-comments p, .post-delete p {
+        font-size: 14px;
+        opacity: 0.6;
+        color: #fff;
+        cursor: pointer;    
+        text-decoration: underline;
+    }
+
+    .post-comment p:hover, .show-comments p:hover, .post-delete p:hover {
+        opacity: 1;
+    }
+
+    .post-delete form {
+        padding-bottom: 0px;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .post-delete button {
+        background: none;
+        border: none;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        font-size: 14px;
+        opacity: 0.6;
+        color: #fff;
+        cursor: pointer;    
+        text-decoration: underline;
+    }
+    .post-delete button:hover {
+        opacity: 1;
     }
 
 .file-upload > input {

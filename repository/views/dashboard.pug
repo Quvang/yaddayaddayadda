@@ -23,11 +23,23 @@ block content
             div.post-content
               div.post-head
                 div.post-username
-                  a(href="/userProfile") #{yadda.username}
+                  if yadda.username != user.username
+                    a(href="/userProfile") #{yadda.username} | 
+                  else
+                    a(href="/profile") #{user.username} | 
                 div.post-created
                   p #{yadda.created}
               div.post-text 
                 p #{yadda.text}
-              div.post-tags 
-                a(href="/findTags") #{yadda.tags}
-
+                div.post-tags 
+                  a(href="/findTags") #{yadda.tags}
+              div.post-bottom
+                div.show-comments 
+                  p 0 comments <!-- placeholder -->
+                div.post-comment
+                  p comment <!-- placeholder -->
+                div.post-delete
+                  if user.username === yadda.username
+                    form(action="/users/delYadda" method="post")
+                      input(type="hidden" name="_id" value= yadda._id)
+                      button(type="submit") Delete

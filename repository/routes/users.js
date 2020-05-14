@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/authController.js');
-const { forwardAuthenticated } = require('../config/auth');
+const ydc = require("../controllers/yaddaController.js");
+const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
 const { check, validationResult } = require('express-validator');
 
 router.get('/register', forwardAuthenticated, auth.register);
@@ -16,6 +17,8 @@ router.post(
   auth.uploadAvatar,
   auth.postRegister
 );
+
+router.post('/delYadda', ensureAuthenticated, ydc.delYadda);   // delete post
 
 router.get('/login', forwardAuthenticated, auth.login);
 router.post('/login', auth.postLogin);
