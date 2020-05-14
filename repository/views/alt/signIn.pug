@@ -14,19 +14,19 @@ block content
     
     div.wrapper
         h2 #{title}
-        form(id='formS' action='/signin' method='post')
-                tr
-                    td Email:
-                    td
-                        input(id='email' type='email' name='email' placeholder='mail@gmail.com' required)
-                tr
-                    td Password:
-                    td
-                        input(id='password' type='password' name='password' placeholder='password' required)
-                tr
-                    td
-                    td
-                        input(id='submit' type='submit' value='Login')
+        form(id='formS' action='/alt/signIn/' method='POST')
+            tr
+                td Email:
+                td
+                    input(id='email' type='email' name='email' placeholder='mail@gmail.com' required)
+            tr
+                td Password:
+                td
+                    input(id='password' type='password' name='password' minlength='4' placeholder='password' required)
+            tr
+                td
+                td
+                    input(id='submit' type='submit' value='Login')
         p.bot No account?&nbsp;
             a.link(href='/signUp') Register here
     | 
@@ -36,7 +36,7 @@ block content
     br
     br
 
-    script(src='/javascripts/signIn.js')
+
 
     //- main.main
     //-     .login-form

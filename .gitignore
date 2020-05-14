@@ -1,3 +1,5 @@
 repository/node_modules/
 repository/package-lock.json
 repository/config.env
+repository/.cache
+repository/.vscode

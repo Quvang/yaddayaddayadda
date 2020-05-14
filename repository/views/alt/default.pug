@@ -1,7 +1,7 @@
 doctype
 html
   head
-    title= title
+    title YYY | #{title}
     meta(charset='utf-8')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;600&display=swap" rel="stylesheet")
@@ -9,54 +9,24 @@ html
     link(rel="icon", type="image/svg+xml", href="/favicon.svg")
     link(rel='stylesheet', href='/stylesheets/styleFrontpage.css')
     link(rel='stylesheet', href='/stylesheets/slidetheme.css')
-    script(src='/javascripts/darkTheme.js')
+    //- script(src='/javascripts/darkTheme.js')
+    //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js")
     
-    body
-      header
-        nav
-          ul
-            li
-              a(style="float:left" href="/alt/") Home
-            li
-                a(style="float:left" href="/") Main
-            if user
-              li
-                a(style="float:right" href="/dashboard") Dashboard
-              li
-                a(style="float:right" href="/profile") Profile
-              li
-                a(style="float:right" href="/users/logout") Logout
-            if !user
-              li
-                a(style="float:right" href="/alt/signIn") Sign In
-              li
-                div(id="clock" style="float:right")
-                  div(id="time")
-                      div
-                          span(id="date") 00
-                          span Date
-                      div
-                          span(id="month") 00
-                          span Month
-                      div
-                          span(id="hours") 00
-                          span Hours
-                      div
-                          span(id="minutes") 00
-                          span Minutes
-                      div
-                          span(id="seconds") 00
-                          span Seconds
-                      div
-                          span(id="ampm") AM
-                          span AM 
-    main
-      h1= title
-      block content
-      
-    footer
-      div#copyright
-        | &#169; 2020 | Gruppe 2
+    
 
-    script(src='/javascripts/clock.js')
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js")
+    body
+      // Header
+      include _header
+      
+
+      // CONTENT
+      block content
+        h1 This is a placeholder heading
+
+      // FOOTER
+      include _footer
+
+      script(src='/javascripts/clock.js')
+      script(src="/javascripts/bundle.js")
+
+      
