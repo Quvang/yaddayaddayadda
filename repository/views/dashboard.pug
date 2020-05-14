@@ -13,15 +13,11 @@ block content
     |
     br
     div.dashwrapper
-        div.search-container
-            form(action='/findTags' method='post')
-                input(type='text' name='tag' placeholder='Search for #tags or Users...')
-                button(id="search" type='submit' value='Search')
-                    i(class="fas fa-search")
-    |
-    br
-    div.dashwrapper
         |
         br
-        div.post-container
-            p yaddas show here
+        each yadda in yaddas
+          div.post-container
+            div.postimage 
+              img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px")
+            div.postusername= user.username
+            div.postcreated #{yadda.created}

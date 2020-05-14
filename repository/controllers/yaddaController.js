@@ -2,19 +2,9 @@
 const mon = require('../models/mongooseWrap');
 const Yadda = require('../models/Yadda');
 
-exports.getYadda = async function (que, sort) {
-    if (sort === null) sort = { sort: { name: 1 } };
-    try {
-        let cs = await mon.retrieve('localhost', 'yyy', Yadda, que, sort);
-        return cs;
-    } catch (e) {
-        console.log(e);
-    }
-};
-
 exports.delYadda = async function (name) {
     try {
-        let cs = await mon.remove('localhost', 'yyy', Yadda, name);
+        let cs = await mon.remove(Yadda,);
         return cs;
     } catch (e) {
         console.log(e);

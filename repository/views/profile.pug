@@ -11,12 +11,12 @@ block content
                     button.btn.profile-edit-btn Edit Profile
                 div.profile-stats
                     ul
-                        li #[span.profile-stat-count 0] posts | 
+                        li #[span.profile-stat-count 0] posts |
                         li #[span.profile-stat-count 0] followers |
                         li #[span.profile-stat-count 0] following
                 div.profile-bio
                     p #[span #{user.firstName} #{user.lastName}]
-                
+
 
     div.theme
         div.profilewrapper
@@ -26,23 +26,13 @@ block content
                     input#checkbox(type="checkbox")
                     div.slider.round
 
+
     |
     br
     div.profilewrapper
-        div.search-container 
-            form(action='/findTags' method='post')
-                input(type='text' name='tag' placeholder='Search for #tags or Users...')
-                button(id="search" type='submit' value='search')
-                    i(class="fas fa-search")
-                
-    | 
-    br
-    div.profilewrapper 
         |
-        br       
-        div.post-container
-            p User posts show here
-    
-
-        
-    
+        br
+        each yadda in yaddas
+          div.post-container
+            img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px")
+            p #{yadda.tags}
