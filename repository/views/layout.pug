@@ -5,7 +5,7 @@ html
     meta(charset='utf-8')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500;600&display=swap" rel="stylesheet")
-    link(href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet")
     link(rel="icon", type="image/svg+xml", href="/favicon.svg")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/slidetheme.css')
@@ -16,7 +16,9 @@ html
   body
     header
       nav
-        h1 Logo Here
+        h1.logo 
+          a(href="/dashboard")
+            i(class="fas fa-comment-alt fa-2x")
         ul
           if user
             li
@@ -28,7 +30,7 @@ html
             li
               a(href="/explore") Explore
             li
-              a(href="/tags") Tags
+              a(href="/tags") #Tags
             li
               a(href="/users/logout") Logout
           if !user

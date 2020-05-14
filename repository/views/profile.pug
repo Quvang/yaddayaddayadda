@@ -34,5 +34,15 @@ block content
         br
         each yadda in yaddas
           div.post-container
-            img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px")
-            p #{yadda.tags}
+            div.post-image 
+              img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+            div.post-content
+              div.post-head
+                div.post-username
+                  a(href="/profile") #{user.username}
+                div.post-created
+                  p #{yadda.created}
+              div.post-text 
+                p #{yadda.text}
+              div.post-tags 
+                a(href="/findTags") #{yadda.tags}

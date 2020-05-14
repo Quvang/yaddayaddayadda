@@ -49,8 +49,8 @@ exports.explore = function (req, res) {
 
 exports.tags = function (req, res) {
     res.render('tags', {
-        title: 'Tags',
-        subtitle: 'Explore Tags',
+        title: '#Tags',
+        subtitle: 'Explore #tags',
         user: req.user,
     });
 };

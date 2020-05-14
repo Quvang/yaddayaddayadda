@@ -15,15 +15,4 @@ block content
         |
         br
         div.user-container
-            div.container
-                div.profile-image
-                    img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
-                div.user-profile
-                    div.user-head
-                        h2.user-name 
-                            a(href="/profile") #{user.username}
-                    div.user-bio
-                        p #[span #{user.firstName} #{user.lastName}]
-                    div.follow
-                        form(action='/follow' method='post')
-                            input.btn.follow-btn(type='submit' value='follow')
+            p Users show here

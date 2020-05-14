@@ -7,7 +7,7 @@ block content
                 input(type="hidden" value=user.username name="username")
                 input(type="hidden" value=user.avatar name="avatar")
                 textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
-                input(type="text" id="tags" name="tags" placeholder="Enter #tags here")
+                input(type="text" id="tags" name="tags" placeholder="Enter #tags here seperated by commas")
                 p#charcount
                 input(id="postYadda" type='submit' value='Yadda')
 
@@ -18,8 +18,16 @@ block content
         br
         each yadda in yaddas
           div.post-container
-            div.postimage 
-              img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px")
-            div.postusername= yadda.username
-            div.posttext #{yadda.text}
-            div.posttags #{yadda.tags}
+            div.post-image 
+              img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+            div.post-content
+              div.post-head
+                div.post-username
+                  a(href="/userProfile") #{yadda.username}
+                div.post-created
+                  p #{yadda.created}
+              div.post-text 
+                p #{yadda.text}
+              div.post-tags 
+                a(href="/findTags") #{yadda.tags}
+
