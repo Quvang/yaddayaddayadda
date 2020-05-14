@@ -29,7 +29,7 @@ export const signOut = async () => {
       methos: 'GET',
       url: '/alt/signOut',
     });
-    if ((res.data.status = 'success')) location.reload(true);
+    if ((res.data.status = 'success')) location.assign('/alt/');
   } catch (err) {
     showAlert('error', 'Error logging out! Try again.');
   }
