@@ -52,9 +52,30 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
   const url = `${req.protocol}://${req.get('host')}/alt/account`;
   console.log(url);
-  await new Email(newUser, url).sendWelcome();
+
+  /** SEND WELCOME EMAIL
+   *await new Email(newUser, url).sendWelcome();
+   */
+
+  //send confirmation email on signup
+  jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '1d' }, (err, emailToken) => {
+    const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/alt/confirmation/${emailToken}`;
+
+    new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
+  });
 
   createSendToken(newUser, 201, res);
+});
+
+exports.emailConfirm = catchAsync(async (req, res, next) => {
+  const {
+    newUser: { _id },
+  } = jwt.verify(req.params.token, process.env.EMAIL_SECRET);
+  await User.updateOne({ isConfirmed: false }, { isConfirmed: true }, { where: { _id } });
+
+  console.log('Email Confirmed');
+
+  return res.redirect('/alt/signIn');
 });
 
 exports.signin = catchAsync(async (req, res, next) => {
@@ -72,7 +93,12 @@ exports.signin = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect email or password', 401));
   }
 
-  // 3) If everything is ok, send token to client
+  // 3) Check if user is verified
+  if (!user.isConfirmed) {
+    return next(new AppError(`Please confirm your email by clicking on the link we send to ${user.email}`));
+  }
+
+  // 4) If everything is ok, send token to client
   createSendToken(user, 200, res);
 });
 

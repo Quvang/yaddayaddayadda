@@ -14,6 +14,7 @@ router.get('/about', altController.about);
 router.get('/signIn', altController.getLoginForm);
 router.post('/signIn', authController.signin);
 router.post('/signup', authController.signup); // No pug
+router.get('/confirmation/:token', authController.emailConfirm);
 
 // Logged in
 router.get('/signOut', authController.logout);
