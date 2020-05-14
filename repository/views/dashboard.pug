@@ -5,6 +5,7 @@ block content
         h2#username #{user.username}
         form(id="makeyadda" action='/dashboard/post' method='POST')
                 input(type="hidden" value=user.username name="username")
+                input(type="hidden" value=user.avatar name="avatar")
                 textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
                 input(type="text" id="tags" name="tags" placeholder="Enter #tags here")
                 p#charcount
@@ -18,6 +19,7 @@ block content
         each yadda in yaddas
           div.post-container
             div.postimage 
-              img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px")
-            div.postusername= user.username
-            div.postcreated #{yadda.created}
+              img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px")
+            div.postusername= yadda.username
+            div.posttext #{yadda.text}
+            div.posttags #{yadda.tags}

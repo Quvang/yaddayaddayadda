@@ -17,6 +17,7 @@ exports.postYadda = async function (req) {
         username: req.body.username,
         text: req.body.text,
         tags: req.body.tags,
+        avatar: req.body.avatar
     });
     try {
         let cs = await yadda.save();

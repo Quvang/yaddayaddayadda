@@ -21,6 +21,10 @@ const YaddaSchema = new mongoose.Schema({
         default: null,
     },
 
+    avatar: {
+        type: String
+    },
+
     reply: {
         type: String,
         default: null,
