@@ -4,7 +4,7 @@
 
 // Home
 exports.default = (req, res) => {
-  res.status(200).render('alt/default', {
+  res.status(200).render('alt/landingpage', {
     title: '👁️ | Welcome to Yadda Yadda Yadda',
     subtitle: 'Gruppe 2 | Eksamens Project 2.sem',
   });

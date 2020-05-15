@@ -12,8 +12,11 @@ block content
     //-     if error != ''
     //-         div(role='alert' id='a4') #{error}
     
+    h1(style="color: white") #{title}
+    br
+    br
+    br
     div.wrapper
-        h2 #{title}
         h2 #{message}
         form(id='formS' action='/alt/signIn/' method='POST')
             tr
