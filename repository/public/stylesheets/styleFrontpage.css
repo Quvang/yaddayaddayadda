@@ -1,11 +1,13 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 300;
   color: #fff;
   background: #030613;
@@ -79,8 +81,8 @@ h2 {
   color: #fff;
   padding-bottom: 20px;
 }
-h3   {
-  font-family: 'Open Sans', sans-serif;
+h3 {
+  font-family: "Open Sans", sans-serif;
   font-weight: 300;
   font-size: 14px;
   color: #fff;
@@ -97,8 +99,7 @@ h3   {
 }
 
 p {
-  font-family: 'Open Sans', sans-serif;
-
+  font-family: "Open Sans", sans-serif;
 }
 
 form {
@@ -254,9 +255,9 @@ form {
 #wrapper {
   padding: 20px 50px 20px 50px;
   display: flex;
-  width: 100%;
+  width: 80%;
+  float: right;
 }
-
 .wrapper {
   background-color: #232530;
   width: 40%;
