@@ -1,22 +1,33 @@
-* {
+*, *:before, *:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-nav {
-  display: flexbox;
-}
-
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
   color: #fff;
   background: #030613;
   min-height: 100vh;
 }
 
 main {
-  margin: 50px;
+  margin-top: 50px;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 20%;
+  height: 100%;
+  padding: 20px;
+  background-color: #030613;
+  border-right: solid 1px;
+  border-right-color: #fff;
+  overflow: hidden;
 }
 
 ul {
@@ -24,9 +35,6 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #030613;
-  border-bottom: 1px solid;
-  border-bottom-color: #fff;
 }
 
 li a {
@@ -34,7 +42,6 @@ li a {
   font-weight: 300;
   display: block;
   color: white;
-  text-align: center;
   padding: 14px 30px;
   text-decoration: none;
   text-transform: uppercase;
@@ -42,11 +49,73 @@ li a {
 
 li a:hover {
   background-color: #ff006a;
+  transition-duration: 0.5s;
 }
 
-body {
-  background: #030613;
-  min-height: 100vh;
+h1 {
+  font-family: Montserrat;
+  font-weight: 300;
+  display: block;
+  color: #232530;
+  padding: 14px 30px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.logo a {
+  display: block;
+  color: #232530;
+}
+.logo a:hover {
+  color: #fff;
+  opacity: 0.6;
+  transition: 0.5s;
+}
+
+h2 {
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 20px;
+  color: #fff;
+  padding-bottom: 20px;
+}
+h3   {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+#username {
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+form {
+  padding-bottom: 20px;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.3;
+}
+
+#a1 {
+  color: #ff006a;
+}
+#a4 {
+  color: #ff006a;
 }
 
 #flexbox {
@@ -82,23 +151,6 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 1em;
-}
-
-p {
-  font-family: "Open Sans", sans-serif;
-}
-
-.link {
-  color: #fff;
-  text-decoration: none;
-  opacity: 0.3;
-}
-
-#a1 {
-  color: #ff006a;
-}
-#a4 {
-  color: #ff006a;
 }
 
 /*#clock h2 {
@@ -310,15 +362,6 @@ input[type="submit"]:hover {
   text-justify: inter-word;
 }
 
-/*Overskrift*/
-h2 {
-  font-family: Montserrat;
-  font-weight: 300;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
 hr {
   border: 2px solid white;
 }
