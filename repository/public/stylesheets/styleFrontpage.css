@@ -12,6 +12,7 @@ body {
   color: #fff;
   background: #030613;
   min-height: 100vh;
+  margin-left: 30%;
 }
 
 main {
@@ -79,7 +80,7 @@ h2 {
   font-weight: 300;
   font-size: 20px;
   color: #fff;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
 }
 h3 {
   font-family: "Open Sans", sans-serif;
@@ -244,10 +245,9 @@ form {
 
 .errors div {
   background-color: #232530;
-  width: 40%;
-  margin: 0 auto;
+  width: 50%;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 20px 50px 20px 50px;
   display: hidden;
 }
 
@@ -255,13 +255,12 @@ form {
 #wrapper {
   padding: 20px 50px 20px 50px;
   display: flex;
+  margin: 0 auto;
   width: 80%;
-  float: right;
 }
 .wrapper {
   background-color: #232530;
-  width: 40%;
-  margin: 0 auto;
+  width: 70%;
   padding: 20px 50px 20px 50px;
 }
 

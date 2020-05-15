@@ -24,9 +24,9 @@ block content
               div.post-head
                 div.post-username
                   if yadda.username != user.username
-                    a(href="/userProfile") #{yadda.username} | 
+                    a(href="/userProfile") #{yadda.username}
                   else
-                    a(href="/profile") #{user.username} | 
+                    a(href="/profile") #{user.username}
                 div.post-created
                   p #{yadda.created}
               div.post-text 
@@ -42,4 +42,6 @@ block content
                   if user.username === yadda.username
                     form(action="/users/delYadda" method="post")
                       input(type="hidden" name="_id" value= yadda._id)
-                      button(type="submit") Delete
+                      button(type="submit") delete
+                  else
+                      div.post-delete(style="display: none;")
