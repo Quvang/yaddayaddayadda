@@ -18,7 +18,8 @@ router.post(
   auth.postRegister
 );
 
-router.post('/delYadda', ensureAuthenticated, ydc.delYadda);   // delete post
+//delete yadda
+router.post('/delYadda', ensureAuthenticated, ydc.delYadda);
 
 router.get('/login', forwardAuthenticated, auth.login);
 router.post('/login', auth.postLogin);

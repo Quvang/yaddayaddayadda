@@ -2,13 +2,10 @@
 const mon = require('../models/mongooseWrap');
 const Yadda = require('../models/Yadda');
 
-exports.delYadda = async function (name) {
-    try {
-        let cs = await mon.remove(Yadda,);
-        return cs;
-    } catch (e) {
-        console.log(e);
-    }
+exports.delYadda = async function (req, res, next) {
+    let del = { _id: req.body._id }
+    let cs = mon.remove(Yadda, del);
+    res.redirect('/dashboard');
 };
 
 exports.postYadda = async function (req) {
