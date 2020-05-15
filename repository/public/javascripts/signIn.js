@@ -31,6 +31,7 @@ export const signOut = async () => {
     });
     if ((res.data.status = 'success')) location.assign('/alt/');
   } catch (err) {
+    console.log(err.response);
     showAlert('error', 'Error logging out! Try again.');
   }
 };

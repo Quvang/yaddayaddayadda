@@ -21,6 +21,7 @@ exports.getLoginForm = (req, res) => {
 exports.account = (req, res) => {
   res.status(200).render('alt/account', {
     title: '🔒 | Account',
+    user: req.user,
   });
 };
 
