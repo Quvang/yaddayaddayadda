@@ -9,7 +9,7 @@ nav {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #fff;
   background: #030613;
   min-height: 100vh;
@@ -85,7 +85,7 @@ body {
 }
 
 p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .link {
@@ -253,13 +253,13 @@ p {
   margin-right: auto;
   text-align: left;
 }
-input[type='text'],
-input[type='email'],
-input[type='password'],
+input[type="text"],
+input[type="email"],
+input[type="password"],
 textarea,
 select {
   width: 100%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #fff;
   background-color: #353744;
   opacity: 0.6;
@@ -268,9 +268,9 @@ select {
   display: inline-block;
   border: none;
 }
-input[type='text'],
-input[type='email'],
-input[type='password'] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   margin-bottom: 20px;
 }
 ::placeholder {
@@ -286,7 +286,7 @@ input[type='password'] {
   border: none;
   cursor: pointer;
 }
-input[type='submit'] {
+input[type="submit"] {
   width: 100%;
   font-size: 20px;
   background-color: #ff006a;
@@ -297,7 +297,7 @@ input[type='submit'] {
   border: none;
   cursor: pointer;
 }
-input[type='submit']:hover {
+input[type="submit"]:hover {
   background-color: #ff006a;
   opacity: 1;
   transition: 0.5s;
@@ -342,7 +342,7 @@ hr {
   transform: translateX(-50%);
   z-index: 9999;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: 400;
   text-align: center;
