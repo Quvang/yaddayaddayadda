@@ -17,13 +17,21 @@ block content
             a.btn-text(href='') Choose new photo
             br
             br
-            label.form__label(for='name') Username
+            label#labelUsername.form__label(for='name') Username: #{user.username}
             br
             input#inputUsername.form__input(type='text', name='username', value=`${user.username}`, required)
             br
-            label.form__label(for='email') Email address
+            label#labelEmail.form__label(for='email') Email address: #{user.email}
             br
             input#inputEmail.form__input(type='email', name='email', value=`${user.email}`, required)
+            br
+            label#labelFirstName.form__label(for='firstName') First Name: #{user.firstName}
+            br
+            input#inputFirstName.form__input(type='text', name='firstName', value=`${user.firstName}`, required)
+            br
+            label#labelLastName.form__label(for='lastName') Last Name: #{user.lastName}
+            br
+            input#inputLastName.form__input(type='text', name='lastName', value=`${user.lastName}`, required)
             br
             input(type="submit", value="Change settings").btn.btn--small.btn--green
       .line &nbsp;

@@ -21,11 +21,19 @@ if (loginForm) {
 if (logOutBtn) logOutBtn.addEventListener('click', signOut);
 
 if (userDataForm) {
-  userDataForm.addEventListener('submit', (e) => {
+  userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('inputUsername').value;
     const email = document.getElementById('inputEmail').value;
-    updateSettings({ username, email }, 'data');
+    const firstName = document.getElementById('inputFirstName').value;
+    const lastName = document.getElementById('inputLastName').value;
+
+    await updateSettings({ username, email, firstName, lastName }, 'data');
+
+    document.getElementById('labelUsername').textContent = 'Username: ' + username;
+    document.getElementById('labelEmail').textContent = 'Email address: ' + email;
+    document.getElementById('labelFirstName').textContent = 'First Name: ' + firstName;
+    document.getElementById('labelLastName').textContent = 'Last Name: ' + lastName;
   });
 }
 

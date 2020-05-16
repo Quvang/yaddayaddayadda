@@ -44,6 +44,8 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     {
       username: req.body.username,
       email: req.body.email,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
     },
     {
       new: true,
