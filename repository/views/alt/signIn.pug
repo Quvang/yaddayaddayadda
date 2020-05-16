@@ -11,34 +11,34 @@ block content
     //-         div(role='alert' id='a3') #{error_msg}
     //-     if error != ''
     //-         div(role='alert' id='a4') #{error}
-    
     h1(style="color: white") #{title}
-    br
-    br
-    br
-    div.wrapper
-        h2 #{message}
-        form(id='formS' action='/alt/signIn/' method='POST')
-            tr
-                td Email:
-                td
-                    input(id='email' type='email' name='email' placeholder='mail@gmail.com' required)
-            tr
-                td Password:
-                td
-                    input(id='password' type='password' name='password' minlength='4' placeholder='password' required)
-            tr
-                td
-                td
-                    input(id='submit' type='submit' value='Login')
-        p.bot No account?&nbsp;
-            a.link(href='/signUp') Register here
-    | 
-    br
-    br
-    br
-    br
-    br
+    main
+        br
+        br
+        br
+        div.wrapper
+            h2 #{message}
+            form(id='formSignIn' action='/alt/signIn/' method='POST')
+                tr
+                    td Email:
+                    td
+                        input(id='email' type='email' name='email' placeholder='mail@gmail.com' required)
+                tr
+                    td Password:
+                    td
+                        input(id='password' type='password' name='password' minlength='4' placeholder='password' required)
+                tr
+                    td
+                    td
+                        input(id='submit' type='submit' value='Login')
+            p.bot No account?&nbsp;
+                a.link(href='/signUp') Register here
+        | 
+        br
+        br
+        br
+        br
+        br
 
 
 

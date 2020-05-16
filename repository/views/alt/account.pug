@@ -1,10 +1,47 @@
 extends default
 
 block content
-  h1= title
-  //- img #{user.avatar}
-  p Username: #{user.username}
-  p Firstname #{user.firstName}
-  p Lastname: #{user.lastName}
-  p Role: #{user.role}
-  p Email: #{user.email}
+  h1(style="color: white")= title 
+  main.main
+    .profilewrapper
+      h2.heading-secondary.ma-bt-md User Account Settings
+      .container
+
+        //- WITHOUT API
+        //- form.form.form-user-data(action='/alt/submit-user-data' method='POST')
+
+        //- WITH API
+        form#formUpdateUser
+          div: form
+            img.form__user-photo(src='img/user.jpg', alt='User photo')
+            a.btn-text(href='') Choose new photo
+            br
+            br
+            label.form__label(for='name') Username
+            br
+            input#inputUsername.form__input(type='text', name='username', value=`${user.username}`, required)
+            br
+            label.form__label(for='email') Email address
+            br
+            input#inputEmail.form__input(type='email', name='email', value=`${user.email}`, required)
+            br
+            input(type="submit", value="Change settings").btn.btn--small.btn--green
+      .line &nbsp;
+    .profilewrapper(style="position: relative; top: 10px")
+      h2.heading-secondary.ma-bt-md Password Settings
+      .container
+        form#formUpdateUserPassword
+          div: form
+            label.form__label(for='password-current') Current password
+            br
+            input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='4')
+            br
+            label.form__label(for='password') New password
+            br
+            input#password.form__input(type='password', placeholder='••••••••', required, minlength='4')
+            br
+            label.form__label(for='password-confirm') Confirm password
+            br
+            input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='4')
+            br
+            input(type="submit", value="Change password")#btnSavePassword 

@@ -26,8 +26,8 @@ const handleJWTError = () => new AppError('Invalid token! Please log in again!',
 const handleJWTExpiredError = () => new AppError('Your token has expired! Please log in again!', 401);
 
 const sendErrorDev = (err, req, res) => {
-  // A) API
-  if (req.originalUrl.startsWith('/all/')) {
+  // A) API - Everything after ULR is treated as JSON
+  if (req.originalUrl.startsWith('/')) {
     return res.status(err.statusCode).json({
       status: err.status,
       error: err,
@@ -46,7 +46,7 @@ const sendErrorDev = (err, req, res) => {
 };
 
 const sendErrorProd = (err, req, res) => {
-  // A) API
+  // A) API - Everything after ULR is treated as JSON
   if (req.originalUrl.startsWith('/')) {
     // A) Operation, trusted error: Send message to client
     if (err.isOperational) {
@@ -55,7 +55,7 @@ const sendErrorProd = (err, req, res) => {
         message: err.message,
       });
     }
-    // B) Programming or other unknown error: don't sleak error details
+    // B) Programming or other unknown error: don't leak error details
     // 1) Log Error
     console.error('ERROR !!!', err);
     // 2) Send generic message
@@ -74,12 +74,12 @@ const sendErrorProd = (err, req, res) => {
       msg: err.message,
     });
   }
-  // B) Programming or other unknown error: don't sleak error details
+  // B) Programming or other unknown error: don't leak error details
   // 1) Log Error
   console.error('ERROR !!!', err);
   // 2) Send generic message
-  return res.status(500).json({
-    status: 'error',
+  return res.status(err.statusCode).render('errorpage', {
+    title: 'Something went wrong!',
     msg: 'Please try again later.',
   });
 };

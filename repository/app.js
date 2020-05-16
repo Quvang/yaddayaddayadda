@@ -65,6 +65,7 @@ app.use('/users', limiter); // set the limiter to specified route(s)
 // Body Parser, reading data from body into req.body
 console.log('Yadda Yadda Yadda is now started in ' + process.env.NODE_ENV + ' mode');
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
@@ -90,9 +91,6 @@ app.use((req, res, next) => {
   // console.log(req.cookies);
   next();
 });
-
-// Express body parser
-app.use(express.urlencoded({ extended: true }));
 
 // Express session
 app.use(

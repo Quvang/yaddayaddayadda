@@ -1,5 +1,5 @@
-// const User = require('../models/userModel');
-// const catchAsync = require('../utils/catchAsync');
+const User = require('../../models/alt/userModel');
+const catchAsync = require('../../utils/catchAsync');
 // const AppError = require('../utils/appError');
 
 // Home
@@ -21,7 +21,6 @@ exports.getLoginForm = (req, res) => {
 exports.account = (req, res) => {
   res.status(200).render('alt/account', {
     title: '🔒 | Account',
-    user: req.user,
   });
 };
 
@@ -38,3 +37,22 @@ exports.about = (req, res) => {
     title: '👁️ | About Us',
   });
 };
+
+exports.updateUserData = catchAsync(async (req, res, next) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      username: req.body.username,
+      email: req.body.email,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).render('alt/account', {
+    title: '🔒 | Account',
+    user: updatedUser,
+  });
+});

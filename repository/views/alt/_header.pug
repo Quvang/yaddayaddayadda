@@ -24,10 +24,10 @@ header
       li
         if user && user.role == 'member'
           li: img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px" style="margin-left: 30px")
-          li: a(hred="#") Logged in as #{user.username} 
+          li: a(href="/alt/account") Logged in as #{user.username} 
         if user && user.role == 'admin'
           li: img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="50px" height="50px" style="margin-left: 30px")
-          li: a(hred="#") Logged in as #{user.username} 
+          li: a(href="/alt/account") Logged in as #{user.username} 
       li: a( href="/alt/") Home
       if !user
         //- li: a(style="float:right" href="/alt/signIn") Sign In

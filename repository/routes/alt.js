@@ -4,22 +4,22 @@ const altController = require('../controllers/alt/altController.js');
 const authController = require('../controllers/alt/authController2.js');
 const userController = require('../controllers/userController.js');
 
-// Verifies the jwt- Navbar will change depending on if any user is logged in
-
-router.use(authController.isLoggedIn);
-
 // Not Logged in
-router.get('/', altController.default);
-router.get('/about', altController.about);
-router.get('/signIn', altController.getLoginForm);
-router.post('/signIn', authController.signin);
-router.post('/signup', authController.signup); // No pug
-router.get('/confirmation/:token', authController.emailConfirm);
+router.get('/', authController.isLoggedIn, altController.default);
+router.get('/about', authController.isLoggedIn, altController.about);
+router.get('/signIn', authController.isLoggedIn, altController.getLoginForm);
+router.post('/signIn', authController.isLoggedIn, authController.signin);
+router.post('/signup', authController.isLoggedIn, authController.signup); // No pug
+router.get('/confirmation/:token', authController.isLoggedIn, authController.emailConfirm);
 
 // Logged in
 router.get('/signOut', authController.logout);
 router.get('/account', authController.protect, altController.account);
 router.get('/adminpanel', authController.protect, authController.restrictTo('admin'), altController.adminPanel);
+
+// Update profile
+router.patch('/updateMe', authController.protect, userController.updateMe); // WITHOUT API - router.post('/submit-user-data', authController.protect, altController.updateUserData);
+router.patch('/updateMyPassword', authController.protect, authController.updatePassword);
 
 module.exports = router;
 
@@ -40,8 +40,6 @@ router.route('/').get(userController.getAllUsers).post(userController.createUser
 
 // Logged in Routes
 router.get('/loggedInTest', authController.protect, userController.getAllUsers);
-router.patch('/updateMyPassword', authController.protect, authController.updatePassword);
-router.patch('/updateMe', authController.protect, userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
 
 // Admin Routes
