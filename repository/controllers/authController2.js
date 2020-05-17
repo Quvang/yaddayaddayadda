@@ -64,13 +64,38 @@ exports.signup = catchAsync(async (req, res, next) => {
    */
 
   //send confirmation email on signup
-  jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '1d' }, (err, emailToken) => {
+  jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '600000' }, (err, emailToken) => {
     const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/confirmation/${emailToken}`;
 
     new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
   });
 
   // createSendToken(newUser, 201, req, res); // If we decide to remove email confirmation
+  res.status(200).json({ status: 'success' });
+});
+
+// Resend Email token
+exports.resendConfirmationEmail = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  // 1) Check if email and password exist
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password!', 400));
+  }
+
+  // 2) Check if user exist && password is correct
+  const newUser = await User.findOne({ email }).select('+password');
+
+  if (!newUser || !(await newUser.correctPassword(password, newUser.password))) {
+    return next(new AppError('Incorrect email or password', 401));
+  }
+
+  jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '600000' }, (err, emailToken) => {
+    const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/confirmation/${emailToken}`;
+
+    new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
+  });
+
   res.status(200).json({ status: 'success' });
 });
 

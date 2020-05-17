@@ -1,9 +1,10 @@
 import '@babel/polyfill';
-import { signUp, signIn, signOut } from './signIn';
+import { signUp, resendConfirmationEmail, signIn, signOut } from './signIn';
 import { updateSettings } from './updateSettings';
 
 // DOM ELEMENTS
 const signUpForm = document.getElementById('formSignUp');
+const resendConfirmationEmailForm = document.getElementById('formResendConfirmationEmail');
 const loginForm = document.getElementById('formSignIn');
 const logOutBtn = document.querySelector('#signout');
 const userDataForm = document.getElementById('formUpdateUser');
@@ -20,6 +21,15 @@ if (signUpForm) {
     const firstName = document.getElementById('firstNameUp').value;
     const lastName = document.getElementById('lastNameUp').value;
     signUp(username, password, passwordConfirm, email, firstName, lastName);
+  });
+}
+
+if (resendConfirmationEmailForm) {
+  resendConfirmationEmailForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    resendConfirmationEmail(email, password);
   });
 }
 

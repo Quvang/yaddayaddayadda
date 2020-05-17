@@ -1,65 +1,67 @@
 extends default
 
 block content
-    div.profilewrapper
-        div.container
-            div.profile-image
-                img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
-            div.profile
-                div.profile-user-head
-                    h2.profile-user-name #{user.username}
-                    button.btn.profile-edit-btn Edit Profile
-                div.profile-stats
-                    ul
-                        li #[span.profile-stat-count 0] posts |
-                        li #[span.profile-stat-count 0] followers |
-                        li #[span.profile-stat-count 0] following
-                div.profile-bio
-                    p #[span #{user.firstName} #{user.lastName}]
+    h1(style="color: white")= title
+    main
+      div.profilewrapper
+          div.container
+              div.profile-image
+                  img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
+              div.profile
+                  div.profile-user-head
+                      h2.profile-user-name #{user.username}
+                      button.btn.profile-edit-btn Edit Profile
+                  div.profile-stats
+                      ul
+                          li #[span.profile-stat-count 0] posts |
+                          li #[span.profile-stat-count 0] followers |
+                          li #[span.profile-stat-count 0] following
+                  div.profile-bio
+                      p #[span #{user.firstName} #{user.lastName}]
 
 
-    div.theme
-        div.profilewrapper
-            h2#theme Dark Theme
-            div.sliderplaceholder
-                label.switch
-                    input#checkbox(type="checkbox")
-                    div.slider.round
+      div.theme
+          div.profilewrapper
+              h2#theme Dark Theme
+              div.sliderplaceholder
+                  label.switch
+                      input#checkbox(type="checkbox")
+                      div.slider.round
 
 
-    |
-    br
-    div.profilewrapper
-        |
-        br
-        each yadda in yaddas  
-          div.post-container
-              div.post-image 
-                img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
-              div.post-content
-                div.post-head
-                  div.post-username
-                    if yadda.username != user.username
-                      a(href="/userProfile") #{yadda.username}
-                    else
-                      a(href="/profile") #{user.username}
-                  div.post-created
-                    p #{yadda.created}
-                div.post-text 
-                  p #{yadda.text}
-                  div.post-tags 
-                    a(href="/findTags") #{yadda.tags}
-                div.post-bottom
-                  div.show-comments 
-                    p 0 comments <!-- placeholder -->
-                  div.post-comment
-                    p comment <!-- placeholder -->
-                  div.post-delete
-                    if user.username === yadda.username
-                      form(action="/users/delYadda" method="post")
-                        input(type="hidden" name="_id" value= yadda._id)
-                        button(type="submit") delete
-                    else
-                      div.post-delete(style="display: none;")
+      |
+      br
+      div.profilewrapper
+          |
+          br
+          each yadda in yaddas  
+            div.post-container
+                div.post-image 
+                  img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+                div.post-content
+                  div.post-head
+                    div.post-username
+                      if yadda.username != user.username
+                        a(href="/userProfile") #{yadda.username}
+                      else
+                        a(href="/profile") #{user.username}
+                    div.post-created
+                      p #{yadda.created}
+                  div.post-text 
+                    p #{yadda.text}
+                    div.post-tags 
+                      a(href="/findTags") #{yadda.tags}
+                  div.post-bottom
+                    div.show-comments 
+                      p 0 comments <!-- placeholder -->
+                    div.post-comment
+                      p comment <!-- placeholder -->
+                    div.post-delete
+                      if user.username === yadda.username
+                        form(action="/api/v1/yaddas/delYadda" method="POST")
+                          input(type="hidden" name="_id" value= yadda._id)
+                          button(type="submit") delete
+                      else
+                        div.post-delete(style="display: none;")
 
                           

@@ -65,6 +65,6 @@ module.exports = class email {
   }
 
   async sendEmailConfirmation() {
-    await this.send('emailConfirmation', 'Yadda Signup - Email Confirmation (valid for 1 day)');
+    await this.send('emailConfirmation', 'Yadda Signup - Email Confirmation (valid for 10 minutes)');
   }
 };

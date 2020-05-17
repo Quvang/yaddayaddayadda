@@ -8371,7 +8371,7 @@ exports.showAlert = showAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signOut = exports.signIn = exports.signUp = void 0;
+exports.signOut = exports.signIn = exports.resendConfirmationEmail = exports.signUp = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8438,7 +8438,7 @@ var signUp = /*#__PURE__*/function () {
 
 exports.signUp = signUp;
 
-var signIn = /*#__PURE__*/function () {
+var resendConfirmationEmail = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(email, password) {
     var res;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -8449,7 +8449,7 @@ var signIn = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'api/v1/users/signIn',
+              url: 'api/v1/users/resendConfirmationEmail',
               data: {
                 email: email,
                 password: password
@@ -8460,9 +8460,9 @@ var signIn = /*#__PURE__*/function () {
             res = _context2.sent;
 
             if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', 'Logged in successfully!');
+              (0, _alerts.showAlert)('success', 'Email Send');
               window.setTimeout(function () {
-                location.assign('/dashboard');
+                location.assign('/signIn');
               }, 1500);
             }
 
@@ -8482,15 +8482,15 @@ var signIn = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 7]]);
   }));
 
-  return function signIn(_x7, _x8) {
+  return function resendConfirmationEmail(_x7, _x8) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.signIn = signIn;
+exports.resendConfirmationEmail = resendConfirmationEmail;
 
-var signOut = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+var signIn = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(email, password) {
     var res;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
@@ -8499,27 +8499,33 @@ var signOut = /*#__PURE__*/function () {
             _context3.prev = 0;
             _context3.next = 3;
             return (0, _axios.default)({
-              method: 'GET',
-              url: 'api/v1/users/signOut'
+              method: 'POST',
+              url: 'api/v1/users/signIn',
+              data: {
+                email: email,
+                password: password
+              }
             });
 
           case 3:
             res = _context3.sent;
 
             if (res.data.status === 'success') {
-              location.assign('/');
+              (0, _alerts.showAlert)('success', 'Logged in successfully!');
+              window.setTimeout(function () {
+                location.assign('/dashboard');
+              }, 1500);
             }
 
-            _context3.next = 11;
+            _context3.next = 10;
             break;
 
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            console.log(_context3.t0.response);
-            (0, _alerts.showAlert)('error', 'Error logging out! Try again.');
+            (0, _alerts.showAlert)('error', _context3.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context3.stop();
         }
@@ -8527,8 +8533,53 @@ var signOut = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 7]]);
   }));
 
-  return function signOut() {
+  return function signIn(_x9, _x10) {
     return _ref3.apply(this, arguments);
+  };
+}();
+
+exports.signIn = signIn;
+
+var signOut = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return (0, _axios.default)({
+              method: 'GET',
+              url: 'api/v1/users/signOut'
+            });
+
+          case 3:
+            res = _context4.sent;
+
+            if (res.data.status === 'success') {
+              location.assign('/');
+            }
+
+            _context4.next = 11;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0.response);
+            (0, _alerts.showAlert)('error', 'Error logging out! Try again.');
+
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function signOut() {
+    return _ref4.apply(this, arguments);
   };
 }();
 
@@ -8866,6 +8917,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // DOM ELEMENTS
 var signUpForm = document.getElementById('formSignUp');
+var resendConfirmationEmailForm = document.getElementById('formResendConfirmationEmail');
 var loginForm = document.getElementById('formSignIn');
 var logOutBtn = document.querySelector('#signout');
 var userDataForm = document.getElementById('formUpdateUser');
@@ -8881,6 +8933,15 @@ if (signUpForm) {
     var firstName = document.getElementById('firstNameUp').value;
     var lastName = document.getElementById('lastNameUp').value;
     (0, _signIn.signUp)(username, password, passwordConfirm, email, firstName, lastName);
+  });
+}
+
+if (resendConfirmationEmailForm) {
+  resendConfirmationEmailForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    (0, _signIn.resendConfirmationEmail)(email, password);
   });
 }
 

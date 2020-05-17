@@ -1,16 +1,6 @@
 extends default
 
 block content
-    //- div.errors
-    //-     if errors != undefined && errors.length != 0
-    //-         each error in errors
-    //-             div(role='alert' id='a1') #{error.msg}
-    //-     if success_msg != ''
-    //-         div(role='alert' id='a2') #{success_msg}
-    //-     if error_msg != ''
-    //-         div(role='alert' id='a3') #{error_msg}
-    //-     if error != ''
-    //-         div(role='alert' id='a4') #{error}
     h1(style="color: white") #{title}
     main
         br
@@ -38,8 +28,8 @@ block content
             p.bot Forgot your password? | &nbsp;
                 a.link(href='#') Reset Password Here
             br
-            p.bot Didn't Confirmation your Email in time? | &nbsp;
-                a.link(href='#') Send new Confirmation Email
+            p.bot Confirmed your email to late? | &nbsp;
+                a.link(href='/resendConfirmationEmail') Send new Confirmation Email
         | 
         br
         br

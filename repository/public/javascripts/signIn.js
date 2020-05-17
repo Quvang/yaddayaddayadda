@@ -27,6 +27,28 @@ export const signUp = async (username, password, passwordConfirm, email, firstNa
   }
 };
 
+export const resendConfirmationEmail = async (email, password) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'api/v1/users/resendConfirmationEmail',
+      data: {
+        email,
+        password,
+      },
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Email Send');
+      window.setTimeout(() => {
+        location.assign('/signIn');
+      }, 1500);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
+
 export const signIn = async (email, password) => {
   try {
     const res = await axios({

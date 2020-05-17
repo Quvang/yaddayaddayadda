@@ -1,0 +1,32 @@
+extends default
+
+block content
+    h1(style="color: white") #{title}
+    main
+        br
+        br
+        br
+        div.wrapper
+            h2 Resend Confirmation Email:
+            form(id='formResendConfirmationEmail')
+                tr
+                    td Email:
+                    td
+                        input(id='email' type='email' name='email' placeholder='mail@gmail.com' required)
+                tr
+                    td Password:
+                    td
+                        input(id='password' type='password' name='password' minlength='4' placeholder='password' required)
+                tr
+                    td
+                    td
+                        input(id='submit' type='submit' value='Send Confirmation Email')
+            br
+            p.bot Forgot your password? | &nbsp;
+                a.link(href='#') Reset Password Here
+        | 
+        br
+        br
+        br
+        br
+        br

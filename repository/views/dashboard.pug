@@ -1,47 +1,49 @@
 extends default
 
 block content
-    div.dashwrapper
-        h2#username #{user.username}
-        form(id="makeyadda" action='/dashboard/post' method='POST')
-                input(type="hidden" value=user.username name="username")
-                input(type="hidden" value=user.avatar name="avatar")
-                textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
-                input(type="text" id="tags" name="tags" placeholder="Enter #tags here seperated by commas")
-                p#charcount
-                input(id="postYadda" type='submit' value='Yadda')
+    h1(style="color: white")= title
+    main
+        div.dashwrapper
+            h2#username #{user.username}
+            form(id="makeyadda" action='/api/v1/yaddas/dashboard/post' method='POST')
+                    input(type="hidden" value=user.username name="username")
+                    input(type="hidden" value=user.avatar name="avatar")
+                    textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
+                    input(type="text" id="tags" name="tags" placeholder="Enter #tags here seperated by commas")
+                    p#charcount
+                    input(id="postYadda" type='submit' value='Yadda')
 
-    |
-    br
-    div.dashwrapper
         |
         br
-        each yadda in yaddas
-          div.post-container
-            div.post-image 
-              img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
-            div.post-content
-              div.post-head
-                div.post-username
-                  if yadda.username != user.username
-                    a(href="/userProfile") #{yadda.username}
-                  else
-                    a(href="/profile") #{user.username}
-                div.post-created
-                  p #{yadda.created}
-              div.post-text 
-                p #{yadda.text}
-                div.post-tags 
-                  a(href="/findTags") #{yadda.tags}
-              div.post-bottom
-                div.show-comments 
-                  p 0 comments <!-- placeholder -->
-                div.post-comment
-                  p comment <!-- placeholder -->
-                div.post-delete
-                  if user.username === yadda.username
-                    form(action="/users/delYadda" method="post")
-                      input(type="hidden" name="_id" value= yadda._id)
-                      button(type="submit") delete
-                  else
-                      div.post-delete(style="display: none;")
+        div.dashwrapper
+            |
+            br
+            each yadda in yaddas
+              div.post-container
+                div.post-image 
+                  img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+                div.post-content
+                  div.post-head
+                    div.post-username
+                      if yadda.username != user.username
+                        a(href="/userProfile") #{yadda.username}
+                      else
+                        a(href="/profile") #{user.username}
+                    div.post-created
+                      p #{yadda.created}
+                  div.post-text 
+                    p #{yadda.text}
+                    div.post-tags 
+                      a(href="/findTags") #{yadda.tags}
+                  div.post-bottom
+                    div.show-comments 
+                      p 0 comments <!-- placeholder -->
+                    div.post-comment
+                      p comment <!-- placeholder -->
+                    div.post-delete
+                      if user.username === yadda.username
+                        form(action="/api/v1/yaddas/delYadda" method="POST")
+                          input(type="hidden" name="_id" value= yadda._id)
+                          button(type="submit") delete
+                      else
+                          div.post-delete(style="display: none;")

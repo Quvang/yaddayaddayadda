@@ -32,6 +32,8 @@ header
         li: a( href="/") Home
         li: a(href="/signUp") Sign Up
         li: a(href="/signIn") Sign In
+        br
+        li: a(href="/about") About Us
       if user && user.role == 'member'
         li: a(href="/dashboard") Dashboard
         li: a(href="/profile") profile
@@ -39,7 +41,8 @@ header
         li: a(href="/explore") Explore
         li: a(href="/tags") #Tags
         br
-        li: a(href="/account") Account
+        li: a(href="/account") Account Settings
+        li: a(href="/about") About Us
         li: a(id="signout" href="/api/v1/users/signOut") Sign Out
       if user && user.role == 'admin'
         li: a(href="/dashboard") Dashboard
@@ -49,7 +52,8 @@ header
         li: a(href="/tags") #Tags
         br
         li: a(href="/adminPanel") Admin Control Panel
-        li: a(href="/account") Account
+        li: a(href="/account") Account Settings
+        li: a(href="/about") About Us
         li: a(id="signout" href="api/v1/users/signOut") Sign Out
         
       

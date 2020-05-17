@@ -121,7 +121,7 @@ app.use(function (req, res, next) {
 // app.use('/', require('./routes/index.js'));
 app.use('/', require('./routes/indexRoutes.js'));
 app.use('/api/v1/users', require('./routes/usersRoutes.js'));
-// app.use('/alt', require('./routes/alt.js'));
+app.use('/api/v1/yaddas', require('./routes/yaddaRoutes.js'));
 // app.use('/users', require('./routes/users.js'));
 
 // Error log in postman
