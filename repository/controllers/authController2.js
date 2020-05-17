@@ -1,10 +1,10 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
-const User = require('../../models/alt/userModel');
-const catchAsync = require('../../utils/catchAsync');
-const AppError = require('../../utils/appError');
-const Email = require('../../utils/email');
+const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
+const Email = require('../utils/email');
 
 // 'secret' = Secret should be stored in a Enviroment Variable (JWT_SECRET) - and never like this (see config.env file)
 // const jwtSecret = 'secret';
@@ -56,21 +56,21 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordChangedAt: req.body.passwordChangedAt,
     role: req.body.role,
   });
-  const url = `${req.protocol}://${req.get('host')}/alt/account`;
-  console.log(url);
 
   /** SEND WELCOME EMAIL
+   *const url = `${req.protocol}://${req.get('host')}/account`;
+   *
    *await new Email(newUser, url).sendWelcome();
    */
 
   //send confirmation email on signup
   jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '1d' }, (err, emailToken) => {
-    const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/alt/confirmation/${emailToken}`;
+    const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/confirmation/${emailToken}`;
 
     new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
   });
 
-  createSendToken(newUser, 201, res);
+  createSendToken(newUser, 201, req, res);
 });
 
 exports.emailConfirm = catchAsync(async (req, res, next) => {
@@ -81,7 +81,7 @@ exports.emailConfirm = catchAsync(async (req, res, next) => {
 
   console.log('Email Confirmed');
 
-  return res.redirect('/alt/signIn');
+  return res.redirect('/signIn');
 });
 
 exports.signin = catchAsync(async (req, res, next) => {
@@ -204,7 +204,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 3) Send it to the user's email
   try {
-    const resetURL = `${req.protocol}://${req.get('host')}/alt/resetPassword/${resetToken}`;
+    const resetURL = `${req.protocol}://${req.get('host')}/users/resetPassword/${resetToken}`;
 
     await new Email(user, resetURL).sendPasswordReset();
 

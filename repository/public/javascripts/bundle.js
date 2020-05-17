@@ -8371,7 +8371,7 @@ exports.showAlert = showAlert;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signOut = exports.signIn = void 0;
+exports.signOut = exports.signIn = exports.signUp = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8383,8 +8383,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var signIn = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email, password) {
+var signUp = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(username, password, passwordConfirm, email, firstName, lastName) {
     var res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -8394,10 +8394,14 @@ var signIn = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: '/alt/signIn',
+              url: '/api/v1/users/signUp',
               data: {
+                username: username,
+                password: password,
+                passwordConfirm: passwordConfirm,
                 email: email,
-                password: password
+                firstName: firstName,
+                lastName: lastName
               }
             });
 
@@ -8405,10 +8409,10 @@ var signIn = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', 'Logged in successfully!');
+              (0, _alerts.showAlert)('success', "Account Created - Please Check your email to confirm your new account");
               window.setTimeout(function () {
-                location.assign('/alt/');
-              }, 1500);
+                location.assign('/signIn');
+              }, 5000);
             }
 
             _context.next = 10;
@@ -8427,15 +8431,15 @@ var signIn = /*#__PURE__*/function () {
     }, _callee, null, [[0, 7]]);
   }));
 
-  return function signIn(_x, _x2) {
+  return function signUp(_x, _x2, _x3, _x4, _x5, _x6) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.signIn = signIn;
+exports.signUp = signUp;
 
-var signOut = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+var signIn = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(email, password) {
     var res;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -8444,23 +8448,33 @@ var signOut = /*#__PURE__*/function () {
             _context2.prev = 0;
             _context2.next = 3;
             return (0, _axios.default)({
-              methos: 'GET',
-              url: '/alt/signOut'
+              method: 'POST',
+              url: 'api/v1/users/signIn',
+              data: {
+                email: email,
+                password: password
+              }
             });
 
           case 3:
             res = _context2.sent;
-            if (res.data.status = 'success') location.assign('/alt/');
-            _context2.next = 11;
+
+            if (res.data.status === 'success') {
+              (0, _alerts.showAlert)('success', 'Logged in successfully!');
+              window.setTimeout(function () {
+                location.assign('/dashboard');
+              }, 1500);
+            }
+
+            _context2.next = 10;
             break;
 
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0.response);
-            (0, _alerts.showAlert)('error', 'Error logging out! Try again.');
+            (0, _alerts.showAlert)('error', _context2.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context2.stop();
         }
@@ -8468,8 +8482,53 @@ var signOut = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 7]]);
   }));
 
-  return function signOut() {
+  return function signIn(_x7, _x8) {
     return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.signIn = signIn;
+
+var signOut = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return (0, _axios.default)({
+              method: 'GET',
+              url: 'api/v1/users/signOut'
+            });
+
+          case 3:
+            res = _context3.sent;
+
+            if (res.data.status === 'success') {
+              location.assign('/');
+            }
+
+            _context3.next = 11;
+            break;
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0.response);
+            (0, _alerts.showAlert)('error', 'Error logging out! Try again.');
+
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+
+  return function signOut() {
+    return _ref3.apply(this, arguments);
   };
 }();
 
@@ -8501,7 +8560,7 @@ var updateSettings = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            url = type === 'password' ? 'http://localhost:3000/alt/updateMyPassword' : 'http://localhost:3000/alt/updateMe';
+            url = type === 'password' ? 'http://localhost:3000/api/v1/users/updateMyPassword' : 'http://localhost:3000/api/v1/users/updateMe';
             _context.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
@@ -8806,10 +8865,24 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // DOM ELEMENTS
+var signUpForm = document.getElementById('formSignUp');
 var loginForm = document.getElementById('formSignIn');
 var logOutBtn = document.querySelector('#signout');
 var userDataForm = document.getElementById('formUpdateUser');
 var userPasswordForm = document.getElementById('formUpdateUserPassword'); // DELEGATION
+
+if (signUpForm) {
+  signUpForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var username = document.getElementById('usernameUp').value;
+    var password = document.getElementById('passwordUp').value;
+    var passwordConfirm = document.getElementById('passwordConfirmUp').value;
+    var email = document.getElementById('emailUp').value;
+    var firstName = document.getElementById('firstNameUp').value;
+    var lastName = document.getElementById('lastNameUp').value;
+    (0, _signIn.signUp)(username, password, passwordConfirm, email, firstName, lastName);
+  });
+}
 
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
@@ -8930,7 +9003,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50750" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58964" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

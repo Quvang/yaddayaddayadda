@@ -1,14 +1,28 @@
 import '@babel/polyfill';
-import { signIn, signOut } from './signIn';
+import { signUp, signIn, signOut } from './signIn';
 import { updateSettings } from './updateSettings';
 
 // DOM ELEMENTS
+const signUpForm = document.getElementById('formSignUp');
 const loginForm = document.getElementById('formSignIn');
 const logOutBtn = document.querySelector('#signout');
 const userDataForm = document.getElementById('formUpdateUser');
 const userPasswordForm = document.getElementById('formUpdateUserPassword');
 
 // DELEGATION
+if (signUpForm) {
+  signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('usernameUp').value;
+    const password = document.getElementById('passwordUp').value;
+    const passwordConfirm = document.getElementById('passwordConfirmUp').value;
+    const email = document.getElementById('emailUp').value;
+    const firstName = document.getElementById('firstNameUp').value;
+    const lastName = document.getElementById('lastNameUp').value;
+    signUp(username, password, passwordConfirm, email, firstName, lastName);
+  });
+}
+
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();

@@ -60,7 +60,7 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour!',
 });
-app.use('/users', limiter); // set the limiter to specified route(s)
+app.use('/api/v1/users', limiter); // set the limiter to specified route(s)
 
 // Body Parser, reading data from body into req.body
 console.log('Yadda Yadda Yadda is now started in ' + process.env.NODE_ENV + ' mode');
@@ -118,9 +118,11 @@ app.use(function (req, res, next) {
 });
 
 // Routes
-app.use('/', require('./routes/index.js'));
-app.use('/alt', require('./routes/alt.js'));
-app.use('/users', require('./routes/users.js'));
+// app.use('/', require('./routes/index.js'));
+app.use('/', require('./routes/indexRoutes.js'));
+app.use('/api/v1/users', require('./routes/usersRoutes.js'));
+// app.use('/alt', require('./routes/alt.js'));
+// app.use('/users', require('./routes/users.js'));
 
 // Error log in postman
 app.all('*', (req, res, next) => {

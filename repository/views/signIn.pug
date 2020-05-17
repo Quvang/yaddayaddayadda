@@ -17,8 +17,9 @@ block content
         br
         br
         div.wrapper
-            h2 #{message}
-            form(id='formSignIn' action='/alt/signIn/' method='POST')
+            h2 Sign In:
+            //- form(id='formSignIn' action='/api/v1/users/signIn' method='POST')
+            form(id='formSignIn')
                 tr
                     td Email:
                     td
@@ -31,8 +32,14 @@ block content
                     td
                     td
                         input(id='submit' type='submit' value='Login')
-            p.bot No account?&nbsp;
+            p.bot No account? | &nbsp;
                 a.link(href='/signUp') Register here
+            br
+            p.bot Forgot your password? | &nbsp;
+                a.link(href='#') Reset Password Here
+            br
+            p.bot Didn't Confirmation your Email in time? | &nbsp;
+                a.link(href='#') Send new Confirmation Email
         | 
         br
         br

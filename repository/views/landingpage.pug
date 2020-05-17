@@ -1,0 +1,51 @@
+extends default
+
+block content
+  h1(style="color: white")= title 
+  main
+    
+    div(id="wrapper")
+            div(id="leftbox")
+                h2 Top Yaddas
+                div(id="box1")
+                    p(class="textp") Yadda post her
+                hr
+                div(id="box2")
+                    p(class="textp") Yadda post her
+                hr
+                div(id="box3")
+                    p(class="textp") Yadda post her
+                hr
+            //- div(id="rightbox")
+            //-     h2 Join Yadda nu
+            //-     p(class="textp") Se, hvad der sker i verden lige nu
+            //-     hr
+            //-     div(id="loginbox")
+            //-             if errors != undefined && errors.length != 0
+            //-                 each error in errors
+            //-                     div(role='alert' id='a1') #{error.msg}
+            //-             if success_msg != ''
+            //-                 div(role='alert' id='a2') #{success_msg}
+            //-             if error_msg != ''
+            //-                 div(role='alert' id='a3') #{error_msg}
+            //-             if error != ''
+            //-                 div(role='alert' id='a4') #{error}
+            //-             form(id='myforml' action='/api/v1/users/signin' method='POST')
+            //-                     tr
+            //-                         td Email:
+            //-                         td
+            //-                             input(type='text' name='email' placeholder='mail@gmail.com' required)
+            //-                     tr
+            //-                         td Password:
+            //-                         td
+            //-                             input(type='password' name='password' placeholder='password' required)
+            //-                     tr
+            //-                         td
+            //-                         td
+            //-                             input(type='submit' value='Go')
+            //-             p.bot No account?&nbsp;
+            //-                 a.link(href='/signup') Register here
+    div.tswitch-wrapper
+        label.switch
+            input#checkbox(type="checkbox")
+            div.slider.round

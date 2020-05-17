@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const altController = require('../controllers/alt/altController.js');
-const authController = require('../controllers/alt/authController2.js');
+const altController = require('../controllers/altController.js');
+const authController = require('../controllers/authController2.js');
 const userController = require('../controllers/userController.js');
 
 // Not Logged in
