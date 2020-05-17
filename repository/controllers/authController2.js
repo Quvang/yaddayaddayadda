@@ -70,7 +70,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
   });
 
-  createSendToken(newUser, 201, req, res);
+  // createSendToken(newUser, 201, req, res); // If we decide to remove email confirmation
+  res.status(200).json({ status: 'success' });
 });
 
 exports.emailConfirm = catchAsync(async (req, res, next) => {
@@ -144,6 +145,11 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 4) Check if user changed password after the token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
     return next(new AppError('User recently changed password! Please log in again.', 401));
+  }
+
+  // 5 Check if user has verified email
+  if (!currentUser.isConfirmed) {
+    return next(new AppError(`Please confirm your email by clicking on the link we send to ${curruntUser.email}`));
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE
