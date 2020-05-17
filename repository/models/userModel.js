@@ -131,6 +131,6 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
-const User = mongoose.model('User2', userSchema);
+const User = mongoose.model('User', userSchema, 'user');
 
 module.exports = User;

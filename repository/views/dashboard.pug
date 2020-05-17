@@ -9,7 +9,7 @@ block content
                     input(type="hidden" value=user.username name="username")
                     input(type="hidden" value=user.avatar name="avatar")
                     textarea#yaddatxtarea(type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
-                    input(type="text" id="tags" name="tags" placeholder="Enter #tags here seperated by commas")
+                    input(type="text" id="tags" name="tags" placeholder=`Enter #tags here seperated by a "Space"`)
                     p#charcount
                     input(id="postYadda" type='submit' value='Yadda')
 
@@ -34,7 +34,7 @@ block content
                   div.post-text 
                     p #{yadda.text}
                     div.post-tags 
-                      a(href="/findTags") #{yadda.tags}
+                      a(href="")= yadda.tags.join(", ")
                   div.post-bottom
                     div.show-comments 
                       p 0 comments <!-- placeholder -->

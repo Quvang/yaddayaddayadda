@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const ydc = require('../controllers/yaddaController');
-const authController = require('../controllers/authController2.js');
+const authController = require('../controllers/authController.js');
 
 router.post('/dashboard/post', function (req, res, next) {
   ydc.postYadda(req);

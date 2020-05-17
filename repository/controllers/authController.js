@@ -1,193 +1,293 @@
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const mongoose = require('mongoose');
+const crypto = require('crypto');
+const { promisify } = require('util');
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
+const Email = require('../utils/email');
 
-const User = require('../models/User');
-const saltRounds = 10;
+// 'secret' = Secret should be stored in a Enviroment Variable (JWT_SECRET) - and never like this (see config.env file)
+// const jwtSecret = 'secret';
 
-//Fileupload (avatar)
-const multer = require('multer');
-//Fileupload management (location filename filetype)
-const multerStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, __dirname + '/../public/images/avatar/');
+const signToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN, // 7776000 = 90 days in seconds (JWT_EXPIRES_IN)
+  });
+};
+
+const createSendToken = (user, statusCode, req, res) => {
+  const token = signToken(user._id);
+
+  res.cookie('jwt', token, {
+    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+    httpOnly: true,
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+  });
+  // const cookieOptions = {
+  //   expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+  //   httpOnly: true,
+  // };
+  // if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  // res.cookie('jwt', token, cookieOptions);
+
+  // Remove password from output
+  user.password = undefined;
+
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: {
+      user,
     },
-    filename: (req, file, cb) => {
-        const ext = file.mimetype.split('/')[1];
-        cb(null, `user-${req.body.username}-${Date.now()}.${ext}`);
-    },
+  });
+};
+
+exports.signup = catchAsync(async (req, res, next) => {
+  // const newUser = await User.create(req.body);
+  // - Overstående kode er et sikkerhedsbrist da det er muligt at injecte data som kan gøre enhver bruger til en admin fx.
+
+  const newUser = await User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    passwordChangedAt: req.body.passwordChangedAt,
+    role: req.body.role,
+  });
+
+  /** SEND WELCOME EMAIL
+   *const url = `${req.protocol}://${req.get('host')}/account`;
+   *
+   *await new Email(newUser, url).sendWelcome();
+   */
+
+  //send confirmation email on signup
+  jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '600000' }, (err, emailToken) => {
+    const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/confirmation/${emailToken}`;
+
+    new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
+  });
+
+  // createSendToken(newUser, 201, req, res); // If we decide to remove email confirmation
+  res.status(200).json({ status: 'success' });
 });
 
-//validation of file is an image
-const multerFilter = (req, file, cb) => {
-    if (file.mimetype.startsWith('image')) {
-        cb(null, true);
-    } else {
-        // cb(new Error('MAKE ERROR CODE - Not an Image! Please upload imagefiles only', 400), false);
-        cb(null, false);
-    }
-};
+// Resend Email token
+exports.resendConfirmationEmail = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
 
-const upload = multer({
-    storage: multerStorage,
-    fileFilter: multerFilter,
+  // 1) Check if email and password exist
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password!', 400));
+  }
+
+  // 2) Check if user exist && password is correct
+  const newUser = await User.findOne({ email }).select('+password');
+
+  if (!newUser || !(await newUser.correctPassword(password, newUser.password))) {
+    return next(new AppError('Incorrect email or password', 401));
+  }
+
+  jwt.sign({ newUser }, process.env.EMAIL_SECRET, { expiresIn: '600000' }, (err, emailToken) => {
+    const urlEmailConfirmation = `${req.protocol}://${req.get('host')}/confirmation/${emailToken}`;
+
+    new Email(newUser, urlEmailConfirmation).sendEmailConfirmation();
+  });
+
+  res.status(200).json({ status: 'success' });
 });
 
-//middleware
-exports.uploadAvatar = upload.single('avatar');
+exports.emailConfirm = catchAsync(async (req, res, next) => {
+  const {
+    newUser: { _id },
+  } = jwt.verify(req.params.token, process.env.EMAIL_SECRET);
+  await User.updateOne({ isConfirmed: false }, { isConfirmed: true }, { where: { _id } });
 
-exports.register = function (req, res) {
-    res.render('register', {
-        title: 'Create a User',
-        subtitle: 'Yadda Yadda Yadda',
-        avatar: req.body.avatar,
+  console.log('Email Confirmed');
+
+  return res.redirect('/signIn');
+});
+
+exports.signin = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  // 1) Check if email and password exist
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password!', 400));
+  }
+
+  // 2) Check if user exist && password is correct
+  const user = await User.findOne({ email }).select('+password');
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return next(new AppError('Incorrect email or password', 401));
+  }
+
+  // 3) Check if user is verified
+  if (!user.isConfirmed) {
+    return next(new AppError(`Please confirm your email by clicking on the link we send to ${user.email}`));
+  }
+
+  // 4) If everything is ok, send token to client
+  createSendToken(user, 200, req, res);
+});
+
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
+};
+
+// Protects sites from users that are not logged in
+exports.protect = catchAsync(async (req, res, next) => {
+  // 1) Getting token and check of it's there
+  let token;
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+  // console.log(token); // Shows JWT TOKEN - https://jwt.io/
+
+  if (!token) {
+    return next(new AppError('You are not logged in! Please log in to get access.', 401));
+  }
+
+  // 2) Verification token - Tjekker at token payload ikke er blevet manipuleret af malicious 3rd party
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  // console.log(decoded); // Shows mongoDB _id and time stamp for token creation and expiration date
+
+  // 3) Check if user still exists
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
+    return next(new AppError('The user belonging to this token does no longer exist', 401));
+  }
+
+  // 4) Check if user changed password after the token was issued
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(new AppError('User recently changed password! Please log in again.', 401));
+  }
+
+  // 5 Check if user has verified email
+  if (!currentUser.isConfirmed) {
+    return next(new AppError(`Please confirm your email by clicking on the link we send to ${curruntUser.email}`));
+  }
+
+  // GRANT ACCESS TO PROTECTED ROUTE
+  req.user = currentUser;
+  res.locals.user = currentUser;
+  next();
+});
+
+// Only for rendered pages, no errors!
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      // 1) verify token
+      const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+
+      // 2) Check if user still exists
+      const currentUser = await User.findById(decoded.id);
+      if (!currentUser) {
+        return next();
+      }
+
+      // 3) Check if user changed password after the token was issued
+      if (currentUser.changedPasswordAfter(decoded.iat)) {
+        return next();
+      }
+
+      // THERE IS A LOGGED IN USER
+      res.locals.user = currentUser;
+      return next();
+    } catch (err) {
+      return next();
+    }
+  }
+  next();
+};
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    // roles ['admin', 'moderator']. role='user'
+    if (!roles.includes(req.user.role)) {
+      return next(new AppError('You do not have permission to perform this action', 403));
+    }
+
+    next();
+  };
+};
+
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1) Get user based on POSTed email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('There is no user with email address.', 404));
+  }
+
+  // 2) Generate the random reset token
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  // 3) Send it to the user's email
+  try {
+    const resetURL = `${req.protocol}://${req.get('host')}/users/resetPassword/${resetToken}`;
+
+    await new Email(user, resetURL).sendPasswordReset();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Token sent to email!',
     });
-};
+  } catch (err) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
 
-exports.postRegister = function (req, res) {
-    const { username, password, password2, email, firstName, lastName } = req.body;
-    let errors = [];
+    return next(new AppError('There was an error sending the email. Try again later!'), 500);
+  }
+});
 
-    if (!username || !password || !password2 || !email || !firstName || !lastName) {
-        errors.push({ msg: 'Please enter all fields' });
-    }
+exports.resetPassword = catchAsync(async (req, res, next) => {
+  // 1) get user base on the token
+  const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 
-    if (username.length < 3) {
-        errors.push({ msg: 'Username must be at least 3 characters' });
-    }
+  const user = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } });
 
-    if (password != password2) {
-        errors.push({ msg: 'Passwords do not match' });
-    }
+  // 2) If toke has not expired, and there is a user, set the new password
+  if (!user) {
+    return next(new AppError('Token is invalid or has expired', 400));
+  }
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
 
-    if (password.length < 4) {
-        errors.push({ msg: 'Password must be at least 4 characters' });
-    }
+  // 3) Update changedPasswordAt property for the user
+  // 4) Log the user in, send JWT
+  createSendToken(user, 200, res);
+});
 
-    if (firstName.length < 2) {
-        errors.push({ msg: 'Firstname must be at least 2 characters' });
-    }
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  // 1) Get user from collection
+  const user = await User.findById(req.user.id).select('+password');
 
-    if (lastName.length < 2) {
-        errors.push({ msg: 'Lastname must be at least 2 characters' });
-    }
+  // 2) Check if POSTed current password is correct
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError('Your current password is wrong.', 401));
+  }
 
-    var avatar = null;
-    if (req.file === undefined) {
-        avatar = null;
-        // errors.push({ msg: 'Not an Imagefile! Please upload imagefiles only' });
-    } else {
-        avatar = req.file.filename;
-    }
-    console.log('\n' + '>>> Avatar filename set to: ' + avatar + ' <<<' + '\n');
+  // 3) If so, update password
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  await user.save();
+  // User.findByIdAndUpdate will NOT work as intended!
 
-    if (errors.length > 0) {
-        res.render('register', {
-            errors,
-            username,
-            password,
-            password2,
-            email,
-            firstName,
-            lastName,
-            // avatar,
-        });
-    } else if (errors.length > 0) {
-        //if email already exists
-        User.findOne({ email: email }).then(function (user) {
-            if (user) {
-                errors.push({ msg: 'Email already exists' });
-                res.render('register', {
-                    errors,
-                    username,
-                    password,
-                    password2,
-                    email,
-                    firstName,
-                    lastName,
-                    avatar,
-                });
-            } else {
-                const newUser = new User({
-                    username,
-                    password,
-                    email,
-                    firstName,
-                    lastName,
-                    avatar,
-                });
-
-                bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser
-                        .save()
-                        .then((user) => {
-                            req.flash('success_msg', 'Confirmation Email sent');
-                            res.redirect('/users/login');
-                        })
-                        .catch((err) => console.log(err));
-                });
-            }
-        });
-    } else {
-        //if username already exists
-        User.findOne({ username: username }).then(function (user) {
-            if (user) {
-                errors.push({ msg: 'Username already exists' });
-                res.render('register', {
-                    errors,
-                    username,
-                    password,
-                    password2,
-                    email,
-                    firstName,
-                    lastName,
-                    avatar,
-                });
-            } else {
-                const newUser = new User({
-                    username,
-                    password,
-                    email,
-                    firstName,
-                    lastName,
-                    avatar,
-                });
-
-                bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser
-                        .save()
-                        .then((user) => {
-                            req.flash('success_msg', 'Confirmation Email sent');
-                            res.redirect('/users/login');
-                        })
-                        .catch((err) => console.log(err));
-                });
-            }
-        });
-    }
-};
-
-exports.login = function (req, res) {
-    res.render('login', {
-        title: 'Login',
-        subtitle: 'Login Subtitle',
-    });
-};
-
-exports.postLogin = function (req, res, next) {
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
-        failureFlash: true,
-    })(req, res, next);
-};
-
-exports.logout = function (req, res) {
-    req.logout();
-    req.flash('success_msg', 'You are logged out');
-    res.redirect('/users/login');
-};
+  // 4) Log user in, send JWT
+  createSendToken(user, 200, req, res);
+});

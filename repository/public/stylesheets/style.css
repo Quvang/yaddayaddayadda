@@ -12,7 +12,7 @@ body {
   color: #fff;
   background: #030613;
   min-height: 100vh;
-  margin-left: 20%;
+  margin-left: 30%;
 }
 
 main {
@@ -60,7 +60,7 @@ h1 {
   font-weight: 300;
   display: block;
   color: #232530;
-  padding: 14px 30px;
+  padding: 14px 0px;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -69,10 +69,18 @@ h1 {
   display: block;
   color: #232530;
 }
-.logo a:hover {
+.logo:hover {
   color: #fff;
   opacity: 0.6;
   transition: 0.5s;
+  transform: translate3d(5px, 0, 0);
+}
+
+nav a:hover {
+  color: #fff;
+  font-weight: 700;
+  transition: 0.5s;
+  transform: translate3d(5px, 0, 0);
 }
 
 h2 {
@@ -123,7 +131,6 @@ form {
 .errors div {
   background-color: #232530;
   width: 50%;
-  margin: 0 auto;
   margin-bottom: 20px;
   padding: 20px;
   display: hidden;
@@ -134,24 +141,20 @@ form {
 .wrapper {
   background-color: #232530;
   width: 50%;
-  margin: 0 auto;
   padding: 20px 50px 20px 50px;
 }
 .profilewrapper {
   background-color: #232530;
   width: 70%;
-  margin: 0 auto;
   padding: 20px 50px 20px 50px;
 }
 .dashwrapper {
   background-color: #232530;
   width: 70%;
-  margin: 0 auto;
   padding: 20px 50px 20px 50px;
 }
 .errorwrapper {
   width: 70%;
-  margin: 0 auto;
   padding: 20px 50px 20px 50px;
 }
 pre {
@@ -214,7 +217,7 @@ input[type='submit']:hover {
 /* search Section */
 
 .search-container {
-  padding-top: 20px;
+  padding-top: 5px;
   padding-bottom: 20px;
 }
 .search-container input[type='text'] {
@@ -609,6 +612,10 @@ img {
 
 .bot {
   text-align: center;
+}
+
+footer {
+  margin-left: -30%;
 }
 
 #copyright {

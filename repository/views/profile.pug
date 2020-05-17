@@ -50,7 +50,7 @@ block content
                   div.post-text 
                     p #{yadda.text}
                     div.post-tags 
-                      a(href="/findTags") #{yadda.tags}
+                      a(href="")= yadda.tags.join(", ")
                   div.post-bottom
                     div.show-comments 
                       p 0 comments <!-- placeholder -->

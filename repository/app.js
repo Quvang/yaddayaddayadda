@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+// const createError = require('http-errors');
 const path = require('path');
 
 const express = require('express');
@@ -11,18 +11,18 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
 const mongoose = require('mongoose');
-const passport = require('passport');
-const flash = require('connect-flash');
-const session = require('express-session');
+// const passport = require('passport');
+// const flash = require('connect-flash');
+// const session = require('express-session');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
-// Passport Config
-require('./config/passport')(passport);
+// // Passport Config
+// require('./config/passport')(passport);
 
 // DB Config and server connect
-const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI;
 mongoose
   .connect('mongodb://localhost/yyy', {
     useNewUrlParser: true,
@@ -77,12 +77,10 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(
   hpp({
+    // whitelist search criteria - etc sorting tours as show below - ellers vil de bliver sorteret efter sidste resource
     // whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price'],
   })
 );
-
-// Serving static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Test middleware
 app.use((req, res, next) => {
@@ -93,29 +91,29 @@ app.use((req, res, next) => {
 });
 
 // Express session
-app.use(
-  require('express-session')({
-    // passport initialize
-    secret: 'ioeruir!rznbzvmn8768576hdsw&%', // do the keyboard cat
-    resave: true, // to create entropy
-    saveUninitialized: false,
-  })
-);
+// app.use(
+//   require('express-session')({
+//     // passport initialize
+//     secret: 'ioeruir!rznbzvmn8768576hdsw&%', // do the keyboard cat
+//     resave: true, // to create entropy
+//     saveUninitialized: false,
+//   })
+// );
 
 // Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Connect flash
-app.use(flash());
+// app.use(flash());
 
 // Global variables
-app.use(function (req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   res.locals.error = req.flash('error');
+//   next();
+// });
 
 // Routes
 // app.use('/', require('./routes/index.js'));
