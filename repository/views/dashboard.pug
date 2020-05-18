@@ -26,8 +26,8 @@ block content
                   div.post-head
                     div.post-username
                       if yadda.username != user.username
-                        form(action="/userProfile" method="POST")
-                          input(type="hidden" name="yaddaUsername" value=`${yadda.username}`)
+                        form(action="/userProfile" method="POST" id="yaddaUserNameForm")
+                          input(type="hidden" name="yaddaUsername" value=`${yadda.username}` id="yaddaUsername")
                           input(type="submit" value=`${yadda.username}`)
                       else
                         a(href="/profile") #{user.username}

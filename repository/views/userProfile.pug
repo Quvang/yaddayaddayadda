@@ -1,21 +1,23 @@
-extends layout
+extends default
 
 block content
     div.profilewrapper
         div.container
             div.profile-image
-                img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
+                img(src="../images/avatar/" + userData[0].avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
             div.profile
                 div.profile-user-head
-                    h2.profile-user-name #{user.username}
-                    button.btn.profile-edit-btn Edit Profile
+                    h2.profile-user-name #{userData[0].username}
+                    button.btn.profile-edit-btn Follow ? Unfollow
                 div.profile-stats
                     ul
                         li #[span.profile-stat-count 0] posts |
-                        li #[span.profile-stat-count 0] followers |
-                        li #[span.profile-stat-count 0] following
+                        //- a.profile-stat-count-link(href="/userProfile/#")
+                        li #[span.profile-stat-count #{followers.length}] followers |
+                        //- a.profile-stat-count-link(href="/userProfile/#")
+                        li #[span.profile-stat-count #{userData[0].following.length}] following
                 div.profile-bio
-                    p #[span #{user.firstName} #{user.lastName}]
+                    p #[span #{userData[0].firstName} #{userData[0].lastName}]
 
 
     div.theme
@@ -35,7 +37,7 @@ block content
         each yadda in yaddas  
           div.post-container
               div.post-image 
-                img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+                img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar/avatar.png'" width="100px" height="100px")
               div.post-content
                 div.post-head
                   div.post-username

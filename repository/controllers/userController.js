@@ -104,7 +104,7 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 
 exports.getUser = catchAsync(async (req, res) => {
   const user = await User.findById(req.params.id);
-  // Tour.findOne({ _id: req.params.id })
+  // user.findOne({ _id: req.params.id })
 
   res.status(200).json({
     status: 'success',

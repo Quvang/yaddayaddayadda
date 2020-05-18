@@ -1,6 +1,7 @@
 'use strict';
 const mon = require('../models/mongooseWrap');
 const Yadda = require('../models/Yadda');
+const User = require('../models/userModel');
 
 // Home
 exports.default = (req, res) => {
@@ -54,17 +55,40 @@ exports.profile = async function (req, res) {
   });
 };
 
+// Userprofile
 exports.userProfile = async function (req, res) {
-let yaddaUser = {username: req.body.yaddaUsername}
-let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: {created: -1} });
+  let yaddaUser = { username: req.body.yaddaUsername };
+  let isFollowing = { following: req.body.yaddaUsername };
+  let getUser = await mon.retrieve(User, yaddaUser);
+  let following = await mon.retrieve(User, isFollowing);
+  let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: { created: -1 } });
+  console.log(getUser);
+  console.log(following);
 
-    res.render('userProfile', {
-        title: 'Profile',
-        subtitle: 'Welcome to .... profile',
-        user: req.user,
-        yaddas: yadda,
-    });
+  res.render('userProfile', {
+    title: 'Profile',
+    subtitle: 'Welcome to .... profile',
+    user: req.user,
+    yaddas: yadda,
+    userData: getUser,
+    followers: following,
+  });
 };
+
+// // followers
+// exports.isFollowing = async function (req, res) {
+//   let isFollowing = { following: req.body.yaddaUsername };
+
+//   let getUser = await mon.retrieve(User, isFollowing, { sort: { created: -1 } });
+
+//   res.render('userProfile', {
+//     title: 'Profile',
+//     subtitle: 'Welcome to .... profile',
+//     user: req.user,
+//     yaddas: yadda,
+//     getUserData: getUser,
+//   });
+// };
 
 // Messages
 exports.messages = function (req, res) {
