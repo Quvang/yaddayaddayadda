@@ -130,6 +130,9 @@ app.all('*', (req, res, next) => {
 // global error handler
 app.use(globalErrorHandler);
 
+//moment
+app.locals.moment = require('moment');
+
 /*
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -44,11 +44,11 @@ block content
                     else
                       a(href="/profile") #{user.username}
                   div.post-created
-                    p #{yadda.created}
+                    a(href=`/yadda/${yadda._id}` title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
                 div.post-text 
                   p #{yadda.text}
                   div.post-tags 
-                    a(href="")= yadda.tags.join(", ")
+                    a(href="") #{yadda.tags}
                 div.post-bottom
                   div.show-comments 
                     p 0 comments <!-- placeholder -->
