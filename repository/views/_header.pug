@@ -1,0 +1,85 @@
+div(id="clock" style="position: absolute; right:0px;")
+          div(id="time")
+            div 
+              span(id="date") 00 
+              span Date
+            div
+              span(id="month") 00
+              span Month
+            div 
+              span(id="hours") 00
+              span Hours
+            div
+              span(id="minutes") 00
+              span Minutes
+            div
+              span(id="seconds") 00
+              span Seconds
+            div
+              span(id="ampm") AM
+              span AM
+header
+  nav
+    if !user
+      a(href="/")
+        h1.logo: i(class="fas fa-comment-alt fa-2x"): h3(style="display: inline-block; font-size: 24px") LOGO HERE
+    if user && user.role == 'member'
+      a(href="/dashboard")
+        h1.logo: i(class="fas fa-comment-alt fa-2x"): h3(style="display: inline-block; font-size: 24px") LOGO HERE
+    if user && user.role == 'moderator'
+      a(href="/dashboard")
+        h1.logo: i(class="fas fa-comment-alt fa-2x"): h3(style="display: inline-block; font-size: 24px") LOGO HERE
+    if user && user.role == 'admin'
+      a(href="/dashboard")
+        h1.logo: i(class="fas fa-comment-alt fa-2x"): h3(style="display: inline-block; font-size: 24px") LOGO HERE
+    ul
+      li
+        if user && user.role == 'member'
+          li: img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="50px" height="50px" style="margin-left: 30px")
+          li: a(href="/account") Logged in as #{user.username} 
+        if user && user.role == 'moderator'
+          li: img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="50px" height="50px" style="margin-left: 30px")
+          li: a(href="/account") Logged in as #{user.username} 
+        if user && user.role == 'admin'
+          li: img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="50px" height="50px" style="margin-left: 30px")
+          li: a(href="/account") Logged in as #{user.username}
+      if !user
+        li: a( href="/") Home
+        li: a(href="/signUp") Sign Up
+        li: a(href="/signIn") Sign In
+        br
+        li: a(href="/about") About Us
+      if user && user.role == 'member'
+        li: a(href="/dashboard") Dashboard
+        li: a(href="/profile") profile
+        li: a(href="/messages") Messages
+        li: a(href="/explore") Explore
+        li: a(href="/tags") #Tags
+        br
+        li: a(href="/account") Account Settings
+        li: a(href="/about") About Us
+        li: a(id="signout" href="/api/v1/users/signOut") Sign Out
+      if user && user.role == 'moderator'
+        li: a(href="/dashboard") Dashboard
+        li: a(href="/profile") profile
+        li: a(href="/messages") Messages
+        li: a(href="/explore") Explore
+        li: a(href="/tags") #Tags
+        br
+        li: a(href="/moderatorPanel" style="text-decoration: line-through;") Moderator Control Panel
+        li: a(href="/account") Account Settings
+        li: a(href="/about") About Us
+        li: a(id="signout" href="/api/v1/users/signOut") Sign Out
+      if user && user.role == 'admin'
+        li: a(href="/dashboard") Dashboard
+        li: a(href="/profile") profile
+        li: a(href="/messages") Messages
+        li: a(href="/explore") Explore
+        li: a(href="/tags") #Tags
+        br
+        li: a(href="/adminPanel" style="text-decoration: line-through;") Admin Control Panel
+        li: a(href="/account") Account Settings
+        li: a(href="/about") About Us
+        li: a(id="signout" href="api/v1/users/signOut") Sign Out
+        
+      

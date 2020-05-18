@@ -1,44 +1,46 @@
-extends layout
+extends default
 
 block content
-    div.dashwrapper
-        h2= subtitle
-        div.search-container 
-            form(action='/searchTags' method='POST')
-                input(type='text' name='tags' placeholder='Search for #tags...')
-                button(id="search" type='submit' value='tags')
-                        i(class="fas fa-search")
-    |
-    br
-    div.dashwrapper
-        |
-        br
-        each yadda in yaddas
-          div.post-container
-            div.post-image 
-              img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
-            div.post-content
-              div.post-head
-                div.post-username
-                  if yadda.username != user.username
-                    a(href="/userProfile") #{yadda.username}
-                  else
-                    a(href="/profile") #{user.username}
-                div.post-created
-                  a(href=`/yadda/${yadda._id}` title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
-              div.post-text 
-                p #{yadda.text}
-                div.post-tags
-                  a(href="") #{yadda.tags}
-              div.post-bottom
-                div.show-comments 
-                  p 0 comments <!-- placeholder -->
-                div.post-comment
-                  p comment <!-- placeholder -->
-                div.post-delete
-                  if user.username === yadda.username
-                    form(action="/users/delYadda" method="post")
-                      input(type="hidden" name="_id" value= yadda._id)
-                      button(type="submit") delete
-                  else
-                      div.post-delete(style="display: none;")
+	h1(style="color: white")= title
+	main
+		div.dashwrapper
+			h2= subtitle
+			div.search-container 
+				form(action='/searchTags' method='POST')
+					input(type='text' name='tags' placeholder='Search for #tags...')
+					button(id="search" type='submit' value='tags')
+						i(class="fas fa-search")
+		|
+		br
+		div.dashwrapper
+			|
+			br
+			each yadda in yaddas
+				div.post-container
+					div.post-image 
+						img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar/avatar.png'" width="100px" height="100px")
+					div.post-content
+						div.post-head
+							div.post-username
+								if yadda.username != user.username
+									a(href="/userProfile") #{yadda.username}
+								else
+									a(href="/profile") #{user.username}
+							div.post-created
+								a(href=`/yadda/${yadda._id}` title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
+						div.post-text 
+							p #{yadda.text}
+							div.post-tags
+								a(href="") #{yadda.tags}
+						div.post-bottom
+							div.show-comments 
+								p 0 comments <!-- placeholder -->
+							div.post-comment
+								p comment <!-- placeholder -->
+							div.post-delete
+								if user.username === yadda.username
+									form(action="/users/delYadda" method="post")
+										input(type="hidden" name="_id" value= yadda._id)
+										button(type="submit") delete
+								else
+									div.post-delete(style="display: none;")

@@ -1,14 +1,38 @@
 import '@babel/polyfill';
-import { signIn, signOut } from './signIn';
+import { signUp, resendConfirmationEmail, signIn, signOut } from './signIn';
 import { updateSettings } from './updateSettings';
 
 // DOM ELEMENTS
+const signUpForm = document.getElementById('formSignUp');
+const resendConfirmationEmailForm = document.getElementById('formResendConfirmationEmail');
 const loginForm = document.getElementById('formSignIn');
 const logOutBtn = document.querySelector('#signout');
 const userDataForm = document.getElementById('formUpdateUser');
 const userPasswordForm = document.getElementById('formUpdateUserPassword');
 
 // DELEGATION
+if (signUpForm) {
+  signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('usernameUp').value;
+    const password = document.getElementById('passwordUp').value;
+    const passwordConfirm = document.getElementById('passwordConfirmUp').value;
+    const email = document.getElementById('emailUp').value;
+    const firstName = document.getElementById('firstNameUp').value;
+    const lastName = document.getElementById('lastNameUp').value;
+    signUp(username, password, passwordConfirm, email, firstName, lastName);
+  });
+}
+
+if (resendConfirmationEmailForm) {
+  resendConfirmationEmailForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    resendConfirmationEmail(email, password);
+  });
+}
+
 if (loginForm) {
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -23,12 +47,20 @@ if (logOutBtn) logOutBtn.addEventListener('click', signOut);
 if (userDataForm) {
   userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const username = document.getElementById('inputUsername').value;
-    const email = document.getElementById('inputEmail').value;
-    const firstName = document.getElementById('inputFirstName').value;
-    const lastName = document.getElementById('inputLastName').value;
+    const form = new FormData();
+    form.append('inputUsername', document.getElementById('inputUsername').value);
+    form.append('inputEmail', document.getElementById('inputEmail').value);
+    form.append('inputFirstName', document.getElementById('inputFirstName').value);
+    form.append('inputLastName', document.getElementById('inputLastName').value);
+    form.append('avatar', document.getElementById('avatar').files[0]);
 
-    await updateSettings({ username, email, firstName, lastName }, 'data');
+    // const username = document.getElementById('inputUsername').value;
+    // const email = document.getElementById('inputEmail').value;
+    // const firstName = document.getElementById('inputFirstName').value;
+    // const lastName = document.getElementById('inputLastName').value;
+
+    await updateSettings(form, 'data');
+    // await updateSettings({ username, email, firstName, lastName }, 'data');
 
     document.getElementById('labelUsername').textContent = 'Username: ' + username;
     document.getElementById('labelEmail').textContent = 'Email address: ' + email;

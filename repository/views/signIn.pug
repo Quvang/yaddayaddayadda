@@ -1,24 +1,15 @@
 extends default
 
 block content
-    //- div.errors
-    //-     if errors != undefined && errors.length != 0
-    //-         each error in errors
-    //-             div(role='alert' id='a1') #{error.msg}
-    //-     if success_msg != ''
-    //-         div(role='alert' id='a2') #{success_msg}
-    //-     if error_msg != ''
-    //-         div(role='alert' id='a3') #{error_msg}
-    //-     if error != ''
-    //-         div(role='alert' id='a4') #{error}
     h1(style="color: white") #{title}
     main
         br
         br
         br
         div.wrapper
-            h2 #{message}
-            form(id='formSignIn' action='/alt/signIn/' method='POST')
+            h2 Sign In:
+            //- form(id='formSignIn' action='/api/v1/users/signIn' method='POST')
+            form(id='formSignIn')
                 tr
                     td Email:
                     td
@@ -31,8 +22,14 @@ block content
                     td
                     td
                         input(id='submit' type='submit' value='Login')
-            p.bot No account?&nbsp;
+            p.bot No account? | &nbsp;
                 a.link(href='/signUp') Register here
+            br
+            p(style="text-decoration: line-through;").bot Forgot your password? | &nbsp;
+                a.link(href='#' style="text-decoration: line-through;") Reset Password Here -
+            br
+            p.bot Confirmed your email to late? | &nbsp;
+                a.link(href='/resendConfirmationEmail') Send new Confirmation Email
         | 
         br
         br

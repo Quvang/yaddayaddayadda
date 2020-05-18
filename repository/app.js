@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+// const createError = require('http-errors');
 const path = require('path');
 
 const express = require('express');
@@ -11,18 +11,18 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
 const mongoose = require('mongoose');
-const passport = require('passport');
-const flash = require('connect-flash');
-const session = require('express-session');
+// const passport = require('passport');
+// const flash = require('connect-flash');
+// const session = require('express-session');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
-// Passport Config
-require('./config/passport')(passport);
+// // Passport Config
+// require('./config/passport')(passport);
 
 // DB Config and server connect
-const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI;
 mongoose
   .connect('mongodb://localhost/yyy', {
     useNewUrlParser: true,
@@ -60,7 +60,7 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour!',
 });
-app.use('/users', limiter); // set the limiter to specified route(s)
+app.use('/api/v1/users', limiter); // set the limiter to specified route(s)
 
 // Body Parser, reading data from body into req.body
 console.log('Yadda Yadda Yadda is now started in ' + process.env.NODE_ENV + ' mode');
@@ -77,12 +77,10 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(
   hpp({
+    // whitelist search criteria - etc sorting tours as show below - ellers vil de bliver sorteret efter sidste resource
     // whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price'],
   })
 );
-
-// Serving static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Test middleware
 app.use((req, res, next) => {
@@ -92,35 +90,40 @@ app.use((req, res, next) => {
   next();
 });
 
+// Parse, validate, manipulate, and display dates and times in JavaScript.
+app.locals.moment = require('moment');
+
 // Express session
-app.use(
-  require('express-session')({
-    // passport initialize
-    secret: 'ioeruir!rznbzvmn8768576hdsw&%', // do the keyboard cat
-    resave: true, // to create entropy
-    saveUninitialized: false,
-  })
-);
+// app.use(
+//   require('express-session')({
+//     // passport initialize
+//     secret: 'ioeruir!rznbzvmn8768576hdsw&%', // do the keyboard cat
+//     resave: true, // to create entropy
+//     saveUninitialized: false,
+//   })
+// );
 
 // Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Connect flash
-app.use(flash());
+// app.use(flash());
 
 // Global variables
-app.use(function (req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.locals.success_msg = req.flash('success_msg');
+//   res.locals.error_msg = req.flash('error_msg');
+//   res.locals.error = req.flash('error');
+//   next();
+// });
 
 // Routes
-app.use('/', require('./routes/index.js'));
-app.use('/alt', require('./routes/alt.js'));
-app.use('/users', require('./routes/users.js'));
+// app.use('/', require('./routes/index.js'));
+app.use('/', require('./routes/indexRoutes.js'));
+app.use('/api/v1/users', require('./routes/usersRoutes.js'));
+app.use('/api/v1/yaddas', require('./routes/yaddaRoutes.js'));
+// app.use('/users', require('./routes/users.js'));
 
 // Error log in postman
 app.all('*', (req, res, next) => {

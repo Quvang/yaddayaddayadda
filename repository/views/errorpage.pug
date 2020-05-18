@@ -1,10 +1,13 @@
-extends layout
+extends default
 //- extends alt/default
 
 block content
 	main.main
+	h1
 		.error
 			.error__title
-				h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!   
-				h2.error__emoji 😢 🤯
-			.error__msg= msg
+				h2.heading-secondary.heading-secondary--error ❗❗❗ ERROR! Something went wrong!
+				h3= msg
+				br
+				h3 Please try again or if you think this is a mistake send a mail with details to
+				h2: a(href="mailto:yaddaIBAGruppe2@gmail.com") Yadda Yadda Yadda Support Team

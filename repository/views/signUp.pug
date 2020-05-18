@@ -1,0 +1,25 @@
+extends default
+
+block content
+	h1(style="color: white") #{title}
+	main
+		div.wrapper
+			h2 Sign Up:
+			//- form(id='formSignUp' action='/api/v1/users/signUp' method='POST')
+			form(id='formSignUp')
+				tr: td Username:
+					input(id="usernameUp" type='text' name='username' placeholder='username' required)
+				tr: td Password:
+					input(id="passwordUp" type='password' name='password' placeholder='password' required)
+				tr: td Repeat Password:
+					input(id="passwordConfirmUp" type='password' name='passwordConfirm' placeholder='repeat password' required)
+				tr: td Email:
+					input(id="emailUp" type='email' name='email' placeholder='mail@gmail.com' required)
+				tr: td Firstname:
+					input(id="firstNameUp" type='text' name='firstName' placeholder='firstName' required)
+				tr: td Lastname:
+					input(id="lastNameUp" type='text' name='lastName' placeholder='lastName' required)
+					input(id='submit', type='submit' value='Create User')
+
+		p.bot Have an account?&nbsp;
+			a.link(href='/signIn') Login here
