@@ -62,8 +62,8 @@ exports.userProfile = async function (req, res) {
   let getUser = await mon.retrieve(User, yaddaUser);
   let following = await mon.retrieve(User, isFollowing);
   let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: { created: -1 } });
-  console.log(getUser);
-  console.log(following);
+  // console.log('------getUser----\n' + getUser + '\n------getUser----');
+  // console.log('------following----\n' + following + '\n------follwing----');
 
   res.render('userProfile', {
     title: 'Profile',

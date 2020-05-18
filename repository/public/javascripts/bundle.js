@@ -8955,49 +8955,46 @@ if (loginForm) {
 }
 
 if (logOutBtn) logOutBtn.addEventListener('click', _signIn.signOut);
+if (userDataForm) userDataForm.addEventListener('submit', /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var form, username, email, firstName, lastName;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            e.preventDefault();
+            form = new FormData();
+            form.append('username', document.getElementById('inputUsername').value);
+            form.append('email', document.getElementById('inputEmail').value);
+            form.append('firstName', document.getElementById('inputFirstName').value);
+            form.append('lastName', document.getElementById('inputLastName').value);
+            form.append('avatar', document.getElementById('avatar').files[0]);
+            username = document.getElementById('inputUsername').value;
+            email = document.getElementById('inputEmail').value;
+            firstName = document.getElementById('inputFirstName').value;
+            lastName = document.getElementById('inputLastName').value;
+            _context.next = 13;
+            return (0, _updateSettings.updateSettings)(form, 'data');
 
-if (userDataForm) {
-  userDataForm.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-      var form;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              e.preventDefault();
-              form = new FormData();
-              form.append('inputUsername', document.getElementById('inputUsername').value);
-              form.append('inputEmail', document.getElementById('inputEmail').value);
-              form.append('inputFirstName', document.getElementById('inputFirstName').value);
-              form.append('inputLastName', document.getElementById('inputLastName').value);
-              form.append('avatar', document.getElementById('avatar').files[0]); // const username = document.getElementById('inputUsername').value;
-              // const email = document.getElementById('inputEmail').value;
-              // const firstName = document.getElementById('inputFirstName').value;
-              // const lastName = document.getElementById('inputLastName').value;
+          case 13:
+            // await updateSettings({ username, email, firstName, lastName }, 'data');
+            document.getElementById('labelUsername').textContent = 'Username: ' + username;
+            document.getElementById('labelEmail').textContent = 'Email address: ' + email;
+            document.getElementById('labelFirstName').textContent = 'First Name: ' + firstName;
+            document.getElementById('labelLastName').textContent = 'Last Name: ' + lastName;
 
-              _context.next = 9;
-              return (0, _updateSettings.updateSettings)(form, 'data');
-
-            case 9:
-              // await updateSettings({ username, email, firstName, lastName }, 'data');
-              document.getElementById('labelUsername').textContent = 'Username: ' + username;
-              document.getElementById('labelEmail').textContent = 'Email address: ' + email;
-              document.getElementById('labelFirstName').textContent = 'First Name: ' + firstName;
-              document.getElementById('labelLastName').textContent = 'Last Name: ' + lastName;
-
-            case 13:
-            case "end":
-              return _context.stop();
-          }
+          case 17:
+          case "end":
+            return _context.stop();
         }
-      }, _callee);
-    }));
+      }
+    }, _callee);
+  }));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }());
-}
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}());
 
 if (userPasswordForm) {
   userPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
