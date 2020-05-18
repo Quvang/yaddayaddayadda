@@ -54,6 +54,18 @@ exports.profile = async function (req, res) {
   });
 };
 
+exports.userProfile = async function (req, res) {
+let yaddaUser = {username: req.body.yaddaUsername}
+let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: {created: -1} });
+
+    res.render('userProfile', {
+        title: 'Profile',
+        subtitle: 'Welcome to .... profile',
+        user: req.user,
+        yaddas: yadda,
+    });
+};
+
 // Messages
 exports.messages = function (req, res) {
   res.render('messages', {
