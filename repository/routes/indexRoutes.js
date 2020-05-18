@@ -18,7 +18,7 @@ router.get('/about', authController.isLoggedIn, idx.about);
 // *** Logged in User ***
 router.get('/dashboard', authController.protect, idx.dashboard);
 router.get('/profile', authController.protect, idx.profile);
-router.post('/userProfile', ensureAuthenticated, idx.userProfile); // Andre profiler end den som er logget ind.
+router.post('/userProfile', authController.protect, idx.userProfile); // Andre profiler end den som er logget ind.
 router.get('/messages', authController.protect, idx.messages);
 router.get('/explore', authController.protect, idx.explore);
 router.get('/tags', authController.protect, tagController.tags);
