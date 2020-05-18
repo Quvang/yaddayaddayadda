@@ -53,7 +53,6 @@ if (userDataForm) {
     form.append('inputFirstName', document.getElementById('inputFirstName').value);
     form.append('inputLastName', document.getElementById('inputLastName').value);
     form.append('avatar', document.getElementById('avatar').files[0]);
-    console.log(form);
 
     // const username = document.getElementById('inputUsername').value;
     // const email = document.getElementById('inputEmail').value;

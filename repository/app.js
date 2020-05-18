@@ -90,6 +90,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Parse, validate, manipulate, and display dates and times in JavaScript.
+app.locals.moment = require('moment');
+
 // Express session
 // app.use(
 //   require('express-session')({

@@ -466,6 +466,20 @@ img {
   width: 100%;
 }
 
+.post-created a {
+  font-size: 12px;
+  opacity: 0.6;
+  color: #fff;
+  text-decoration: none;
+}
+
+.post-created a:hover {
+  font-size: 12px;
+  opacity: 1;
+  color: #fff;
+  text-decoration: underline;
+}
+
 .post-text {
   height: 100px;
   padding: 5px 10px 0px 10px;

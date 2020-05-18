@@ -8970,23 +8970,22 @@ if (userDataForm) {
               form.append('inputEmail', document.getElementById('inputEmail').value);
               form.append('inputFirstName', document.getElementById('inputFirstName').value);
               form.append('inputLastName', document.getElementById('inputLastName').value);
-              form.append('avatar', document.getElementById('avatar').files[0]);
-              console.log(form); // const username = document.getElementById('inputUsername').value;
+              form.append('avatar', document.getElementById('avatar').files[0]); // const username = document.getElementById('inputUsername').value;
               // const email = document.getElementById('inputEmail').value;
               // const firstName = document.getElementById('inputFirstName').value;
               // const lastName = document.getElementById('inputLastName').value;
 
-              _context.next = 10;
+              _context.next = 9;
               return (0, _updateSettings.updateSettings)(form, 'data');
 
-            case 10:
+            case 9:
               // await updateSettings({ username, email, firstName, lastName }, 'data');
               document.getElementById('labelUsername').textContent = 'Username: ' + username;
               document.getElementById('labelEmail').textContent = 'Email address: ' + email;
               document.getElementById('labelFirstName').textContent = 'First Name: ' + firstName;
               document.getElementById('labelLastName').textContent = 'Last Name: ' + lastName;
 
-            case 14:
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -9067,7 +9066,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50407" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58896" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
