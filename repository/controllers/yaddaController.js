@@ -21,6 +21,7 @@ exports.postYadda = async function (req) {
   let split = tag.split(' ');
   let match = tag.toLowerCase().match(tags);
   //let join = tag.join(", ");
+
   let yadda = new Yadda({
     // create obejct in db-format
     username: req.body.username,

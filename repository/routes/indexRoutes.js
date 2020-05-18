@@ -1,13 +1,10 @@
 // 1) Requirements
 const express = require('express');
-const router = express.Router();
-
-// *** Main ***
 const idx = require('../controllers/indexController');
-
-// *** Alternative ***
 const authController = require('../controllers/authController.js');
 const tagController = require('../controllers/tagController.js');
+
+const router = express.Router();
 
 // 2) Routes
 // *** Not logged in ***

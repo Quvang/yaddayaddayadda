@@ -8959,31 +8959,34 @@ if (logOutBtn) logOutBtn.addEventListener('click', _signIn.signOut);
 if (userDataForm) {
   userDataForm.addEventListener('submit', /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-      var username, email, firstName, lastName;
+      var form;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               e.preventDefault();
-              username = document.getElementById('inputUsername').value;
-              email = document.getElementById('inputEmail').value;
-              firstName = document.getElementById('inputFirstName').value;
-              lastName = document.getElementById('inputLastName').value;
-              _context.next = 7;
-              return (0, _updateSettings.updateSettings)({
-                username: username,
-                email: email,
-                firstName: firstName,
-                lastName: lastName
-              }, 'data');
+              form = new FormData();
+              form.append('inputUsername', document.getElementById('inputUsername').value);
+              form.append('inputEmail', document.getElementById('inputEmail').value);
+              form.append('inputFirstName', document.getElementById('inputFirstName').value);
+              form.append('inputLastName', document.getElementById('inputLastName').value);
+              form.append('avatar', document.getElementById('avatar').files[0]);
+              console.log(form); // const username = document.getElementById('inputUsername').value;
+              // const email = document.getElementById('inputEmail').value;
+              // const firstName = document.getElementById('inputFirstName').value;
+              // const lastName = document.getElementById('inputLastName').value;
 
-            case 7:
+              _context.next = 10;
+              return (0, _updateSettings.updateSettings)(form, 'data');
+
+            case 10:
+              // await updateSettings({ username, email, firstName, lastName }, 'data');
               document.getElementById('labelUsername').textContent = 'Username: ' + username;
               document.getElementById('labelEmail').textContent = 'Email address: ' + email;
               document.getElementById('labelFirstName').textContent = 'First Name: ' + firstName;
               document.getElementById('labelLastName').textContent = 'Last Name: ' + lastName;
 
-            case 11:
+            case 14:
             case "end":
               return _context.stop();
           }

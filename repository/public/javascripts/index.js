@@ -47,12 +47,21 @@ if (logOutBtn) logOutBtn.addEventListener('click', signOut);
 if (userDataForm) {
   userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const username = document.getElementById('inputUsername').value;
-    const email = document.getElementById('inputEmail').value;
-    const firstName = document.getElementById('inputFirstName').value;
-    const lastName = document.getElementById('inputLastName').value;
+    const form = new FormData();
+    form.append('inputUsername', document.getElementById('inputUsername').value);
+    form.append('inputEmail', document.getElementById('inputEmail').value);
+    form.append('inputFirstName', document.getElementById('inputFirstName').value);
+    form.append('inputLastName', document.getElementById('inputLastName').value);
+    form.append('avatar', document.getElementById('avatar').files[0]);
+    console.log(form);
 
-    await updateSettings({ username, email, firstName, lastName }, 'data');
+    // const username = document.getElementById('inputUsername').value;
+    // const email = document.getElementById('inputEmail').value;
+    // const firstName = document.getElementById('inputFirstName').value;
+    // const lastName = document.getElementById('inputLastName').value;
+
+    await updateSettings(form, 'data');
+    // await updateSettings({ username, email, firstName, lastName }, 'data');
 
     document.getElementById('labelUsername').textContent = 'Username: ' + username;
     document.getElementById('labelEmail').textContent = 'Email address: ' + email;

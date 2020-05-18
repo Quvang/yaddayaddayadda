@@ -8,13 +8,14 @@ block content
       .container
 
         //- WITHOUT API
-        //- form.form.form-user-data(action='/alt/submit-user-data' method='POST')
+        //- form.form.form-user-data(action='/alt/submit-user-data' method='POST' enctype='multipart/form-data')
 
         //- WITH API
-        form#formUpdateUser
+        form#formUpdateUser.form__upload
           div: form
-            img.form__user-photo(src='img/user.jpg', alt='User photo')
-            a.btn-text(href='') Choose new photo
+            img.form__user-photo(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px" style="margin-left: 0px; object-fit: cover;" id="avatarPreview")
+            label(for='avatar') Avatar
+            input(type="file" accept="image/*" id="avatar" name="avatar")
             br
             br
             label#labelUsername.form__label(for='name') Username: #{user.username}
@@ -52,4 +53,7 @@ block content
             br
             input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='4')
             br
-            input(type="submit", value="Change password")#btnSavePassword 
+            input(type="submit", value="Change password")#btnSavePassword
+  
+  script(src="/javascripts/avatar.js")
+

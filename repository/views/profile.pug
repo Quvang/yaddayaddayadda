@@ -6,11 +6,12 @@ block content
       div.profilewrapper
           div.container
               div.profile-image
-                  img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="150px" height="150px")
+                  img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
               div.profile
                   div.profile-user-head
                       h2.profile-user-name #{user.username}
-                      button.btn.profile-edit-btn Edit Profile
+                      a(href="/account")
+                        button.btn.profile-edit-btn Edit Profile
                   div.profile-stats
                       ul
                           li #[span.profile-stat-count 0] posts |
@@ -37,7 +38,7 @@ block content
           each yadda in yaddas  
             div.post-container
                 div.post-image 
-                  img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar.png'" width="100px" height="100px")
+                  img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="100px" height="100px")
                 div.post-content
                   div.post-head
                     div.post-username

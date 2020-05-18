@@ -1,6 +1,55 @@
+const multer = require('multer');
+const sharp = require('sharp');
 const User = require('../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
+
+// // Avatar upload destination - avatar unique filename
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'public/images/avatar');
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split('/')[1];
+//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
+//   },
+// });
+
+// Avatar upload to buffer - (Due to sharp package)
+const multerStorage = multer.memoryStorage();
+
+// Avatar filetype validation
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload imagefiles only!', 400), false);
+  }
+};
+
+// Avatar Upload
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+// Avatar Upload ...Shortifier I guess
+exports.uploadUserAvatar = upload.single('avatar');
+
+// Resize Avatars
+exports.resizeUserAvatar = (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+
+  sharp(req.file.buffer)
+    .resize(500, 500, { fit: 'cover' })
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/images/avatar/${req.file.filename}`);
+
+  next();
+};
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -29,8 +78,9 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     return next(new AppError('This route is not for password updates. Please use /updateMyPassword', 400));
   }
 
-  // 2) Filtered out unwanted fileds names that are not allowed to be updated
+  // 2) Filtered out unwanted fields names that are not allowed to be updated
   const filteredBody = filterObj(req.body, 'username', 'email', 'firstName', 'lastName');
+  if (req.file) filteredBody.avatar = req.file.filename;
 
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, { new: true, runValidators: true });
