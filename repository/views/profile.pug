@@ -7,11 +7,11 @@ block content
           div.container
               div.profile-image
                   img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
-                  button.profile-edit-btn Edit
+                  a(href="/account")
+                    button.btn.profile-edit-btn Edit
               div.profile
                   div.profile-user-head
                       h2.profile-user-name #{user.username}
-                      a(href="/account")
                   div.profile-stats
                       ul
                           li #[span.profile-stat-count 0] posts |
