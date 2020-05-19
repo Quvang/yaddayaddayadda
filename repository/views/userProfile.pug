@@ -7,7 +7,13 @@ block content
         div.container
             div.profile-image
                 img(src="../images/avatar/" + userData[0].avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
-                button.follow-btn Follow ? Unfollow
+                //- button.follow-btn Follow ? Unfollow
+
+                form(action="/api/v1/users/followUser" method="POST" id="followForm")
+                    input(type="hidden" name="thisUser" value=`${userData[0].username}` id="thisUser")
+                    input(type="hidden" name="currentUser" value=`${user.id}` id="currentUser")
+                    input(type="submit" value='Follow ' + `${userData[0].username}`)
+
             div.profile
                 div.profile-user-head
                     h2.profile-user-name #{userData[0].username}

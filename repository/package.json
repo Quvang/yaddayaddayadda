@@ -6,7 +6,8 @@
     "start": "NODE_ENV=development nodemon ./bin/www",
     "start:prod": "NODE_ENV=production nodemon ./bin/www",
     "watch:js": "parcel watch ./public/javascripts/index.js --out-dir ./public/javascripts --out-file bundle.js --public-url /js",
-    "build:js": "parcel watch ./public/javascripts/index.js --out-dir ./public/javascripts --out-file bundle.js"
+    "build:js": "parcel watch ./public/javascripts/index.js --out-dir ./public/javascripts --out-file bundle.js",
+    "debug": "ndb ./bin/www"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",

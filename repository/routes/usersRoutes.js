@@ -19,6 +19,9 @@ router.patch('/updateMyPassword', authController.protect, authController.updateP
 // Post Forgot password
 // Patch Reset Password
 
+// *** Follow/Following ***
+router.post('/followUser', userController.followUser);
+
 module.exports = router;
 
 // // *** Missing Links ***

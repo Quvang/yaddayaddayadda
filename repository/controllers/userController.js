@@ -145,3 +145,38 @@ exports.deleteUser = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.followUser = catchAsync(async (req, res, next) => {
+  const currentUser = req.body.currentUser;
+  console.log('-----Current User ID-----\n' + currentUser); // User ID
+
+  const user = await User.findById(currentUser); // User Object
+  console.log('-----Find User By ID Object-----\n' + user);
+
+  const userToFollow = req.body.thisUser; // #{userData[0].username}
+  console.log('-----User To Follow-----\n' + userToFollow);
+
+  following = { following: userToFollow }; // Object Key and value to pull/push
+  console.log('-----Push into Following Array-----\n' + JSON.stringify(following));
+
+  // function If userToFollow exist in user.following array return userToFollow
+  function compare(x) {
+    return x == userToFollow;
+  }
+  var compare = user.following.find(compare);
+
+  // Do the actualy comparison and do pull/push
+  if (compare == userToFollow) {
+    const updateUser = await User.findByIdAndUpdate(currentUser, { $pull: following }); // FIND THE USER and update
+    console.log(`You're no longer following ` + userToFollow);
+  } else {
+    const updateUser = await User.findByIdAndUpdate(currentUser, { $push: following }); // FIND THE USER and update
+    console.log(`You've starter to follow ` + userToFollow);
+  }
+  res.status(204).json({
+    status: 'success',
+    data: {
+      user,
+    },
+  });
+});
