@@ -92,7 +92,7 @@ exports.userProfile = async function (req, res) {
 // };
 
 //update Theme
-exports.dtheme = function (req,res) {
+exports.dtheme = function (req, res) {
   res.json(req.user);
 };
 
@@ -103,7 +103,7 @@ exports.getTheme = async function (req, res) {
     var change = false;
   }
   let users = await ydc.upsertUser(req, change);
-  res.redirect(req.get("referer"));
+  res.redirect(req.get('referer'));
 };
 
 // Messages

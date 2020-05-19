@@ -157,7 +157,7 @@ exports.followUser = catchAsync(async (req, res, next) => {
   console.log('-----User To Follow-----\n' + userToFollow);
 
   following = { following: userToFollow }; // Object Key and value to pull/push
-  console.log('-----Push into Following Array-----\n' + JSON.stringify(following));
+  console.log('-----Push/Pull into/from Following Array-----\n' + JSON.stringify(following));
 
   // function If userToFollow exist in user.following array return userToFollow
   function compare(x) {
@@ -167,12 +167,13 @@ exports.followUser = catchAsync(async (req, res, next) => {
 
   // Do the actualy comparison and do pull/push
   if (compare == userToFollow) {
-    const updateUser = await User.findByIdAndUpdate(currentUser, { $pull: following }); // FIND THE USER and update
+    await User.findByIdAndUpdate(currentUser, { $pull: following }); // FIND THE USER and update
     console.log(`You're no longer following ` + userToFollow);
   } else {
-    const updateUser = await User.findByIdAndUpdate(currentUser, { $push: following }); // FIND THE USER and update
+    await User.findByIdAndUpdate(currentUser, { $push: following }); // FIND THE USER and update
     console.log(`You've starter to follow ` + userToFollow);
   }
+
   res.status(204).json({
     status: 'success',
     data: {

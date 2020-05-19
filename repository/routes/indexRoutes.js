@@ -19,8 +19,8 @@ router.get('/about', authController.isLoggedIn, idx.about);
 router.get('/dashboard', authController.protect, idx.dashboard);
 router.get('/profile', authController.protect, idx.profile);
 router.post('/userProfile', authController.protect, idx.userProfile); // Andre profiler end den som er logget ind.
-router.get('/darkTheme', authController.protect, idx.dtheme)
-router.get('/getTheme', authController.protect, idx.getTheme)
+router.get('/darkTheme', authController.protect, idx.dtheme);
+router.get('/getTheme', authController.protect, idx.getTheme);
 router.get('/messages', authController.protect, idx.messages);
 router.get('/explore', authController.protect, idx.explore);
 router.get('/tags', authController.protect, tagController.tags);
