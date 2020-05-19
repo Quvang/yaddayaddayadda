@@ -1,17 +1,17 @@
 extends default
 
 block content
-    h1(style="color: white")= title
+    h1= title
     main
       div.profilewrapper
           div.container
               div.profile-image
                   img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
+                  button.profile-edit-btn Edit
               div.profile
                   div.profile-user-head
                       h2.profile-user-name #{user.username}
                       a(href="/account")
-                        button.btn.profile-edit-btn Edit Profile
                   div.profile-stats
                       ul
                           li #[span.profile-stat-count 0] posts |
@@ -19,17 +19,13 @@ block content
                           li #[span.profile-stat-count 0] following
                   div.profile-bio
                       p #[span #{user.firstName} #{user.lastName}]
-
-
-      div.theme
-          div.profilewrapper
-              h2#theme Dark Theme
-              div.sliderplaceholder
-                  label.switch
-                      input#checkbox(type="checkbox")
-                      div.slider.round
-
-
+          div.theme
+            h2#theme Dark Theme
+            div.theme-switch-wrapper
+              label(class="theme-switch" for="checkbox")
+                input(type="checkbox" id="checkbox")
+                div.slider.round  
+            
       |
       br
       div.profilewrapper
@@ -64,5 +60,3 @@ block content
                           button(type="submit") delete
                       else
                         div.post-delete(style="display: none;")
-
-                          

@@ -1,34 +1,34 @@
-/*slider switch til theme css */
-.tswitch-wrapper {
-  width: 15%;
-  padding: 1%;
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
 }
-.tswitch-wrapper em {
+
+em {
   margin-left: 10px;
   font-size: 1rem;
 }
 
-.switch {
+.theme-switch {
   display: inline-block;
   height: 34px;
   position: relative;
   width: 60px;
 }
 
-.switch input {
-  display: none;
+.theme-switch input {
+  display:none;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
+  background-color: var(--color2);
   bottom: 0;
-  background-color: #ff006a;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
 }
 
 .slider:before {
@@ -38,11 +38,12 @@
   height: 26px;
   left: 4px;
   position: absolute;
+  transition: .4s;
   width: 26px;
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
+  background-color: var(--color);
 }
 
 input:checked + .slider:before {

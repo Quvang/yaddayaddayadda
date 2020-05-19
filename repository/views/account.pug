@@ -14,8 +14,10 @@ block content
         form#formUpdateUser.form__upload
           div: form
             img.form__user-photo(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px" style="margin-left: 0px; object-fit: cover;" id="avatarPreview")
+            |
+            br
             label(for='avatar') Avatar
-            input(type="file" accept="image/*" id="avatar" name="avatar")
+            input(type="file" accept="image/*" id="avatar" class="file-upload-btn" name="avatar")
             br
             br
             label#labelUsername.form__label(for='name') Username: #{user.username}

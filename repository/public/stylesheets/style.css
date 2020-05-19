@@ -1,3 +1,28 @@
+:root {
+  --primary: #818CAB;
+  --bg-color: #f2f2f2;
+  --bg-color2: #f7f7f7;
+  --bg-color3: #414141;
+  --font-color: #414141;
+  --font-color2: #f7f7f7;
+  --wrapper: #f7f7f7;
+  --color: #414141;
+  --color2: #ABABAB;
+  --color3: #EAEAEA;
+}
+
+[data-theme="dark"] {
+  --primary: #818CAB;
+  --bg-color: #3E4652;
+  --bg-color3: #818CAB;
+  --font-color: #f7f7f7;
+  --font-color2: #f7f7f7;
+  --wrapper: #464E5B;
+  --color: #818CAB;
+  --color2: #ABABAB;
+  --color3: #505967;
+}
+
 *,
 *:before,
 *:after {
@@ -9,8 +34,8 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  color: #fff;
-  background: #030613;
+  color: var(--font-color);
+  background-color: var(--bg-color);
   min-height: 100vh;
   margin-left: 25%;
 }
@@ -27,9 +52,8 @@ nav {
   width: 20%;
   height: 100%;
   padding: 20px;
-  background-color: #030613;
-  border-right: solid 1px;
-  border-right-color: #fff;
+  background-color: var(--bg-color);
+  border-right: solid 1px var(--color2);
   overflow: hidden;
 }
 
@@ -44,40 +68,34 @@ li a {
   font-family: Montserrat;
   font-weight: 300;
   display: block;
-  color: white;
+  color: var(--font-color);
   padding: 14px 30px;
   text-decoration: none;
   text-transform: uppercase;
 }
 
 li a:hover {
-  background-color: #ff006a;
-  transition-duration: 0.5s;
+  transition: 0.5s;
+  transform: translate3d(5px, 0, 0);
 }
 
 h1 {
   font-family: Montserrat;
   font-weight: 300;
-  display: block;
-  color: #232530;
+  color: var(--font-color)!important;
+  opacity: 0.8;
   padding: 14px 0px;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-.logo a {
+h1.logo a {
   display: block;
-  color: #232530;
+  color: var(--primary);
 }
-.logo:hover {
-  color: #fff;
-  opacity: 0.6;
-  transition: 0.5s;
-  transform: translate3d(5px, 0, 0);
-}
-
-nav a:hover {
-  color: #fff;
+h1.logo:hover {
+  color:var(--primary);
+  opacity: 0.8;
   transition: 0.5s;
   transform: translate3d(5px, 0, 0);
 }
@@ -86,14 +104,14 @@ h2 {
   font-family: Montserrat;
   font-weight: 300;
   font-size: 20px;
-  color: #fff;
+  color: var(--font-color);
   margin-bottom: 10px;
 }
 h3 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: Montserrat;
   font-weight: 300;
   font-size: 14px;
-  color: #fff;
+  color:var(--font-color);
   margin-bottom: 5px;
 }
 
@@ -101,7 +119,7 @@ h3 {
   font-family: Montserrat;
   font-weight: 300;
   font-size: 20px;
-  color: #fff;
+  color: var(--font-color);
   margin-bottom: 5px;
   padding-bottom: 0px;
   font-size: 20px;
@@ -117,20 +135,13 @@ form {
 }
 
 .link {
-  color: #fff;
+  color: var(--font-color);
   text-decoration: none;
-  opacity: 0.3;
-}
-
-#a1 {
-  color: #ff006a;
-}
-#a4 {
-  color: #ff006a;
+  opacity: 0.6;
 }
 
 .errors div {
-  background-color: #232530;
+  background-color: var(--wrapper);
   width: 50%;
   margin-bottom: 20px;
   padding: 20px 50px 20px 50px;
@@ -265,23 +276,36 @@ form {
 /* wrappers */
 
 .wrapper {
-  background-color: #232530;
+  background-color:var(--wrapper);
   width: 50%;
   padding: 20px 50px 20px 50px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
 }
 .profilewrapper {
-  background-color: #232530;
+  background-color:var(--wrapper);
   width: 70%;
   padding: 20px 50px 20px 50px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
 }
 .dashwrapper {
-  background-color: #232530;
+  background-color: var(--wrapper);
   width: 70%;
   padding: 20px 50px 20px 50px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
 }
 .errorwrapper {
+  background-color: var(--wrapper);
   width: 70%;
   padding: 20px 50px 20px 50px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.5);
+  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.5);
 }
 pre {
   margin-right: 20px;
@@ -289,7 +313,7 @@ pre {
 .notfound {
   font-family: Montserrat;
   font-weight: 300;
-  color: #fff;
+  color: var(--font-color);
   padding: 0 !important;
   text-decoration: none;
   text-transform: uppercase;
@@ -305,7 +329,7 @@ pre {
 /*ventre div i boksen*/
 #leftbox {
   border-style: solid;
-  border-color: white;
+  border-color: var(--color2);
   width: 50%;
   margin: 0 auto;
   padding: 20px 50px 20px 50px;
@@ -345,13 +369,13 @@ pre {
 }
 /*tekst i begge div*/
 .textp {
-  color: white;
+  color: var(--font-color);
   text-align: justify;
   text-justify: inter-word;
 }
 
 hr {
-  border: 2px solid white;
+  border: 1px solid var(--color2);
 }
 
 /* input Section */
@@ -363,9 +387,8 @@ textarea,
 select {
   width: 100%;
   font-family: 'Open Sans', sans-serif;
-  color: #fff;
-  background-color: #353744;
-  opacity: 0.6;
+  color: var(--font-color);
+  background-color: var(--color3);
   padding: 18px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -378,14 +401,14 @@ input[type='password'] {
   margin-bottom: 20px;
 }
 ::placeholder {
-  color: #fff;
-  opacity: 0.3;
+  color: var(--font-color);
+  opacity: 0.4;
   font-size: 14px;
 }
 ::-webkit-file-upload-button {
-  background-color: #353744;
-  opacity: 0.6;
-  color: #fff;
+  background-color: var(--color3)!important;
+  color: var(--font-color2);
+  border: 2px solid var(--color2)!important;
   padding: 8px;
   border: none;
   cursor: pointer;
@@ -393,9 +416,9 @@ input[type='password'] {
 input[type='submit'] {
   width: 100%;
   font-size: 20px;
-  opacity: 0.6;
-  background-color: #ff006a;
-  color: white;
+  opacity: 0.8;
+  background-color: var(--bg-color3);
+  color: var(--font-color2);
   padding: 15px 20px;
   margin: 8px 0;
   border: none;
@@ -415,9 +438,8 @@ input[type='submit']:hover {
 .search-container input[type='text'] {
   width: 90%;
   font-family: 'Open Sans', sans-serif;
-  color: #fff;
-  background-color: #353744;
-  opacity: 0.6;
+  color: var(--font-color);
+  background-color: var(--color3);
   padding: 18px 20px;
   margin: 0;
   border: none;
@@ -429,16 +451,16 @@ input[type='submit']:hover {
   float: right;
   width: 10%;
   padding: 19px 20px;
-  background: #ff006a;
-  color: #ffffff;
-  opacity: 0.6;
+  background: var(--bg-color3);
+  color: var(--font-color2);
+  opacity: 0.8;
   font-size: 14px;
   border: none;
   cursor: pointer;
   margin: 0 auto;
 }
 .search-container button:hover {
-  background: #ff006a;
+  background: var(--bg-color3);
   opacity: 1;
   transition: 0.5s;
 }
@@ -467,6 +489,7 @@ input[type='submit']:hover {
   max-width: 93.5rem;
   display: flex;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 img {
   display: block;
@@ -480,37 +503,40 @@ img {
 }
 .profile-image {
   float: left;
+  text-align: center;
 }
 .profile-image img {
   border-radius: 50%;
 }
 .profile-user-head {
-  padding-bottom: 5px;
   width: 100%;
+  display: flex;
 }
 .profile-user-name {
   float: left;
   display: flex;
   font-size: 25px;
-  color: #fff;
+  color: var(--font-color);
   margin-left: 20px;
   padding-bottom: 0px;
 }
-.btn {
-  display: inline-block;
-  background: none;
-  border: none;
-  color: #fff;
-  padding: 0;
-  cursor: pointer;
-}
+
 .profile-edit-btn {
-  font-size: 18px;
-  line-height: 1.5;
-  border: 1px solid #fff;
-  padding: 0 1rem;
-  margin-left: 10px;
+  font-size: 16px;
+  background-color: var(--bg-color3);
+  color: var(--font-color2);
+  border: none;
+  padding: 5px 20px 5px 20px;
+  opacity: 0.8;
+  cursor: pointer;
+  margin-top: 10px;
 }
+
+.profile-edit-btn:hover {
+  opacity: 1;
+  transition: 0.5s;
+}
+
 .profile-stats {
   display: inline-block;
   margin-bottom: 10px;
@@ -522,65 +548,49 @@ img {
   padding: 5px 5px 5px 0px;
   font-size: 18px;
   opacity: 0.6;
+  font-size: 16px;
 }
 
 .profile-bio {
   margin-bottom: 5px;
   margin-left: 20px;
   font-size: 18px;
+  opacity: 0.8;
   width: 100%;
 }
 
-.edit-avatar {
-  margin-top: 10px;
-}
-.edit-avatar form {
-  padding-bottom: 0px !important;
-}
 ::-webkit-file-upload-button {
-  background-color: #353744;
+  background-color: var(--bg-color2);
   opacity: 0.6;
-  color: #fff;
-  padding: 8px;
-  border: none;
-  cursor: pointer;
-}
-.edit-avatar input[type='submit'] {
-  font-size: 14px;
-  width: 100px;
-  background-color: #ff006a;
-  opacity: 0.6;
-  color: #ffffff;
-  padding: 8px;
-  border: none;
-  cursor: pointer;
-}
-.edit-avatar input[type='submit']:hover {
-  font-size: 14px;
-  width: 100px;
-  background-color: #ff006a;
-  opacity: 1;
-  color: #ffffff;
+  color: var(--font-color);
   padding: 8px;
   border: none;
   cursor: pointer;
 }
 
-.theme .profilewrapper {
+/* theme switcher */
+
+.theme {
   display: flex;
   justify-content: space-between;
-  opacity: 0.6;
+  border-top: 1px solid var(--color2);
+  opacity: 0.8;
+  width: 100%;
+  padding: 20px 0px 0px 0px;
 }
-.sliderplaceholder {
-  float: right;
-}
+
 #theme {
   float: left;
   margin-top: 5px;
   font-size: 20px;
 }
 
+.sliderplaceholder {
+  float: left;
+}
+
 /* yadda/dashboard Section */
+
 .postbtn {
   display: flex;
   justify-content:flex-end;
@@ -589,22 +599,22 @@ img {
 #postYadda {
   width: 20%;
   font-size: 20px;
-  background-color: #ff006a;
-  opacity: 0.6;
-  color: #ffffff;
+  background-color: var(--bg-color3);
+  opacity: 0.8;
+  color: var(--font-color2);
   padding: 15px 20px;
   border: none;
   cursor: pointer;
 }
 #postYadda:hover {
-  background-color: #ff006a;
+  background-color: var(--bg-color3);
   opacity: 1;
   transition: 0.5s;
 }
 #charcount {
   font-size: 14px;
   margin-bottom: 5px;
-  color: #fff;
+  color: var(--font-color);
 }
 #yaddatxtarea {
   float: right;
@@ -620,19 +630,18 @@ img {
   margin: 0 auto;
   width: 100%;
   padding: 18px 20px;
-  background-color: #353744;
+  background-color: var(--color3);
   margin-bottom: 20px;
   display: flex;
 }
 
 .post-content {
-  padding: 0px 10px 0px 10px;
+  padding: 0px 10px 0px 20px;
   width: 100%;
 }
 
 .post-head {
   display: flex;
-  padding: 5px 10px 0px 10px;
   width: 100%;
 }
 
@@ -645,10 +654,10 @@ img {
 }
 
 .post-username a {
-  color: #ffffff;
+  color: var(--font-color);
   font-family: Montserrat;
   font-size: 20px;
-  opacity: 0.6;
+  opacity: 0.8;
   text-decoration: none;
 }
 .post-username a:hover {
@@ -661,10 +670,10 @@ img {
   background: none;
   padding: 0px;
   margin: 0px;  
-  color: #ffffff;
+  color: var(--font-color);
+  opacity: 0.8;
   font-family: Montserrat;
   font-weight: 300;
-  opacity: 0.6;
 }
 .post-username input[type="submit"]:hover{
   opacity: 1;
@@ -672,41 +681,41 @@ img {
 
 .post-created {
   font-size: 12px;
-  opacity: 0.6;
   padding: 5px 15px 0px 10px;
   width: 100%;
 }
 
 .post-created a {
   font-size: 12px;
-  opacity: 0.6;
-  color: #fff;
+  opacity: 0.8;
+  color: var(--font-color);
   text-decoration: none;
 }
 
 .post-created a:hover {
   font-size: 12px;
   opacity: 1;
-  color: #fff;
+  color: var(--font-color);
   text-decoration: underline;
 }
 
 .post-text {
-  padding: 5px 10px 0px 10px;
   width: 100%;
+  margin-top: 5px;
 }
 .post-text p {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .post-tags {
   float: left;
   width: 100%;
+  margin-top: 5px;
 }
 .post-tags a {
   font-size: 14px;
-  color: #ffffff;
-  opacity: 0.6;
+  color: var(--font-color);
+  opacity: 0.8;
   text-decoration: none;
 }
 .post-tags a:hover {
@@ -730,16 +739,16 @@ img {
 .show-comments p,
 .post-delete p {
   font-size: 14px;
-  opacity: 0.6;
-  color: #fff;
+  opacity: 0.8;
+  color: var(--font-color);
   cursor: pointer;
-  text-decoration: underline;
 }
 
 .post-comment p:hover,
 .show-comments p:hover,
 .post-delete p:hover {
   opacity: 1;
+  text-decoration: underline;
 }
 
 .post-delete form {
@@ -754,28 +763,13 @@ img {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 14px;
-  opacity: 0.6;
-  color: #fff;
+  opacity: 0.8;
+  color: var(--font-color);
   cursor: pointer;
-  text-decoration: underline;
 }
 .post-delete button:hover {
   opacity: 1;
-}
-
-.file-upload > input {
-  display: none;
-}
-.file-upload-icon {
-  cursor: pointer;
-  color: #353744;
-  margin: 8px 0;
-}
-.file-upload-icon:hover {
-  cursor: pointer;
-  color: #fff;
-  opacity: 0.3;
-  transition: 0.5s;
+  text-decoration: underline;
 }
 
 /* user/follow Section */
@@ -787,21 +781,25 @@ img {
   margin-left: 20px;
 }
 
-.btn.follow-btn {
-  font-size: 20px;
-  line-height: 1.5;
-  padding: 0 1rem;
-  display: inline-block;
+.follow-btn {
+  font-size: 16px;
+  background-color: var(--bg-color3);
+  color: var(--font-color2);
   border: none;
-  color: #fff;
-  padding: 0;
+  opacity: 0.8;
+  padding: 5px 10px 5px 10px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
+.follow-btn:hover {
+  opacity: 1;
+  transition: 0.5s;
+}
 .user-container {
   margin: 0 auto;
   padding: 18px 20px;
-  background-color: #353744;
+  background-color: var(--color3);
   margin-bottom: 20px;
 }
 
@@ -812,7 +810,7 @@ img {
   float: left;
   display: flex;
   font-size: 25px;
-  color: #fff;
+  color: var(--font-color);
   margin-left: 20px;
   margin-bottom: 5px;
 }
@@ -847,8 +845,7 @@ footer {
 #copyright {
   font-size: 14px;
   text-align: center;
-  border-top: 1px solid #fff;
-  opacity: 0.3;
+  opacity: 0.5;
   padding: 20px;
 }
 
@@ -861,7 +858,7 @@ footer {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   z-index: 9999;
-  color: #fff;
+  color: var(--font-color2);
   font-family: 'Open Sans', sans-serif;
   font-size: 24px;
   font-weight: 400;
