@@ -1,6 +1,7 @@
 'use strict';
 const mon = require('../models/mongooseWrap');
 const Yadda = require('../models/Yadda');
+const User = require('../models/userModel');
 
 exports.delYadda = async function (req, res) {
   let del = { _id: req.body._id };
@@ -33,6 +34,19 @@ exports.postYadda = async function (req) {
   });
   try {
     let cs = await yadda.save();
+    return;
+  } catch (e) {
+    console.log(e);
+  }
+};
+//upsert user
+exports.upsertUser = async function (req, change) {
+  let chk = {_id: req.user._id};
+  let theme = new User({
+    theme: change
+  });
+  try {
+    let cs = await mon.upsert(User, theme, chk);
     return;
   } catch (e) {
     console.log(e);
