@@ -35,7 +35,8 @@ exports.getLoginForm = (req, res) => {
 
 // Dashboard
 exports.dashboard = async function (req, res) {
-  let yadda = await mon.retrieve(Yadda, {}, { sort: { created: -1 } });
+  let replychk = {reply: null};
+  let yadda = await mon.retrieve(Yadda, replychk, { sort: { created: -1 } });
   res.render('dashboard', {
     title: 'Dashboard',
     subtitle: 'Welcome to your dashboard',

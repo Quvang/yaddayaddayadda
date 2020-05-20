@@ -39,6 +39,18 @@ exports.postYadda = async function (req) {
     console.log(e);
   }
 };
+
+exports.replyYadda = async function (req, res) {
+  let yadda = new Yadda({
+      username: req.body.username,
+      text: req.body.text,
+      avatar: req.body.avatar,
+      reply: req.body.reply
+  });
+  let cs = await yadda.save();
+  res.redirect("/dashboard");
+};
+
 //upsert user
 exports.upsertUser = async function (req, change) {
   let chk = {_id: req.user._id};

@@ -12,5 +12,6 @@ router.post('/dashboard/post', function (req, res, next) {
   res.redirect('/dashboard');
 });
 router.post('/delYadda', authController.protect, ydc.delYadda);
+router.post('/replyYadda', authController.protect, ydc.replyYadda);   // lav kommentar
 
 module.exports = router;

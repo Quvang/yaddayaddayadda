@@ -40,7 +40,7 @@ block content
                       a(href="") #{yadda.tags}
                   div.post-bottom
                     div.show-comments 
-                      p 0 comments <!-- placeholder -->
+                      p(id=`comments${yadda._id}`) 0 comments <!-- placeholder -->
                     div.post-comment
                       p comment <!-- placeholder -->
                     div.post-delete
@@ -50,3 +50,11 @@ block content
                           button(type="submit") delete
                       else
                           div.post-delete(style="display: none;")
+              div.reply-container
+                form(id="makeyadda" action="/api/v1/yaddas/replyYadda" method="POST")
+                  input(type="hidden" value=user.username name="username")
+                  input(type="hidden" value=user.avatar name="avatar")
+                  input(type="hidden" value=yadda._id name="reply")
+                  textarea(id="replytxtarea" type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
+                  div.postbtn
+                    input(id="postYadda" type='submit' value='Yadda')
