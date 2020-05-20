@@ -9,3 +9,8 @@ if (userFollowing.includes(userToFollow) == true) {
 } else {
   document.getElementById('followBtn').value = 'Follow';
 }
+
+// document.getElementById('followBtn').addEventListener('click', () => {
+//   window.history.back();
+//   console.log('Hello');
+// });

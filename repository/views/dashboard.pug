@@ -50,11 +50,28 @@ block content
                           button(type="submit") delete
                       else
                           div.post-delete(style="display: none;")
+
               div.reply-container
-                form(id="makeyadda" action="/api/v1/yaddas/replyYadda" method="POST")
-                  input(type="hidden" value=user.username name="username")
-                  input(type="hidden" value=user.avatar name="avatar")
-                  input(type="hidden" value=yadda._id name="reply")
-                  textarea(id="replytxtarea" type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
-                  div.postbtn
-                    input(id="postYadda" type='submit' value='Yadda')
+                ul.accordion
+                  li
+                    button.accordion-control Comments
+                    .accordion-panel
+                      br
+                      h2.post-head= user.username 
+                        a.post-created ***TIME CREATED FIX ME***
+                        //- a.post-created(href=`/yadda/${yadda._id}` title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
+                      p Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ut rem, laudantium impedit sapiente adipisci.
+                      br
+                      hr
+                      form(id="makeyadda" action="/api/v1/yaddas/replyYadda" method="POST")
+                        input(type="hidden" value=user.username name="username")
+                        input(type="hidden" value=user.avatar name="avatar")
+                        input(type="hidden" value=yadda._id name="reply")
+                        textarea(id="replytxtarea" type="textarea" name="text" placeholder="What's on Your mind " + user.username + "?" rows="3" class="form-control" maxlength="167")
+                        div.postbtn
+                          input(id="postYadda" type='submit' value='Yadda')
+                      
+                      br
+                
+      
+    script(src="/javascripts/accordion.js")

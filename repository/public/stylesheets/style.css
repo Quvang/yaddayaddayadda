@@ -1,5 +1,5 @@
 :root {
-  --primary: #818CAB;
+  --primary: #818cab;
   --bg-color: #f2f2f2;
   --bg-color2: #f7f7f7;
   --bg-color3: #414141;
@@ -7,19 +7,19 @@
   --font-color2: #f7f7f7;
   --wrapper: #f7f7f7;
   --color: #414141;
-  --color2: #ABABAB;
-  --color3: #EAEAEA;
+  --color2: #ababab;
+  --color3: #eaeaea;
 }
 
-[data-theme="dark"] {
-  --primary: #818CAB;
-  --bg-color: #3E4652;
-  --bg-color3: #818CAB;
+[data-theme='dark'] {
+  --primary: #818cab;
+  --bg-color: #3e4652;
+  --bg-color3: #818cab;
   --font-color: #f7f7f7;
   --font-color2: #f7f7f7;
-  --wrapper: #464E5B;
-  --color: #818CAB;
-  --color2: #ABABAB;
+  --wrapper: #464e5b;
+  --color: #818cab;
+  --color2: #ababab;
   --color3: #505967;
 }
 
@@ -82,7 +82,7 @@ li a:hover {
 h1 {
   font-family: Montserrat;
   font-weight: 300;
-  color: var(--font-color)!important;
+  color: var(--font-color) !important;
   opacity: 0.8;
   padding: 14px 0px;
   text-decoration: none;
@@ -94,7 +94,7 @@ h1.logo a {
   color: var(--primary);
 }
 h1.logo:hover {
-  color:var(--primary);
+  color: var(--primary);
   opacity: 0.8;
   transition: 0.5s;
   transform: translate3d(5px, 0, 0);
@@ -111,7 +111,7 @@ h3 {
   font-family: Montserrat;
   font-weight: 300;
   font-size: 14px;
-  color:var(--font-color);
+  color: var(--font-color);
   margin-bottom: 5px;
 }
 
@@ -276,36 +276,36 @@ form {
 /* wrappers */
 
 .wrapper {
-  background-color:var(--wrapper);
+  background-color: var(--wrapper);
   width: 50%;
   padding: 20px 50px 20px 50px;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
-  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
 }
 .profilewrapper {
-  background-color:var(--wrapper);
+  background-color: var(--wrapper);
   width: 70%;
   padding: 20px 50px 20px 50px;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
-  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
 }
 .dashwrapper {
   background-color: var(--wrapper);
   width: 70%;
   padding: 20px 50px 20px 50px;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
-  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.3);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
 }
 .errorwrapper {
   background-color: var(--wrapper);
   width: 70%;
   padding: 20px 50px 20px 50px;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.5);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.5);
-  box-shadow: 0px 0px 10px 0px rgba(41,41,41,0.5);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.5);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.5);
 }
 pre {
   margin-right: 20px;
@@ -406,9 +406,9 @@ input[type='password'] {
   font-size: 14px;
 }
 ::-webkit-file-upload-button {
-  background-color: var(--color3)!important;
+  background-color: var(--color3) !important;
   color: var(--font-color2);
-  border: 2px solid var(--color2)!important;
+  border: 2px solid var(--color2) !important;
   padding: 8px;
   border: none;
   cursor: pointer;
@@ -593,7 +593,7 @@ img {
 
 .postbtn {
   display: flex;
-  justify-content:flex-end;
+  justify-content: flex-end;
   width: 100%;
 }
 #postYadda {
@@ -635,6 +635,10 @@ img {
   display: flex;
 }
 
+.accordion-panel {
+  display: none;
+}
+
 .reply-container {
   margin: 0 auto;
   width: 100%;
@@ -674,16 +678,16 @@ img {
 .post-username form {
   padding-bottom: 0px;
 }
-.post-username input[type="submit"]{
+.post-username input[type='submit'] {
   background: none;
   padding: 0px;
-  margin: 0px;  
+  margin: 0px;
   color: var(--font-color);
   opacity: 0.8;
   font-family: Montserrat;
   font-weight: 300;
 }
-.post-username input[type="submit"]:hover{
+.post-username input[type='submit']:hover {
   opacity: 1;
 }
 

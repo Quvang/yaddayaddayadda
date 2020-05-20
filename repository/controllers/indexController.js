@@ -35,7 +35,7 @@ exports.getLoginForm = (req, res) => {
 
 // Dashboard
 exports.dashboard = async function (req, res) {
-  let replychk = {reply: null};
+  let replychk = { reply: null };
   let yadda = await mon.retrieve(Yadda, replychk, { sort: { created: -1 } });
   res.render('dashboard', {
     title: 'Dashboard',
@@ -61,6 +61,26 @@ exports.profile = async function (req, res) {
 exports.userProfile = async function (req, res) {
   let yaddaUser = { username: req.body.yaddaUsername };
   let isFollowing = { following: req.body.yaddaUsername };
+  let getUser = await mon.retrieve(User, yaddaUser);
+  let following = await mon.retrieve(User, isFollowing);
+  let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: { created: -1 } });
+  // console.log('------getUser----\n' + getUser + '\n------getUser----');
+  // console.log('------following----\n' + following + '\n------follwing----');
+
+  res.render('userProfile', {
+    title: 'Profile',
+    subtitle: 'Welcome to .... profile',
+    user: req.user,
+    yaddas: yadda,
+    userData: getUser,
+    followers: following,
+  });
+};
+
+// Get UserProfile
+exports.getUserProfile = async function (req, res) {
+  let yaddaUser = { username: req.user };
+  let isFollowing = { following: req.usber };
   let getUser = await mon.retrieve(User, yaddaUser);
   let following = await mon.retrieve(User, isFollowing);
   let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: { created: -1 } });
