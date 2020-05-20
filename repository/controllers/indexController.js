@@ -92,21 +92,6 @@ exports.userProfile = async function (req, res) {
 //   });
 // };
 
-//update Theme
-exports.dtheme = function (req, res) {
-  res.json(req.user);
-};
-
-exports.getTheme = async function (req, res) {
-  if (req.user.dtheme) {
-    var change = true;
-  } else {
-    var change = false;
-  }
-  let users = await ydc.upsertUser(req, change);
-  res.redirect(req.get('referer'));
-};
-
 // Messages
 exports.messages = function (req, res) {
   res.render('messages', {
