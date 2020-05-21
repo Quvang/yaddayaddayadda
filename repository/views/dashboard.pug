@@ -60,9 +60,9 @@ block content
                     div.reply-content
                       div.reply-head
                         div.reply-username
-                          if yaddaNotNull.username != yadda.username
+                          if yaddaNotNull.username != user.username
                             form(action="/userProfile" method="POST" id="yaddaUserNameForm")
-                              input(type="hidden" name="yaddaUsername" value=`${yaddaNotNull.username}` id="yaddaUsername")
+                              input(type="hidden" name="yaddaUsername" value=`${yadda.username}` id="yaddaUsername")
                               input(type="submit" value=`${yaddaNotNull.username}`)
                           else
                             a(href="/profile") #{yaddaNotNull.username}
