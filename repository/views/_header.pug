@@ -52,8 +52,8 @@ header
       if user && user.role == 'member'
         li: a(href="/dashboard") Dashboard
         li: a(href="/profile") profile
-        li: a(href="/messages") Messages
-        li: a(href="/explore") Explore
+        li: a(href="/messages" style="text-decoration: line-through;") Messages
+        li: a(href="/explore" style="text-decoration: line-through;") Explore
         li: a(href="/tags") #Tags
         br
         li: a(href="/account") Account Settings
@@ -62,8 +62,8 @@ header
       if user && user.role == 'moderator'
         li: a(href="/dashboard") Dashboard
         li: a(href="/profile") profile
-        li: a(href="/messages") Messages
-        li: a(href="/explore") Explore
+        li: a(href="/messages" style="text-decoration: line-through;") Messages
+        li: a(href="/explore" style="text-decoration: line-through;") Explore
         li: a(href="/tags") #Tags
         br
         li: a(href="/moderatorPanel" style="text-decoration: line-through;") Moderator Control Panel
@@ -73,8 +73,8 @@ header
       if user && user.role == 'admin'
         li: a(href="/dashboard") Dashboard
         li: a(href="/profile") profile
-        li: a(href="/messages") Messages
-        li: a(href="/explore") Explore
+        li: a(href="/messages" style="text-decoration: line-through;") Messages
+        li: a(href="/explore" style="text-decoration: line-through;") Explore
         li: a(href="/tags") #Tags
         br
         li: a(href="/adminPanel" style="text-decoration: line-through;") Admin Control Panel
