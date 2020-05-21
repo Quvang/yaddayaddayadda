@@ -522,6 +522,7 @@ input[type='submit']:hover {
 }
 img {
   display: block;
+  border-radius: 50%;
 }
 .profile {
   margin: 8px 0;
