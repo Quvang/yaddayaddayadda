@@ -49,11 +49,15 @@ exports.dashboard = async function (req, res) {
 exports.profile = async function (req, res) {
   let onlyUser = { username: req.user.username };
   let yadda = await mon.retrieve(Yadda, onlyUser, { sort: { created: -1 } });
+
+  let isFollowing = { following: req.user.username };
+  let following = await mon.retrieve(User, isFollowing);
   res.render('profile', {
     title: 'Profile',
     subtitle: 'Welcome to your profile',
     user: req.user,
     yaddas: yadda,
+    followers: following,
   });
 };
 
@@ -79,20 +83,13 @@ exports.userProfile = async function (req, res) {
 
 // Get UserProfile
 exports.getUserProfile = async function (req, res) {
-  let yaddaUser = { username: req.user };
-  let isFollowing = { following: req.usber };
-  let getUser = await mon.retrieve(User, yaddaUser);
+  let isFollowing = { following: req.body.yaddaUsername };
   let following = await mon.retrieve(User, isFollowing);
-  let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: { created: -1 } });
-  // console.log('------getUser----\n' + getUser + '\n------getUser----');
-  // console.log('------following----\n' + following + '\n------follwing----');
 
   res.render('userProfile', {
     title: 'Profile',
+    userData: 'test',
     subtitle: 'Welcome to .... profile',
-    user: req.user,
-    yaddas: yadda,
-    userData: getUser,
     followers: following,
   });
 };
@@ -111,6 +108,21 @@ exports.getUserProfile = async function (req, res) {
 //     getUserData: getUser,
 //   });
 // };
+
+//update Theme
+exports.dtheme = function (req, res) {
+  res.json(req.user);
+};
+
+exports.getTheme = async function (req, res) {
+  if (req.user.dtheme) {
+    var change = true;
+  } else {
+    var change = false;
+  }
+  let users = await ydc.upsertUser(req, change);
+  res.redirect(req.get('referer'));
+};
 
 // Messages
 exports.messages = function (req, res) {

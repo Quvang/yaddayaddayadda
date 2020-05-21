@@ -15,8 +15,8 @@ block content
                   div.profile-stats
                       ul
                           li #[span.profile-stat-count 0] posts |
-                          li #[span.profile-stat-count 0] followers |
-                          li #[span.profile-stat-count 0] following
+                          li #[span.profile-stat-count #{followers.length}] followers |
+                          li #[span.profile-stat-count #{user.following.length}] following
                   div.profile-bio
                       p #[span #{user.firstName} #{user.lastName}]
           div.theme
