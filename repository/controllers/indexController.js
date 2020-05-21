@@ -37,11 +37,17 @@ exports.getLoginForm = (req, res) => {
 exports.dashboard = async function (req, res) {
   let replychk = { reply: null };
   let yadda = await mon.retrieve(Yadda, replychk, { sort: { created: -1 } });
+
+
+  let replyChkNotNull = { reply: {$ne:null} };
+  let yaddaNotNull = await mon.retrieve(Yadda, replyChkNotNull, { sort: { created: -1 } });
+
   res.render('dashboard', {
     title: 'Dashboard',
     subtitle: 'Welcome to your dashboard',
     user: req.user,
     yaddas: yadda,
+    yaddasNotNull: yaddaNotNull
   });
 };
 
