@@ -580,6 +580,53 @@ img {
   font-size: 16px;
 }
 
+/*MODAL OPTIONS*/
+.modal {
+  position: absolute;
+  z-index: 1000;
+  padding: 50px;
+  background-color: var(--bg-color);
+  border: solid 1px var(--color);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+  box-shadow: 0px 0px 10px 0px rgba(41, 41, 41, 0.3);
+}
+
+.modal-close {
+  cursor: pointer;
+}
+
+#profile-followers-modal {
+  background-color: var(--color3);
+  text-align: center;
+  clear: both;
+  padding: 15px;
+}
+
+#profile-followers li {
+  cursor: pointer;
+}
+
+button.modal-close {
+  background-color: #ff006a;
+  opacity: 0.6;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 7px 10px 9px 10px;
+  margin: 10px 0 0 0;
+  float: right;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+button.modal-close:hover {
+  background-color: #ff006a;
+  opacity: 1;
+}
+
+/*END OF MODAL OPTIONS*/
+
 .profile-bio {
   margin-bottom: 5px;
   margin-left: 20px;

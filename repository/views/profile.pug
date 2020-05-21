@@ -15,8 +15,23 @@ block content
                   div.profile-stats
                       ul
                           li #[span.profile-stat-count 0] posts |
-                          li #[span.profile-stat-count #{followers.length}] followers |
-                          li #[span.profile-stat-count #{user.following.length}] following
+                          
+                          div#profile-followers
+                              li #[span.profile-stat-count #{followers.length}] followers |
+                              li #[span.profile-stat-count #{user.following.length}] following
+                  
+                  div.modal-content
+                      div#profile-followers-modal
+                          h3: strong Followers:
+                              each user in followers
+                                  p #[span.followMe #{user.username}]
+                          h3: strong Following:
+                              - for (var i = 0; i < user.following.length; ++i) {
+                                  p #[span.followMe #{users[0].following[i]}]
+                              - }
+
+                            
+
                   div.profile-bio
                       p #[span #{user.firstName} #{user.lastName}]
           div.theme
@@ -60,3 +75,6 @@ block content
                           button(type="submit") delete
                       else
                         div.post-delete(style="display: none;")
+
+    script(src='/javascripts/modal-init.js')
+    script(src='/javascripts/modal-window.js')

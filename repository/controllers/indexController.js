@@ -55,14 +55,16 @@ exports.dashboard = async function (req, res) {
 exports.profile = async function (req, res) {
   let onlyUser = { username: req.user.username };
   let yadda = await mon.retrieve(Yadda, onlyUser, { sort: { created: -1 } });
-
+  let users = await mon.retrieve(User, {});
   let isFollowing = { following: req.user.username };
   let following = await mon.retrieve(User, isFollowing);
+  console.log(following);
   res.render('profile', {
     title: 'Profile',
     subtitle: 'Welcome to your profile',
     user: req.user,
     yaddas: yadda,
+    users: users,
     followers: following,
   });
 };
@@ -76,7 +78,6 @@ exports.userProfile = async function (req, res) {
   let yadda = await mon.retrieve(Yadda, yaddaUser, { sort: { created: -1 } });
   // console.log('------getUser----\n' + getUser + '\n------getUser----');
   // console.log('------following----\n' + following + '\n------follwing----');
-
   res.render('userProfile', {
     title: 'Profile',
     subtitle: 'Welcome to .... profile',
