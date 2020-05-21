@@ -49,7 +49,8 @@ block content
           br
           each yadda in yaddas  
             div.post-container
-                div.post-image 
+                div.post-image
+                  h3.profile-user-role #{user.role} 
                   img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="100px" height="100px")
                 div.post-content
                   div.post-head
