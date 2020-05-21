@@ -551,6 +551,13 @@ img {
   padding-bottom: 0px;
 }
 
+.profile-user-role {
+  text-align: center;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: var(--font-color);
+  padding-bottom: 0px;
+}
 .profile-edit-btn {
   font-size: 16px;
   background-color: var(--bg-color3);

@@ -6,6 +6,7 @@ block content
       div.profilewrapper
           div.container
               div.profile-image
+                  h3.profile-user-role #{user.role}
                   img(src="../images/avatar/" + user.avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
                   a(href="/account")
                     button.btn.profile-edit-btn Edit

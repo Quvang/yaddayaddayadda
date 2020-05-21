@@ -6,6 +6,7 @@ block content
     div.profilewrapper
       div.container
         div.profile-image
+          h3.profile-user-role #{userData[0].role}
           img(src="../images/avatar/" + userData[0].avatar onerror="this.src='../images/avatar/avatar.png'" width="150px" height="150px")
           //- button.follow-btn Follow ? Unfollow
 
@@ -36,6 +37,7 @@ block content
       each yadda in yaddas  
         div.post-container
           div.post-image 
+            h3.profile-user-role #{userData[0].role}
             img(src="../images/avatar/" + yadda.avatar onerror="this.src='../images/avatar/avatar.png'" width="100px" height="100px")
           div.post-content
             div.post-head
