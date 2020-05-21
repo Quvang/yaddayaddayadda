@@ -6,6 +6,7 @@
   --font-color: #414141;
   --font-color2: #f7f7f7;
   --wrapper: #f7f7f7;
+  --reply:  #414141;
   --color: #414141;
   --color2: #ababab;
   --color3: #eaeaea;
@@ -18,6 +19,7 @@
   --font-color: #f7f7f7;
   --font-color2: #f7f7f7;
   --wrapper: #464e5b;
+  --reply:  #818cab;
   --color: #818cab;
   --color2: #ababab;
   --color3: #505967;
@@ -882,10 +884,12 @@ button.modal-close:hover {
   margin: 0 auto;
   width: 90%;
   padding: 18px 20px;
-  border-top: 1px solid var(--color2);
   border-collapse: separate;
   display: flex;
   float: right;
+  background-color: var(--reply);
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 .reply-content {
@@ -911,7 +915,7 @@ button.modal-close:hover {
 }
 
 .reply-username a {
-  color: var(--font-color);
+  color: var(--font-color2);
   font-family: Montserrat;
   font-size: 20px;
   opacity: 0.8;
@@ -927,7 +931,7 @@ button.modal-close:hover {
   background: none;
   padding: 0px;
   margin: 0px;
-  color: var(--font-color);
+  color: var(--font-color2);
   opacity: 0.8;
   font-family: Montserrat;
   font-weight: 300;
@@ -947,14 +951,14 @@ button.modal-close:hover {
   font-size: 12px;
   opacity: 0.8;
   padding: 5px 15px 0px 8px;
-  color: var(--font-color);
+  color: var(--font-color2);
   text-decoration: none;
 }
 
 .reply-created a:hover {
   font-size: 12px;
   opacity: 1;
-  color: var(--font-color);
+  color: var(--font-color2);
   text-decoration: underline;
 }
 
@@ -965,6 +969,7 @@ button.modal-close:hover {
 }
 .reply-text p {
   font-size: 16px;
+  color: var(--font-color2)
 }
 
 #replytxtarea {
