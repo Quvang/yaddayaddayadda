@@ -55,11 +55,13 @@ block content
                       br
                       each yaddaNotNull in yaddasNotNull
                         if yaddaNotNull.reply == yadda._id
+                          img(src="../images/avatar/" + yaddaNotNull.avatar onerror="this.src='../images/avatar/avatar.png'" width="30px" height="30px")
                           h2.post-head= yaddaNotNull.username 
                             div.post-created(href=`/yadda/${yaddaNotNull._id}` title=`${yaddaNotNull.created}`) #{moment(yaddaNotNull.created).fromNow()}
                             br
                           div #{yaddaNotNull.text}
-                          hr
+                          br
+                          hr    
                       br
                       form(id="makeyadda" action="/api/v1/yaddas/replyYadda" method="POST")
                         input(type="hidden" value=user.username name="username")
