@@ -40,7 +40,7 @@ exports.dashboard = async function (req, res) {
 
 
   let replyChkNotNull = { reply: {$ne:null} };
-  let yaddaNotNull = await mon.retrieve(Yadda, replyChkNotNull, { sort: { created: -1 } });
+  let yaddaNotNull = await mon.retrieve(Yadda, replyChkNotNull, { sort: { created: 1 } });
 
   res.render('dashboard', {
     title: 'Dashboard',
