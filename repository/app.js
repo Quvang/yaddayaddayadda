@@ -23,15 +23,16 @@ const globalErrorHandler = require('./controllers/errorController');
 
 // DB Config and server connect
 // const db = require('./config/keys').mongoURI;
+
+const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+
 mongoose
-  .connect('mongodb://localhost/yyy', {
+  .connect(DB, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   })
-  .then(function () {
-    console.log('mongoose connection open');
-  })
+  .then(() => console.log('DB connection successful!'))
   .catch(function (err) {
     console.error(err);
   });
