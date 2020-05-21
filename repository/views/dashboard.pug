@@ -33,7 +33,7 @@ block content
                       else
                         a(href="/profile") #{user.username}
                     div.post-created
-                      a(href=`/yadda/${yadda._id}` title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
+                      a(href="" title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
                   div.post-text 
                     p #{yadda.text}
                     div.post-tags 
@@ -51,27 +51,32 @@ block content
                       else
                           div.post-delete(style="display: none;")
 
-              div.reply-container
-                      br
-                      each yaddaNotNull in yaddasNotNull
-                        if yaddaNotNull.reply == yadda._id
-                          img(src="../images/avatar/" + yaddaNotNull.avatar onerror="this.src='../images/avatar/avatar.png'" width="30px" height="30px")
-                          h2.post-head= yaddaNotNull.username 
-                            div.post-created(href=`/yadda/${yaddaNotNull._id}` title=`${yaddaNotNull.created}`) #{moment(yaddaNotNull.created).fromNow()}
-                            br
-                          div #{yaddaNotNull.text}
-                          br
-                          hr    
-                      br
-                      form(id="makeyadda" action="/api/v1/yaddas/replyYadda" method="POST")
-                        input(type="hidden" value=user.username name="username")
-                        input(type="hidden" value=user.avatar name="avatar")
-                        input(type="hidden" value=yadda._id name="reply")
-                        textarea(id="replytxtarea" type="textarea" name="text" placeholder="What do you think about this " + user.username + "?" rows="3" class="form-control" maxlength="167")
-                        div.postbtn
-                          input(id="postYadda" type='submit' value='Yadda')
-                      
-                      br
-                
+              br  
+              each yaddaNotNull in yaddasNotNull
+                if yaddaNotNull.reply == yadda._id
+                  div.reply-container
+                    div.reply-image
+                      img(src="../images/avatar/" + yaddaNotNull.avatar onerror="this.src='../images/avatar/avatar.png'" width="80px" height="80px")
+                    div.reply-content
+                      div.reply-head
+                        div.reply-username
+                          if yaddaNotNull.username != yadda.username
+                            form(action="/userProfile" method="POST" id="yaddaUserNameForm")
+                              input(type="hidden" name="yaddaUsername" value=`${yaddaNotNull.username}` id="yaddaUsername")
+                              input(type="submit" value=`${yaddaNotNull.username}`)
+                          else
+                            a(href="/profile") #{yaddaNotNull.username}
+                        div.reply-created
+                          a(href=`/yadda/${yadda._id}` title=`${yadda.created}`) #{moment(yaddaNotNull.created).fromNow()}
+                        div.reply-text
+                          p #{yaddaNotNull.text} 
+                          
+              form(id="replyYadda" action="/api/v1/yaddas/replyYadda" method="POST")
+                input(type="hidden" value=user.username name="username")
+                input(type="hidden" value=user.avatar name="avatar")
+                input(type="hidden" value=yadda._id name="reply")
+                textarea(id="replytxtarea" type="textarea" name="text" placeholder="What do you think about this " + user.username + "?" rows="3" class="form-control" maxlength="167")
+                div.postbtn
+                  input(id="postYadda" type='submit' value='Yadda')
       
     script(src="/javascripts/accordion.js")
