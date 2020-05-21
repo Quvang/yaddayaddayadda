@@ -22,12 +22,22 @@ block content
           div.profile-stats
             ul
               li #[span.profile-stat-count 0] posts |
-              //- a.profile-stat-count-link(href="/userProfile/#")
-              li #[span.profile-stat-count #{followers.length}] followers |
-              //- a.profile-stat-count-link(href="/userProfile/#")
-              li #[span.profile-stat-count #{userData[0].following.length}] following
-          div.profile-bio
-            p #[span #{userData[0].firstName} #{userData[0].lastName}]
+                  
+              div#profile-followers
+                li #[span.profile-stat-count #{followers.length}] followers |
+                li #[span.profile-stat-count #{userData[0].following.length}] following
+          
+          div.modal-content
+            div#profile-followers-modal
+              h3: strong Followers:
+                each user in followers
+                  p #[span.followMe #{user.username}]
+              h3: strong Following:
+                - var j = userData[0].following.length
+                - for (var i = 0; i < j; ++i) {
+                  p #[span.followMe #{userData[0].following[i]}]
+                - }
+
     |
     br
     div.profilewrapper
@@ -60,3 +70,5 @@ block content
                 p comment <!-- placeholder -->
 
   script(src="/javascripts/followUserButton.js")
+  script(src='/javascripts/modal-init.js')
+  script(src='/javascripts/modal-window.js')

@@ -42,20 +42,20 @@ exports.postYadda = async function (req) {
 
 exports.replyYadda = async function (req, res) {
   let yadda = new Yadda({
-      username: req.body.username,
-      text: req.body.text,
-      avatar: req.body.avatar,
-      reply: req.body.reply
+    username: req.body.username,
+    text: req.body.text,
+    avatar: req.body.avatar,
+    reply: req.body.reply,
   });
   let cs = await yadda.save();
-  res.redirect("/dashboard");
+  res.redirect('/dashboard');
 };
 
 //upsert user
 exports.upsertUser = async function (req, change) {
-  let chk = {_id: req.user._id};
+  let chk = { _id: req.user._id };
   let theme = new User({
-    theme: change
+    theme: change,
   });
   try {
     let cs = await mon.upsert(User, theme, chk);
