@@ -6,7 +6,7 @@
   --font-color: #414141;
   --font-color2: #f7f7f7;
   --wrapper: #f7f7f7;
-  --reply:  #414141;
+  --reply: #414141;
   --color: #414141;
   --color2: #ababab;
   --color3: #eaeaea;
@@ -19,7 +19,7 @@
   --font-color: #f7f7f7;
   --font-color2: #f7f7f7;
   --wrapper: #464e5b;
-  --reply:  #818cab;
+  --reply: #818cab;
   --color: #818cab;
   --color2: #ababab;
   --color3: #505967;
@@ -45,7 +45,6 @@ body {
 main {
   margin: 50px;
   padding-top: 50px;
-
 }
 
 nav {
@@ -469,7 +468,8 @@ input[type='submit']:hover {
   opacity: 1;
   transition: 0.5s;
 }
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline-color: var(--color2);
   border: none;
 }
@@ -779,7 +779,7 @@ button.modal-close:hover {
   opacity: 0.8;
   font-family: Montserrat;
   font-weight: 300;
-  outline:none;
+  outline: none;
 }
 .post-username input[type='submit']:hover {
   opacity: 1;
@@ -787,8 +787,8 @@ button.modal-close:hover {
 
 .post-created {
   font-size: 12px;
-  padding: 5px 15px 0px 8px;
-  width: 100%;
+  padding: 5px 5px 0px 8px;
+  /* width: 100%; */
 }
 
 .post-created a {
@@ -839,13 +839,14 @@ button.modal-close:hover {
 .post-comment,
 .show-comments,
 .post-delete {
-  padding-left: 10px;
+  float: left;
+  padding: 5px 0px 0px 5px;
 }
 
 .post-comment p,
 .show-comments p,
 .post-delete p {
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.8;
   color: var(--font-color);
   cursor: pointer;
@@ -855,7 +856,7 @@ button.modal-close:hover {
 .show-comments p:hover,
 .post-delete p:hover {
   opacity: 1;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .post-delete form {
@@ -869,14 +870,15 @@ button.modal-close:hover {
   border: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
   opacity: 0.8;
   color: var(--font-color);
   cursor: pointer;
+  text-decoration: underline;
 }
 .post-delete button:hover {
   opacity: 1;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* reply Section */
@@ -936,7 +938,7 @@ button.modal-close:hover {
   opacity: 0.8;
   font-family: Montserrat;
   font-weight: 300;
-  outline:none;
+  outline: none;
 }
 .reply-username input[type='submit']:hover {
   opacity: 1;
@@ -970,7 +972,7 @@ button.modal-close:hover {
 }
 .reply-text p {
   font-size: 16px;
-  color: var(--font-color2)
+  color: var(--font-color2);
 }
 
 #replytxtarea {

@@ -33,22 +33,19 @@ block content
                         a(href="/profile") #{user.username}
                     div.post-created
                       a(href="" title=`${yadda.created}`) #{moment(yadda.created).fromNow()}
+                    div.post-delete
+                      if user.username === yadda.username
+                        form(action="/api/v1/yaddas/delYadda" method="POST")
+                          input(type="hidden" name="_id" value= yadda._id)
+                          button(type="submit") Delete
+                      else
+                          div.post-delete(style="display: none;")
                   div.post-text 
                     p #{yadda.text}
                     div.post-tags 
                       a(href="") #{yadda.tags}
                   div.post-bottom
-                    div.show-comments 
-                      p(id=`comments${yadda._id}`) 0 comments <!-- placeholder -->
-                    div.post-comment
-                      p comment <!-- placeholder -->
-                    div.post-delete
-                      if user.username === yadda.username
-                        form(action="/api/v1/yaddas/delYadda" method="POST")
-                          input(type="hidden" name="_id" value= yadda._id)
-                          button(type="submit") delete
-                      else
-                          div.post-delete(style="display: none;")
+                    
 
               br  
               each yaddaNotNull in yaddasNotNull
@@ -61,7 +58,7 @@ block content
                         div.reply-username
                           if yaddaNotNull.username != user.username
                             form(action="/userProfile" method="POST" id="yaddaUserNameForm")
-                              input(type="hidden" name="yaddaUsername" value=`${yadda.username}` id="yaddaUsername")
+                              input(type="hidden" name="yaddaUsername" value=`${yaddaNotNull.username}` id="yaddaUsername")
                               input(type="submit" value=`${yaddaNotNull.username}`)
                           else
                             a(href="/profile") #{yaddaNotNull.username}
